@@ -34,7 +34,7 @@ const NavbarBrand = () => {
           ) : (
             <div className="d-flex align-items-center">
               <img src={logo} alt="phoenix" width={27} />
-              <p className="logo-text ms-2 d-none d-sm-block">phoenix</p>
+              <p className="logo-text ms-2 d-none d-sm-block">Ресет</p>
             </div>
           )}
         </Navbar.Brand>

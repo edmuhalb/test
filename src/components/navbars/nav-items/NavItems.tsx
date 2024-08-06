@@ -1,6 +1,6 @@
 import Avatar from 'components/base/Avatar';
 import { Dropdown, Modal, Nav } from 'react-bootstrap';
-import avatar57 from 'assets/img/team/40x40/57.webp';
+import avatar from 'assets/img/team/40x40/avatar.webp';
 import ProfileDropdownMenu from './ProfileDropdownMenu';
 import { useAppContext } from 'providers/AppProvider';
 import FeatherIcon from 'feather-icons-react';
@@ -40,7 +40,7 @@ const NavItems = () => {
             className="dropdown-caret-none nav-link pe-0 py-0 lh-1 h-100 d-flex align-items-center"
             variant=""
           >
-            <Avatar src={avatar57} size="l" />
+            <Avatar src={avatar} size="l" />
           </Dropdown.Toggle>
           <ProfileDropdownMenu />
         </Dropdown>

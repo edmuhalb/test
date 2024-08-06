@@ -1,10 +1,10 @@
 import { PageBreadcrumbItem } from 'components/common/PageBreadcrumb';
-import team30 from 'assets/img/team/40x40/30.webp';
-import team57 from 'assets/img/team/40x40/57.webp';
-import team59 from 'assets/img/team/40x40/59.webp';
-import team58 from 'assets/img/team/40x40/58.webp';
-import team60 from 'assets/img/team/40x40/60.webp';
-import team34 from 'assets/img/team/40x40/34.webp';
+import team30 from 'assets/img/team/40x40/avatar.webp';
+import team57 from 'assets/img/team/40x40/avatar.webp';
+import team59 from 'assets/img/team/40x40/avatar.webp';
+import team58 from 'assets/img/team/40x40/avatar.webp';
+import team60 from 'assets/img/team/40x40/avatar.webp';
+import team34 from 'assets/img/team/40x40/avatar.webp';
 export const notificationsBreadcrumbItems: PageBreadcrumbItem[] = [
   {
     label: 'Pages',

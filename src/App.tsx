@@ -5,6 +5,7 @@ import { useAppContext } from 'providers/AppProvider';
 import { useSettingsPanelContext } from 'providers/SettingsPanelProvider';
 import { useEffect } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
+import { UserProvider } from './context/useAuth';
 
 const App = () => {
   const { isStylesheetLoaded } = useToggleStyle();
@@ -31,7 +32,7 @@ const App = () => {
   }, [isRTL]);
 
   return (
-    <>
+    <UserProvider>
       {!isStylesheetLoaded ? (
         <div
           style={{
@@ -54,7 +55,7 @@ const App = () => {
           )}
         </>
       )}
-    </>
+    </UserProvider>
   );
 };
 

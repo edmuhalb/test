@@ -1,5 +1,5 @@
-import team10 from 'assets/img/team/40x40/10.webp';
-import team12 from 'assets/img/team/40x40/12.webp';
+import team10 from 'assets/img/team/40x40/avatar.webp';
+import team12 from 'assets/img/team/40x40/avatar.webp';
 import product60 from 'assets/img/products/60x60/3.png';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { faChrome, faFirefoxBrowser } from '@fortawesome/free-brands-svg-icons';

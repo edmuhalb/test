@@ -1,14 +1,14 @@
-import team32 from 'assets/img/team/32.webp';
-import team35 from 'assets/img/team/35.webp';
-import team57 from 'assets/img/team/57.webp';
-import team58 from 'assets/img/team/58.webp';
-import team59 from 'assets/img/team/59.webp';
-import team31 from 'assets/img/team/31.webp';
-import team33 from 'assets/img/team/33.webp';
-import team34 from 'assets/img/team/34.webp';
-import team29 from 'assets/img/team/29.webp';
-import team3 from 'assets/img/team/3.webp';
-import team25 from 'assets/img/team/25.webp';
+import team32 from 'assets/img/team/avatar.webp';
+import team35 from 'assets/img/team/avatar.webp';
+import team57 from 'assets/img/team/avatar.webp';
+import team58 from 'assets/img/team/avatar.webp';
+import team59 from 'assets/img/team/avatar.webp';
+import team31 from 'assets/img/team/avatar.webp';
+import team33 from 'assets/img/team/avatar.webp';
+import team34 from 'assets/img/team/avatar.webp';
+import team29 from 'assets/img/team/avatar.webp';
+import team3 from 'assets/img/team/avatar.webp';
+import team25 from 'assets/img/team/avatar.webp';
 // import { BadgeBg } from 'components/base/Badge';
 import { PageBreadcrumbItem } from 'components/common/PageBreadcrumb';
 

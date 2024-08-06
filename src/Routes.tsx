@@ -9,6 +9,7 @@ import MainLayoutProvider from 'providers/MainLayoutProvider';
 import Error404 from 'pages/error/Error404';
 import App from 'App';
 import CardSignIn from 'pages/SignIn';
+import { ProtectedRoute } from './ProtectedRoute';
 
 const routes: RouteObject[] = [
   {
@@ -24,7 +25,11 @@ const routes: RouteObject[] = [
         children: [
           {
             index: true,
-            element: <Ecommerce />
+            element: (
+              <ProtectedRoute>
+                <Ecommerce />
+              </ProtectedRoute>
+            )
           },
           {
             path: '/apps',

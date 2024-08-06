@@ -1,6 +1,6 @@
 {
   "name": "phoenix-react",
-  "version": "1.4.0",
+  "version": "1.0.0",
   "private": true,
   "type": "module",
   "dependencies": {
@@ -29,6 +29,7 @@
     "@types/node": "^20.8.10",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.10",
+    "axios": "^1.7.3",
     "bootstrap": "^5.3.3",
     "classnames": "^2.3.2",
     "dayjs": "^1.11.7",

@@ -2,8 +2,11 @@ import { faKey, faPhone } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Button from 'components/base/Button';
 import { Col, Form, Row } from 'react-bootstrap';
+import { useAuth } from '../../../context/useAuth';
 
 const SignInForm = () => {
+  const { loginUser } = useAuth();
+
   return (
     <>
       <div className="text-center mb-7">
@@ -51,7 +54,11 @@ const SignInForm = () => {
         </Col>
         <Col xs="auto"></Col>
       </Row>
-      <Button variant="primary" className="w-100 mb-3">
+      <Button
+        variant="primary"
+        className="w-100 mb-3"
+        onClick={() => loginUser('76666666666', '111111')}
+      >
         Войти
       </Button>
       <div className="text-center"></div>

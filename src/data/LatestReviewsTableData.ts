@@ -13,15 +13,15 @@ import product12 from 'assets/img/products/60x60/12.png';
 import product13 from 'assets/img/products/60x60/13.png';
 import product14 from 'assets/img/products/60x60/14.png';
 import product15 from 'assets/img/products/60x60/15.png';
-import team59 from 'assets/img/team/40x40/59.webp';
-import team57 from 'assets/img/team/40x40/57.webp';
-import team58 from 'assets/img/team/40x40/58.webp';
-import team3 from 'assets/img/team/40x40/3.webp';
-import team26 from 'assets/img/team/40x40/26.webp';
-import team29 from 'assets/img/team/40x40/29.webp';
-import team8 from 'assets/img/team/40x40/8.webp';
-import team9 from 'assets/img/team/40x40/9.webp';
-import team24 from 'assets/img/team/40x40/24.webp';
+import team59 from 'assets/img/team/40x40/avatar.webp';
+import team57 from 'assets/img/team/40x40/avatar.webp';
+import team58 from 'assets/img/team/40x40/avatar.webp';
+import team3 from 'assets/img/team/40x40/avatar.webp';
+import team26 from 'assets/img/team/40x40/avatar.webp';
+import team29 from 'assets/img/team/40x40/avatar.webp';
+import team8 from 'assets/img/team/40x40/avatar.webp';
+import team9 from 'assets/img/team/40x40/avatar.webp';
+import team24 from 'assets/img/team/40x40/avatar.webp';
 import { BadgeBg } from 'components/base/Badge';
 
 export type LatestReviewsTableDataType = {

@@ -9,7 +9,9 @@ import classNames from 'classnames';
 import { useAuth } from '../../../context/useAuth';
 
 const ProfileDropdownMenu = ({ className }: { className?: string }) => {
-  const { logout } = useAuth();
+  const { logout, user } = useAuth();
+
+  const { name } = user || {};
 
   const [navItems] = useState([
     {
@@ -29,7 +31,7 @@ const ProfileDropdownMenu = ({ className }: { className?: string }) => {
         <Card.Body className="p-0">
           <div className="d-flex flex-column align-items-center justify-content-center gap-2 pt-4 pb-3">
             <Avatar src={avatar} size="xl" />
-            <h6 className="text-body-emphasis">Jerry Seinfield</h6>
+            <h6 className="text-body-emphasis">{name}</h6>
           </div>
           <div style={{ height: '4rem' }}>
             <Scrollbar>

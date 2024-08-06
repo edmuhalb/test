@@ -8,7 +8,7 @@ import InventoryTab from 'components/tabs/InventoryTab';
 import { defaultBreadcrumbItems } from 'data/commonData';
 import { Col, Form, Row } from 'react-bootstrap';
 
-const AddProduct = () => {
+const CallCreate = () => {
   return (
     <div>
       <PageBreadcrumb items={defaultBreadcrumbItems} />
@@ -75,4 +75,4 @@ const AddProduct = () => {
   );
 };
 
-export default AddProduct;
+export default CallCreate;

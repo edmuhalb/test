@@ -11,7 +11,7 @@ import { defaultBreadcrumbItems } from 'data/commonData';
 import React from 'react';
 import { Card, Col, Row } from 'react-bootstrap';
 
-const CustomerDetails = () => {
+const Profile = () => {
   return (
     <div>
       <PageBreadcrumb items={defaultBreadcrumbItems} />
@@ -110,4 +110,4 @@ const CustomerDetails = () => {
   );
 };
 
-export default CustomerDetails;
+export default Profile;

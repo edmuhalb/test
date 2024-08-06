@@ -17,7 +17,7 @@ import {
   faUndo
 } from '@fortawesome/free-solid-svg-icons';
 
-const OrderDetails = () => {
+const CallDetails = () => {
   return (
     <div>
       <PageBreadcrumb items={defaultBreadcrumbItems} />
@@ -111,4 +111,4 @@ const OrderDetails = () => {
   );
 };
 
-export default OrderDetails;
+export default CallDetails;

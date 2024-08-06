@@ -5,10 +5,11 @@ import FilterButtonGroup, {
   FilterMenu
 } from 'components/common/FilterButtonGroup';
 import FilterTab, { FilterTabItem } from 'components/common/FilterTab';
-import PageBreadcrumb from 'components/common/PageBreadcrumb';
+import PageBreadcrumb, {
+  PageBreadcrumbItem
+} from 'components/common/PageBreadcrumb';
 import SearchBox from 'components/common/SearchBox';
 import OrdersTable, { ordersTableColumns } from 'components/tables/OrdersTable';
-import { defaultBreadcrumbItems } from 'data/commonData';
 import { ordersTableData } from 'data/e-commerce/orders';
 import useAdvanceTable from 'hooks/useAdvanceTable';
 import AdvanceTableProvider from 'providers/AdvanceTableProvider';
@@ -78,7 +79,7 @@ const filterMenus: FilterMenu[] = [
   }
 ];
 
-const Orders = () => {
+const Hospitals = () => {
   const table = useAdvanceTable({
     data: ordersTableData,
     columns: ordersTableColumns,
@@ -92,11 +93,22 @@ const Orders = () => {
     table.setGlobalFilter(e.target.value || undefined);
   };
 
+  const defaultBreadcrumbItems: PageBreadcrumbItem[] = [
+    {
+      label: 'Главная',
+      url: '/'
+    },
+    {
+      label: 'Стационар',
+      active: true
+    }
+  ];
+
   return (
     <div>
       <PageBreadcrumb items={defaultBreadcrumbItems} />
       <div className="mb-9">
-        <h2 className="mb-4">Orders</h2>
+        <h2 className="mb-4">Стационар</h2>
         <FilterTab tabItems={tabItems} className="mb-2" />
 
         <AdvanceTableProvider {...table}>
@@ -131,4 +143,4 @@ const Orders = () => {
   );
 };
 
-export default Orders;
+export default Hospitals;

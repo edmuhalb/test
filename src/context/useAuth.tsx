@@ -3,6 +3,7 @@ import { createContext, useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { loginAPI } from '../services/AuthService';
 import axios from 'axios';
+import decode from '../helpers/jwtDecode';
 
 type UserContextType = {
   user: UserProfile | null;
@@ -39,14 +40,17 @@ export const UserProvider = ({ children }: Props) => {
   const loginUser = async (username: string, password: string) => {
     await loginAPI(username, password)
       .then(res => {
-        console.log(res);
         if (res) {
           localStorage.setItem('token', res?.data.token);
+
+          const user = decode(res?.data.token);
           const userObj = {
-            id: res?.data.id,
-            name: res?.data.name,
-            phone: res?.data.name
+            id: user.id,
+            name: user.name,
+            phone: user.phone,
+            roles: user.roles
           };
+
           localStorage.setItem('user', JSON.stringify(userObj));
           setUser(userObj);
           setToken(res?.data.token);

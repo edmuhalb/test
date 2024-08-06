@@ -1,15 +1,17 @@
 import MainLayout from 'layouts/MainLayout';
 import { RouteObject, createBrowserRouter } from 'react-router-dom';
-import Ecommerce from 'pages/dashboard/ecommerce';
-import AddProduct from 'pages/apps/e-commerce/admin/AddProduct';
-import Orders from 'pages/apps/e-commerce/admin/Orders';
-import OrderDetails from 'pages/apps/e-commerce/admin/OrderDetails';
-import CustomerDetails from 'pages/apps/e-commerce/admin/CustomerDetails';
+
 import MainLayoutProvider from 'providers/MainLayoutProvider';
 import Error404 from 'pages/error/Error404';
 import App from 'App';
 import CardSignIn from 'pages/SignIn';
 import { ProtectedRoute } from './ProtectedRoute';
+import Dashboard from 'pages/Dashboard';
+import Profile from 'pages/Profile';
+import Calls from 'pages/calls/Calls';
+import CallDetails from './pages/calls/CallDetails';
+import CallCreate from './pages/calls/CallCreate';
+import Hospitals from './pages/hospital/Hospitals';
 
 const routes: RouteObject[] = [
   {
@@ -27,33 +29,58 @@ const routes: RouteObject[] = [
             index: true,
             element: (
               <ProtectedRoute>
-                <Ecommerce />
+                <Dashboard />
               </ProtectedRoute>
             )
           },
           {
-            path: '/apps',
+            path: 'profile',
+            element: (
+              <ProtectedRoute>
+                <Profile />
+              </ProtectedRoute>
+            )
+          },
+
+          {
+            path: '/calls',
             children: [
               {
-                path: 'e-commerce/admin',
-                children: [
-                  {
-                    path: 'add-product',
-                    element: <AddProduct />
-                  },
-                  {
-                    path: 'orders',
-                    element: <Orders />
-                  },
-                  {
-                    path: 'order-details',
-                    element: <OrderDetails />
-                  },
-                  {
-                    path: 'customer-details',
-                    element: <CustomerDetails />
-                  }
-                ]
+                index: true,
+                element: (
+                  <ProtectedRoute>
+                    <Calls />
+                  </ProtectedRoute>
+                )
+              },
+              {
+                path: `/calls/create`,
+                element: (
+                  <ProtectedRoute>
+                    <CallCreate />
+                  </ProtectedRoute>
+                )
+              },
+              {
+                path: `/calls/:callId`,
+                element: (
+                  <ProtectedRoute>
+                    <CallDetails />
+                  </ProtectedRoute>
+                )
+              }
+            ]
+          },
+          {
+            path: '/hospitals',
+            children: [
+              {
+                index: true,
+                element: (
+                  <ProtectedRoute>
+                    <Hospitals />
+                  </ProtectedRoute>
+                )
               }
             ]
           }

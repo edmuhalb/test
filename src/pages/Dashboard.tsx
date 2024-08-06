@@ -12,16 +12,16 @@ import EcomReturningCustomerRate from 'components/modules/e-commerce/dashboard/E
 import EcomTotalSells from 'components/modules/e-commerce/dashboard/EcomTotalSells';
 import EcomTopRegions from 'components/modules/e-commerce/dashboard/EcomTopRegions';
 
-const Ecommerce = () => {
+const Dashboard = () => {
   return (
     <>
       <div className="pb-5">
         <Row className="g-4">
           <Col xs={12} xxl={6}>
             <div className="mb-8">
-              <h2 className="mb-2">Ecommerce Dashboard</h2>
+              <h2 className="mb-2">Рабочий стол</h2>
               <h5 className="text-body-tertiary fw-semibold">
-                Here’s what’s going on at your business right now
+                Вот что происходит в вашем бизнесе прямо сейчас
               </h5>
             </div>
             <EcomStats />
@@ -75,4 +75,4 @@ const Ecommerce = () => {
   );
 };
 
-export default Ecommerce;
+export default Dashboard;

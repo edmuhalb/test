@@ -46,15 +46,15 @@ const Error404 = () => {
                   alt=""
                 />
                 <h2 className="text-body-secondary fw-bolder mb-3">
-                  Page Missing!
+                  Страница не найдена!
                 </h2>
                 <p className="text-body mb-5">
-                  But no worries! Our ostrich is looking everywhere
+                  Но не беспокойтесь! Наш страус будет искать вас повсюду
                   <br className="d-none d-sm-block" />
-                  while you wait safely.
+                  пока вы будете в безопасности.
                 </p>
                 <Button variant="primary" size="lg" as={Link} to="/">
-                  Go Home
+                  На главную
                 </Button>
               </Col>
             </Row>

@@ -7,10 +7,8 @@ import OrderDetails from 'pages/apps/e-commerce/admin/OrderDetails';
 import CustomerDetails from 'pages/apps/e-commerce/admin/CustomerDetails';
 import MainLayoutProvider from 'providers/MainLayoutProvider';
 import Error404 from 'pages/error/Error404';
-import Error403 from 'pages/error/Error403';
-import Error500 from 'pages/error/Error500';
 import App from 'App';
-import CardSignIn from 'pages/pages/authentication/card/SignIn';
+import CardSignIn from 'pages/SignIn';
 
 const routes: RouteObject[] = [
   {
@@ -56,29 +54,11 @@ const routes: RouteObject[] = [
           }
         ]
       },
-
       {
-        path: '/pages/errors/',
+        path: '/',
         children: [
           {
-            path: '404',
-            element: <Error404 />
-          },
-          {
-            path: '403',
-            element: <Error403 />
-          },
-          {
-            path: '500',
-            element: <Error500 />
-          }
-        ]
-      },
-      {
-        path: '/pages/authentication/card/',
-        children: [
-          {
-            path: 'sign-in',
+            path: 'login',
             element: <CardSignIn />
           }
         ]

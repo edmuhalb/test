@@ -1,36 +1,30 @@
-import { faKey, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faKey, faPhone } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Button from 'components/base/Button';
-import AuthSocialButtons from 'components/common/AuthSocialButtons';
 import { Col, Form, Row } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
 
-const SignInForm = ({ layout }: { layout: 'simple' | 'card' | 'split' }) => {
+const SignInForm = () => {
   return (
     <>
       <div className="text-center mb-7">
-        <h3 className="text-body-highlight">Sign In</h3>
-        <p className="text-body-tertiary">Get access to your account</p>
+        <h3 className="text-body-highlight">Вход</h3>
+        <p className="text-body-tertiary">
+          Авторизуйтесь для доступа к аккаунту
+        </p>
       </div>
-      <AuthSocialButtons title="Sign in" />
-      <div className="position-relative">
-        <hr className="bg-body-secondary mt-5 mb-4" />
-        <div className="divider-content-center">or use email</div>
-      </div>
+
       <Form.Group className="mb-3 text-start">
-        <Form.Label htmlFor="email">Email address</Form.Label>
+        <Form.Label htmlFor="email">Телефон</Form.Label>
         <div className="form-icon-container">
-          <Form.Control
-            id="email"
-            type="email"
-            className="form-icon-input"
-            placeholder="name@example.com"
+          <Form.Control id="phone" type="phone" className="form-icon-input" />
+          <FontAwesomeIcon
+            icon={faPhone}
+            className="text-body fs-9 form-icon"
           />
-          <FontAwesomeIcon icon={faUser} className="text-body fs-9 form-icon" />
         </div>
       </Form.Group>
       <Form.Group className="mb-3 text-start">
-        <Form.Label htmlFor="password">Password</Form.Label>
+        <Form.Label htmlFor="password">Пароль</Form.Label>
         <div className="form-icon-container">
           <Form.Control
             id="password"
@@ -51,30 +45,16 @@ const SignInForm = ({ layout }: { layout: 'simple' | 'card' | 'split' }) => {
               defaultChecked
             />
             <Form.Check.Label htmlFor="remember-me" className="mb-0">
-              Remember me
+              Запомнить меня
             </Form.Check.Label>
           </Form.Check>
         </Col>
-        <Col xs="auto">
-          <Link
-            to={`/pages/authentication/${layout}/forgot-password`}
-            className="fs-9 fw-semibold"
-          >
-            Forgot Password?
-          </Link>
-        </Col>
+        <Col xs="auto"></Col>
       </Row>
       <Button variant="primary" className="w-100 mb-3">
-        Sign In
+        Войти
       </Button>
-      <div className="text-center">
-        <Link
-          to={`/pages/authentication/${layout}/sign-up`}
-          className="fs-9 fw-bold"
-        >
-          Create an account
-        </Link>
-      </div>
+      <div className="text-center"></div>
     </>
   );
 };

@@ -100,9 +100,9 @@ export const currencyFormat = (
   amount: number,
   options: Intl.NumberFormatOptions = {}
 ) => {
-  return new Intl.NumberFormat('en-US', {
+  return new Intl.NumberFormat('ru-RU', {
     style: 'currency',
-    currency: 'usd',
+    currency: 'rub',
     maximumFractionDigits: 2,
     minimumFractionDigits: 0,
     ...options

@@ -3,11 +3,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import {
   faCircle,
-  faPause,
   faSquare,
   faStar,
   faXmark
 } from '@fortawesome/free-solid-svg-icons';
+import { useEffect, useState } from 'react';
+import { reportCalNumberByStatus } from '../../../services/ReportService';
 
 type StatType = {
   id: number | string;
@@ -17,31 +18,53 @@ type StatType = {
   color: string;
 };
 
-const stats: StatType[] = [
-  {
-    id: 1,
-    icon: faStar,
-    title: '57 new orders',
-    subTitle: 'Awating processing',
-    color: 'success'
-  },
-  {
-    id: 2,
-    icon: faPause,
-    title: '5 orders',
-    subTitle: 'On hold',
-    color: 'warning'
-  },
-  {
-    id: 3,
-    icon: faXmark,
-    title: '15 products',
-    subTitle: 'Out of stock',
-    color: 'danger'
-  }
-];
-
 const CallsStats = () => {
+  const [stats, setStats] = useState<StatType[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await reportCalNumberByStatus();
+
+      if (result?.data == null || typeof result?.data !== 'object') {
+        return;
+      }
+
+      const resultStats = [];
+
+      if ('total' in result.data) {
+        resultStats.push({
+          id: 1,
+          icon: faStar,
+          title: `${result.data.total} вызовов`,
+          subTitle: 'Всего',
+          color: 'warning'
+        });
+      }
+      if ('completed' in result.data) {
+        resultStats.push({
+          id: 2,
+          icon: faStar,
+          title: `${result.data.completed} вызовов`,
+          subTitle: 'Выполено',
+          color: 'success'
+        });
+      }
+      if ('rejected' in result.data) {
+        resultStats.push({
+          id: 3,
+          icon: faXmark,
+          title: `${result.data.rejected} вызовов`,
+          subTitle: 'Отменено',
+          color: 'danger'
+        });
+      }
+
+      setStats(resultStats);
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <Row className="align-items-center g-4">
       {stats.map(stat => (

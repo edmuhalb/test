@@ -2,7 +2,7 @@ import axios from 'axios';
 import { handleError } from './ErrorHandler';
 import { UserProfileToken } from '../models/User';
 
-const api = 'https://partner.reset-med.ru/api/partner/';
+const api = 'http://ambulance.beget.tech/api/partner/';
 
 export const loginAPI = async (phone: string, password: string) => {
   try {

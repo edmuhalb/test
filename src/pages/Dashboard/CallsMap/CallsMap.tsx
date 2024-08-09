@@ -74,16 +74,16 @@ const LayerComponent = ({ data }: { data: MapMarkerPoints[] }) => {
 };
 
 const CallsMap = ({ data, ...rest }: { data: MapMarkerPoints[] }) => {
-  const position: LatLngExpression = [10.737, 0];
+  const position: LatLngExpression = [55.7524, 37.610778];
   const {
     config: { isRTL }
   } = useContext(AppContext);
 
   return (
     <MapContainer
-      zoom={isRTL ? 1.8 : 1.5}
+      zoom={isRTL ? 1.8 : 8}
       minZoom={isRTL ? 1.8 : 1.3}
-      zoomSnap={0.5}
+      zoomSnap={0.1}
       center={position}
       {...rest}
       className="h-100 bg-body-emphasis"

@@ -1,137 +1,109 @@
 import ReactEChartsCore from 'echarts-for-react/lib/core';
 import * as echarts from 'echarts/core';
-import { getDates } from 'helpers/utils';
-import dayjs from 'dayjs';
 import { useAppContext } from 'providers/AppProvider';
 import { TooltipComponent } from 'echarts/components';
 import { BarChart } from 'echarts/charts';
-import { tooltipFormatterList } from 'helpers/echart-utils';
+import { tooltipFormatterDefault } from 'helpers/echart-utils';
+import { CallbackDataParams } from 'echarts/types/dist/shared';
+import { getMonth } from '../getMonth';
 
 echarts.use([TooltipComponent, BarChart]);
 
-const getDefaultOptions = (getThemeColor: (name: string) => string) => ({
+const getDefaultOptions = (
+  getThemeColor: (name: string) => string,
+  count: number[] = []
+) => ({
+  color: getThemeColor('body-highlight-bg'),
   tooltip: {
     trigger: 'axis',
-    padding: 10,
+    axisPointer: {
+      type: 'none'
+    },
+    padding: [7, 10],
     backgroundColor: getThemeColor('body-highlight-bg'),
     borderColor: getThemeColor('border-color'),
     textStyle: { color: getThemeColor('light-text-emphasis') },
     borderWidth: 1,
     transitionDuration: 0,
-    axisPointer: {
-      type: 'none'
-    },
-    formatter: tooltipFormatterList
+    formatter: (params: CallbackDataParams[]) => tooltipFormatterDefault(params)
   },
-  xAxis: [
-    {
-      type: 'category',
-      data: getDates(
-        new Date('5/1/2022'),
-        new Date('5/7/2022'),
-        1000 * 60 * 60 * 24
-      ),
+  xAxis: {
+    type: 'category',
+    data: getMonth(),
+    show: true,
+    boundaryGap: false,
+    axisLine: {
       show: true,
-      boundaryGap: false,
-      axisLine: {
-        show: true,
-        lineStyle: { color: getThemeColor('secondary-bg') }
-      },
-      axisTick: {
-        show: false
-      },
-      axisLabel: {
-        formatter: (value: Date) => dayjs(value).format('DD MMM'),
-        showMinLabel: true,
-        showMaxLabel: false,
-        color: getThemeColor('secondary-color'),
-        align: 'left',
-        interval: 5,
-        fontFamily: 'Nunito Sans',
-        fontWeight: 600,
-        fontSize: 12.8
-      }
+      lineStyle: { color: getThemeColor('tertiary-bg') }
     },
-    {
-      type: 'category',
-      position: 'bottom',
+    axisTick: {
+      show: false
+    },
+    axisLabel: {
+      // interval: 1,
+      showMinLabel: false,
+      showMaxLabel: false,
+      color: getThemeColor('secondary-color'),
+      formatter: (value: string) => value.slice(0, 3),
+      fontFamily: 'Nunito Sans',
+      fontWeight: 600,
+      fontSize: 12.8
+    },
+    splitLine: {
       show: true,
-      data: getDates(
-        new Date('5/1/2022'),
-        new Date('5/7/2022'),
-        1000 * 60 * 60 * 24
-      ),
-      axisLabel: {
-        formatter: (value: Date) => dayjs(value).format('DD MMM'),
-        interval: 130,
-        showMaxLabel: true,
-        showMinLabel: false,
-        color: getThemeColor('secondary-color'),
-        align: 'right',
-        fontFamily: 'Nunito Sans',
-        fontWeight: 600,
-        fontSize: 12.8
-      },
-      axisLine: {
-        show: false
-      },
-      axisTick: {
-        show: false
-      },
-      splitLine: {
-        show: false
-      },
-      boundaryGap: false
+      lineStyle: { color: getThemeColor('secondary-bg'), type: 'dashed' }
     }
-  ],
+  },
   yAxis: {
-    show: false,
     type: 'value',
-    boundaryGap: false
+    boundaryGap: false,
+    axisLabel: {
+      showMinLabel: false,
+      showMaxLabel: true,
+      color: getThemeColor('secondary-color'),
+      formatter: (value: number) => `${value.toLocaleString('ru-RU')}`,
+      fontFamily: 'Nunito Sans',
+      fontWeight: 600,
+      fontSize: 12.8
+    },
+    splitLine: {
+      show: true,
+      lineStyle: { color: getThemeColor('secondary-bg') }
+    }
   },
   series: [
     {
+      name: 'Всего',
       type: 'line',
-      data: [150, 100, 300, 200, 250, 180, 250],
+      data: count,
       showSymbol: false,
       symbol: 'circle',
-      lineStyle: {
-        width: 2,
-        color: getThemeColor('secondary-bg')
-      },
+      symbolSize: 10,
       emphasis: {
         lineStyle: {
-          color: getThemeColor('secondary-bg')
+          width: 3
         }
       },
-      itemStyle: {
-        color: getThemeColor('secondary-bg')
-      }
-    },
-    {
-      type: 'line',
-      data: [200, 150, 250, 100, 500, 400, 600],
       lineStyle: {
-        width: 2,
+        width: 3,
         color: getThemeColor('primary')
       },
-      showSymbol: false,
-      symbol: 'circle',
       itemStyle: {
-        color: getThemeColor('primary')
+        borderColor: getThemeColor('primary'),
+        borderWidth: 3
       }
     }
   ],
-  grid: { left: 0, right: 0, top: 5, bottom: 20 }
+  grid: { left: 0, right: 8, top: '14%', bottom: 0, containLabel: true }
 });
 
-const Chart = () => {
+const Chart = ({ data = [] }: { data: number[] }) => {
   const { getThemeColor } = useAppContext();
 
   return (
     <ReactEChartsCore
       echarts={echarts}
-      option={getDefaultOptions(getThemeColor)}
+      option={getDefaultOptions(getThemeColor, data)}
       style={{ height: '180px', width: '100%' }}
     />
   );

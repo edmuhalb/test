@@ -6,7 +6,7 @@ import Error404 from 'pages/error/Error404';
 import App from 'App';
 import CardSignIn from 'pages/SignIn';
 import { ProtectedRoute } from './ProtectedRoute';
-import Dashboard from 'pages/Dashboard';
+import Dashboard from 'pages/Dashboard/Dashboard';
 import Profile from 'pages/Profile';
 import Calls from 'pages/calls/Calls';
 import CallDetails from './pages/calls/CallDetails';

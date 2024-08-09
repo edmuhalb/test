@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { handleError } from './ErrorHandler';
 
-const api = 'http://ambulance.beget.tech/api/partner/calls';
+const api = 'https://partner.reset-med.ru/api/partner/calls';
 
 export const callCreateAPI = async (fields: string) => {
   try {

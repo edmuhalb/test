@@ -9,9 +9,13 @@ import {
 } from 'echarts/components';
 import { BarChart, LineChart } from 'echarts/charts';
 import { CallbackDataParams } from 'echarts/types/dist/shared';
-import { months } from 'data/commonData';
 import { tooltipFormatterDefault } from 'helpers/echart-utils';
 import { CanvasRenderer } from 'echarts/renderers';
+import { useEffect, useState } from 'react';
+import {
+  reportCalAmountOfRewardForTheYear,
+  reportHospitalAmountOfRewardForTheYear
+} from '../../../services/ReportService';
 
 echarts.use([
   TitleComponent,
@@ -23,12 +27,17 @@ echarts.use([
   BarChart
 ]);
 
-const getDefaultOptions = (getThemeColor: (name: string) => string) => ({
+const getDefaultOptions = (
+  getThemeColor: (name: string) => string,
+  total: number[] = [],
+  calls = [],
+  hospitals = []
+) => ({
   color: getThemeColor('body-highlight-bg'),
   legend: {
     data: [
       {
-        name: 'Fourth time',
+        name: 'Вызовы',
         icon: 'roundRect',
         itemStyle: {
           color: getThemeColor('primary-light'),
@@ -36,12 +45,12 @@ const getDefaultOptions = (getThemeColor: (name: string) => string) => ({
         }
       },
       {
-        name: 'Third time',
+        name: 'Стационар',
         icon: 'roundRect',
         itemStyle: { color: getThemeColor('info-lighter'), borderWidth: 0 }
       },
       {
-        name: 'Second time',
+        name: 'Всего',
         icon: 'roundRect',
         itemStyle: { color: getThemeColor('primary'), borderWidth: 0 }
       }
@@ -76,7 +85,7 @@ const getDefaultOptions = (getThemeColor: (name: string) => string) => ({
   },
   xAxis: {
     type: 'category',
-    data: months,
+    data: getMonth(),
     show: true,
     boundaryGap: false,
     axisLine: {
@@ -108,7 +117,7 @@ const getDefaultOptions = (getThemeColor: (name: string) => string) => ({
       showMinLabel: true,
       showMaxLabel: true,
       color: getThemeColor('secondary-color'),
-      formatter: (value: number) => `${value}%`,
+      formatter: (value: number) => `${value.toLocaleString('ru-RU')}₽`,
       fontFamily: 'Nunito Sans',
       fontWeight: 600,
       fontSize: 12.8
@@ -120,9 +129,9 @@ const getDefaultOptions = (getThemeColor: (name: string) => string) => ({
   },
   series: [
     {
-      name: 'Fourth time',
+      name: 'Вызовы',
       type: 'line',
-      data: [62, 90, 90, 90, 78, 84, 17, 17, 17, 17, 82, 95],
+      data: calls,
       showSymbol: false,
       symbol: 'circle',
       symbolSize: 10,
@@ -142,9 +151,9 @@ const getDefaultOptions = (getThemeColor: (name: string) => string) => ({
       }
     },
     {
-      name: 'Third time',
+      name: 'Стационар',
       type: 'line',
-      data: [50, 50, 30, 62, 18, 70, 70, 22, 70, 70, 70, 70],
+      data: hospitals,
       showSymbol: false,
       symbol: 'circle',
       symbolSize: 10,
@@ -163,9 +172,9 @@ const getDefaultOptions = (getThemeColor: (name: string) => string) => ({
       }
     },
     {
-      name: 'Second time',
+      name: 'Всего',
       type: 'line',
-      data: [40, 78, 60, 78, 60, 20, 60, 40, 60, 40, 20, 78],
+      data: total,
       showSymbol: false,
       symbol: 'circle',
       symbolSize: 10,
@@ -187,16 +196,82 @@ const getDefaultOptions = (getThemeColor: (name: string) => string) => ({
   grid: { left: 0, right: 8, top: '14%', bottom: 0, containLabel: true }
 });
 
-const EcomReturningCustomerRateChart = () => {
+const getMonth = () => {
+  const currentDate = new Date();
+  const months = [];
+  let start = currentDate.getMonth() + 1;
+  if (start > 11) {
+    start = 0;
+  }
+
+  for (let i = start; i < 12; i++) {
+    const month = new Date(currentDate.getFullYear(), i).toLocaleString(
+      'ru-RU',
+      {
+        month: 'long'
+      }
+    );
+
+    months.push(month.charAt(0).toUpperCase() + month.slice(1));
+  }
+
+  for (let i = 0; i < start; i++) {
+    const month = new Date(currentDate.getFullYear(), i).toLocaleString(
+      'ru-RU',
+      {
+        month: 'long'
+      }
+    );
+
+    months.push(month.charAt(0).toUpperCase() + month.slice(1));
+  }
+  return months;
+};
+
+const Chart = () => {
   const { getThemeColor } = useAppContext();
+
+  const [total, setTotal] = useState<number[]>([]);
+  const [hospitals, setHospitals] = useState([]);
+  const [calls, setCalls] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const callsResult = await reportCalAmountOfRewardForTheYear();
+
+      if (typeof callsResult?.data === 'object') {
+        setCalls(callsResult.data);
+      }
+
+      const hospitalsResult = await reportHospitalAmountOfRewardForTheYear();
+
+      if (typeof hospitalsResult?.data === 'object') {
+        setHospitals(hospitalsResult.data);
+      }
+
+      if (
+        typeof hospitalsResult?.data === 'object' &&
+        typeof callsResult?.data === 'object'
+      ) {
+        const totalResult: number[] = [];
+
+        for (let i = 0; i < 12; i++) {
+          totalResult.push(hospitalsResult?.data[i] + callsResult?.data[i]);
+        }
+        setTotal(totalResult);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <ReactEChartsCore
       echarts={echarts}
-      option={getDefaultOptions(getThemeColor)}
+      option={getDefaultOptions(getThemeColor, total, hospitals, calls)}
       style={{ height: '300px', width: '100%' }}
     />
   );
 };
 
-export default EcomReturningCustomerRateChart;
+export default Chart;

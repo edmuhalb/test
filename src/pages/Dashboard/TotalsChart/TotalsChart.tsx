@@ -1,13 +1,13 @@
 import React from 'react';
 import Chart from './Chart';
 
-const EcomReturningCustomerRate = () => {
+const TotalsChart = () => {
   return (
     <>
       <div>
-        <h3>Returning customer rate</h3>
+        <h3>Доход за год</h3>
         <p className="mb-1 text-body-tertiary">
-          Rate of customers returning to your shop over time
+          Доход от вызовов и стационара за год по месяцам
         </p>
       </div>
       <Chart />
@@ -15,4 +15,4 @@ const EcomReturningCustomerRate = () => {
   );
 };
 
-export default EcomReturningCustomerRate;
+export default TotalsChart;

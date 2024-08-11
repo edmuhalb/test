@@ -30,8 +30,7 @@ const CallCreate = () => {
   const navigate = useNavigate();
   const onSubmit = async (values: any) => {
     const result = await callsCreateAPI(values);
-    console.log(result);
-    if (result?.statusText === 'Created') {
+    if (result?.status === 201) {
       toast.success('Вызов создан');
       navigate('/calls');
     }

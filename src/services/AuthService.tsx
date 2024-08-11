@@ -1,8 +1,9 @@
 import axios from 'axios';
 import { handleError } from './ErrorHandler';
 import { UserProfileToken } from '../models/User';
+import { BASE_URL } from '../config';
 
-const api = 'http://ambulance.beget.tech/api/partner/';
+const api = `${BASE_URL}`;
 
 export const loginAPI = async (phone: string, password: string) => {
   try {

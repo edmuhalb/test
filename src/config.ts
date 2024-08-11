@@ -28,3 +28,6 @@ export const initialConfig: Config = {
   isDark: false,
   isChatWidgetVisible: true
 };
+
+export const BASE_URL = '/api/partner/';
+//export const BASE_URL = 'http://ambulance.beget.tech/api/partner/';

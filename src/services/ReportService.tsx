@@ -1,7 +1,8 @@
 import axios from 'axios';
 import { handleError } from './ErrorHandler';
+import { BASE_URL } from '../config';
 
-const api = 'http://ambulance.beget.tech/api/partner/report/';
+const api = `${BASE_URL}report/`;
 
 export const reportCalAmountOfRewardForTheYear = async () => {
   try {

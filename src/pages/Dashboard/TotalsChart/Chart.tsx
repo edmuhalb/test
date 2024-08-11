@@ -268,7 +268,7 @@ const Chart = () => {
   return (
     <ReactEChartsCore
       echarts={echarts}
-      option={getDefaultOptions(getThemeColor, total, hospitals, calls)}
+      option={getDefaultOptions(getThemeColor, total, calls, hospitals)}
       style={{ height: '300px', width: '100%' }}
     />
   );

@@ -1,4 +1,5 @@
 import { isAxiosError } from 'axios';
+import { toast } from 'react-toastify';
 
 export const handleError = (error: any) => {
   if (isAxiosError(error)) {
@@ -13,6 +14,9 @@ export const handleError = (error: any) => {
       }
     } else if (err?.data) {
       console.log(err.data);
+      if (err.data?.message === 'Invalid credentials.') {
+        toast.error('Неверный логин или пароль');
+      }
     } else if (err?.status === 401) {
       console.log('Пожалуйста авторизуйтесь');
       window.history.pushState({}, 'LoginPage', '/login');

@@ -54,7 +54,9 @@ export const UserProvider = ({ children }: Props) => {
           localStorage.setItem('user', JSON.stringify(userObj));
           setUser(userObj);
           setToken(res?.data.token);
+          axios.defaults.headers.common.Authorization = `Bearer ${token}`;
           navigate('/');
+          navigate(0);
         }
       })
       .catch(e => {

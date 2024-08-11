@@ -5,6 +5,8 @@ import BreakpointsProvider from 'providers/BreakpointsProvider';
 import SettingsPanelProvider from 'providers/SettingsPanelProvider';
 import { RouterProvider } from 'react-router-dom';
 import { router } from 'Routes';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -16,6 +18,7 @@ root.render(
         <BreakpointsProvider>
           <RouterProvider router={router} />
         </BreakpointsProvider>
+        <ToastContainer />
       </SettingsPanelProvider>
     </AppProvider>
   </React.StrictMode>

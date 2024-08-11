@@ -30,7 +30,7 @@ const CountCalls = () => {
         <div className="d-flex justify-content-between">
           <div>
             <h5 className="mb-1">Количество вызовов</h5>
-            <h6 className="text-body-tertiary">За последний код</h6>
+            <h6 className="text-body-tertiary">За последний год</h6>
           </div>
           <h4>{total}</h4>
         </div>

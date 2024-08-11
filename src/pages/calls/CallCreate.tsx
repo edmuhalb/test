@@ -33,6 +33,9 @@ const CallCreate = () => {
     if (!values.phone) {
       errors.phone = 'Введите телефон';
     }
+    if (values.phone && !values.phone.startsWith('+7')) {
+      errors.phone = 'Номер телефона должен начинаться с +7';
+    }
     if (!values.description) {
       errors.description = 'Введите описание';
     }

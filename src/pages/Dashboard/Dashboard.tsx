@@ -4,7 +4,7 @@ import CallsStats from './CallsStats/CallsStats';
 import CountCalls from './CountCalls/CountCalls';
 import CountHospitals from './CountHospitals/CountHospitals';
 import CallsMap from './CallsMap/CallsMap';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { callsIndexAPI } from '../../services/CallService';
 
 const Dashboard = () => {
@@ -12,7 +12,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await callsIndexAPI({ per_page: 100 });
+      const response = await callsIndexAPI({ per_page: 300 });
 
       if (typeof response?.data?.items === 'object') {
         const result: any[] = [];
@@ -67,6 +67,12 @@ const Dashboard = () => {
       <Row className="gx-6">
         <Col xs={12} xl={12}>
           <div className="mx-n4 mx-lg-n6 ms-xl-0 h-100">
+            <div className={'m-5'}>
+              <h2>Последние вызовы</h2>
+              <p className="mb-1 text-body-tertiary mb-5">
+                Выведены последние 300 вызовов
+              </p>
+            </div>
             <div className="h-100 w-100" style={{ minHeight: 500 }}>
               <CallsMap data={calls} />
             </div>

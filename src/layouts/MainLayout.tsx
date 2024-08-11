@@ -7,7 +7,7 @@ import NavbarVertical from 'components/navbars/navbar-vertical/NavbarVertical';
 import { useAppContext } from 'providers/AppProvider';
 import { useMainLayoutContext } from 'providers/MainLayoutProvider';
 import { Container } from 'react-bootstrap';
-import {Outlet, useNavigate} from 'react-router-dom';
+import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import Button from '../components/base/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
@@ -19,8 +19,8 @@ const MainLayout = () => {
 
   const { contentClass, footerClass } = useMainLayoutContext();
 
-  const navigate = useNavigate()
-
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
   return (
     <Container fluid className="px-0">
       {(navbarPosition === 'vertical' || navbarPosition === 'combo') && (
@@ -35,18 +35,21 @@ const MainLayout = () => {
       <div className={classNames(contentClass, 'content')}>
         <Outlet />
         <Footer className={classNames(footerClass, 'position-absolute')} />
-        <Button
-          className={classNames(
-            'p-0 border border-translucent btn-support-chat'
-          )}
-          onClick={() => navigate('/calls/create')}
-        >
-          <span className="fs-8 btn-text text-primary text-nowrap">Вызов</span>
-          <FontAwesomeIcon
-            icon={faPlusCircle}
-            className="text-success fs-9 ms-2"
-          />
-        </Button>
+        {pathname !== '/calls/create' && (
+          <Button
+            style={{ width: '14rem' }}
+            className={classNames('p-0 border border-primary btn-support-chat')}
+            onClick={() => navigate('/calls/create')}
+          >
+            <span className="fs-8 btn-text text-primary text-nowrap">
+              Добавить вызов
+            </span>
+            <FontAwesomeIcon
+              icon={faPlusCircle}
+              className="text-success fs-9 ms-2"
+            />
+          </Button>
+        )}
       </div>
     </Container>
   );

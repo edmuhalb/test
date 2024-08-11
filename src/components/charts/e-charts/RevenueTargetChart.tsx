@@ -107,8 +107,7 @@ const getDefaultOptions = (getThemeColor: (name: string) => string) => ({
         fontWeight: 700,
         fontFamily: 'Nunito Sans',
         fontSize: 12.8,
-        formatter: (value: CallbackDataParams) =>
-          `$${value.value.toLocaleString()}`
+        formatter: (value: CallbackDataParams) => value
       },
       backgroundStyle: {
         color: getThemeColor('body-highlight-bg')

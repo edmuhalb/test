@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Button from 'components/base/Button';
 import { Col, Form, Row } from 'react-bootstrap';
 import { useAuth } from '../../../context/useAuth';
+import { InputMask } from '@react-input/mask';
 
 const SignInForm = () => {
   const { loginUser } = useAuth();
@@ -35,18 +36,20 @@ const SignInForm = () => {
       <FinalForm
         onSubmit={onSubmit}
         validate={validate}
-        render={({ handleSubmit }) => (
+        render={({ handleSubmit, submitting, pristine }) => (
           <form onSubmit={handleSubmit}>
             <Field
               name="username"
               render={({ input, meta }) => (
                 <Form.Group className="mb-3 text-start">
-                  <Form.Label htmlFor="password">Пароль</Form.Label>
+                  <Form.Label htmlFor="username">Телефон</Form.Label>
                   <div className="form-icon-container">
-                    <Form.Control
-                      id="username"
-                      type="input"
-                      className="form-icon-input"
+                    <InputMask
+                      id={'username'}
+                      mask="+_(___) ___-__-__"
+                      replacement={{ _: /\d/ }}
+                      className="form-icon-input form-control"
+                      disabled={submitting}
                       placeholder="Телефон"
                       {...input}
                     />
@@ -70,6 +73,7 @@ const SignInForm = () => {
                     <Form.Control
                       id="password"
                       type="password"
+                      disabled={submitting}
                       className="form-icon-input"
                       placeholder="Парлоль"
                       {...input}
@@ -101,7 +105,13 @@ const SignInForm = () => {
               </Col>
               <Col xs="auto"></Col>
             </Row>
-            <Button variant="primary" className="w-100 mb-3" type={'submit'}>
+            <Button
+              loading={submitting}
+              disabled={submitting || pristine}
+              variant="primary"
+              className="w-100 mb-3"
+              type={'submit'}
+            >
               Войти
             </Button>
           </form>

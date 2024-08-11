@@ -2,7 +2,7 @@ import axios from 'axios';
 import { handleError } from './ErrorHandler';
 import { BASE_URL } from '../config';
 
-const api = `${BASE_URL}calls/`;
+const api = `${BASE_URL}calls`;
 
 export const callCreateAPI = async (fields: string) => {
   try {
@@ -15,6 +15,14 @@ export const callCreateAPI = async (fields: string) => {
 export const callsIndexAPI = async (params?: any) => {
   try {
     return await axios.get(api, { params });
+  } catch (error) {
+    handleError(error);
+  }
+};
+
+export const callsCreateAPI = async (values: any) => {
+  try {
+    return await axios.post(api, values);
   } catch (error) {
     handleError(error);
   }

@@ -7,6 +7,9 @@ import { Form as FinalForm, Field } from 'react-final-form';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPhone } from '@fortawesome/free-solid-svg-icons';
 import { InputMask } from '@react-input/mask';
+import { callsCreateAPI } from '../../services/CallService';
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 export const breadcrumbItems: PageBreadcrumbItem[] = [
   {
@@ -24,8 +27,13 @@ export const breadcrumbItems: PageBreadcrumbItem[] = [
 ];
 
 const CallCreate = () => {
-  const onSubmit = (values: any) => {
-    console.log(values);
+  const navigate = useNavigate();
+  const onSubmit = async (values: any) => {
+    const result = await callsCreateAPI(values);
+    if (result?.statusText === 'Created') {
+      toast.success('Вызов создан');
+      navigate('/calls');
+    }
   };
 
   const validate = (values: any) => {

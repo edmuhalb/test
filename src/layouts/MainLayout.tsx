@@ -7,7 +7,7 @@ import NavbarVertical from 'components/navbars/navbar-vertical/NavbarVertical';
 import { useAppContext } from 'providers/AppProvider';
 import { useMainLayoutContext } from 'providers/MainLayoutProvider';
 import { Container } from 'react-bootstrap';
-import { Outlet } from 'react-router-dom';
+import {Outlet, useNavigate} from 'react-router-dom';
 import Button from '../components/base/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
@@ -18,6 +18,8 @@ const MainLayout = () => {
   } = useAppContext();
 
   const { contentClass, footerClass } = useMainLayoutContext();
+
+  const navigate = useNavigate()
 
   return (
     <Container fluid className="px-0">
@@ -37,7 +39,7 @@ const MainLayout = () => {
           className={classNames(
             'p-0 border border-translucent btn-support-chat'
           )}
-          onClick={() => console.log('asfasf')}
+          onClick={() => navigate('/calls/create')}
         >
           <span className="fs-8 btn-text text-primary text-nowrap">Вызов</span>
           <FontAwesomeIcon

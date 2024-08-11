@@ -3,74 +3,114 @@ import Dropzone from 'components/base/Dropzone';
 import TinymceEditor from 'components/base/TinymceEditor';
 import OrganizeFormCard from 'components/cards/OrganizeFormCard';
 import VariantFormCard from 'components/cards/VariantFormCard';
-import PageBreadcrumb from 'components/common/PageBreadcrumb';
+import PageBreadcrumb, {PageBreadcrumbItem} from 'components/common/PageBreadcrumb';
 import InventoryTab from 'components/tabs/InventoryTab';
 import { defaultBreadcrumbItems } from 'data/commonData';
-import { Col, Form, Row } from 'react-bootstrap';
+import {Card, Col, Form, Row} from 'react-bootstrap';
+import { Form as FinalForm, Field } from 'react-final-form';
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faKey, faPhone} from "@fortawesome/free-solid-svg-icons";
+
+export const breadcrumbItems: PageBreadcrumbItem[] = [
+  {
+    label: 'Главная',
+    url: '/'
+  },
+  {
+    label: 'Вызовы',
+    url: '/calls'
+  },
+  {
+    label: 'Добавление вызова',
+    active: true
+  }
+];
 
 const CallCreate = () => {
+  const onSubmit = (values: any) => {
+   console.log(values)
+  };
+
+  const validate = (values: any) => {
+    const errors: any = {};
+    if (!values.phone) {
+      errors.phone = 'Введите телефон';
+    }
+    if (!values.description) {
+      errors.description = 'Введите описание';
+    }
+    return errors;
+  };
   return (
     <div>
-      <PageBreadcrumb items={defaultBreadcrumbItems} />
-      <form className="mb-9">
-        <div className="d-flex flex-wrap gap-3 flex-between-end mb-5">
-          <div>
-            <h2 className="mb-2">Add a product</h2>
-            <h5 className="text-body-tertiary fw-semibold">
-              Orders placed across your store
-            </h5>
-          </div>
-          <div className="d-flex flex-wrap gap-2">
-            <Button variant="phoenix-secondary" type="button">
-              Discard
-            </Button>
-            <Button variant="phoenix-primary" type="button">
-              Save draft
-            </Button>
-            <Button variant="primary" type="submit">
-              Publish product
-            </Button>
-          </div>
-        </div>
-        <Row className="g-5">
-          <Col xs={12} xl={8}>
-            <h4 className="mb-3">Product Title</h4>
-            <Form.Control placeholder="Write title here..." className="mb-5" />
-            <div className="mb-6">
-              <h4 className="mb-3">Product Description</h4>
-              <TinymceEditor
-                options={{
-                  height: '15rem',
-                  placeholder: 'Write a description here...'
-                }}
-              />
+      <PageBreadcrumb items={breadcrumbItems} />
+      <Col xs={12} xl={8}>
+        <Card>
+          <Card.Body>
+            <div className="d-flex flex-wrap gap-3 flex-between-end">
+              <div>
+                <h2 className="mb-2">Добавление вызова</h2>
+              </div>
             </div>
-            <div className="mb-5">
-              <h4 className="mb-3">Display images</h4>
-              <Dropzone
-                className="mb-3"
-                accept={{
-                  'image/*': ['.png', '.gif', '.jpeg', '.jpg']
-                }}
-              />
-            </div>
-            <div>
-              <h4 className="mb-3">Inventory</h4>
-              <InventoryTab />
-            </div>
-          </Col>
-          <Col xs={12} xl={4}>
-            <Row className="g-2">
-              <Col xs={12} xl={12}>
-                <OrganizeFormCard className="mb-3" />
-              </Col>
-              <Col xs={12} xl={12}>
-                <VariantFormCard />
-              </Col>
-            </Row>
-          </Col>
-        </Row>
-      </form>
+            <FinalForm
+                onSubmit={onSubmit}
+                validate={validate}
+                render={({handleSubmit, submitting,pristine}) => (
+                    <form onSubmit={handleSubmit}>
+                      <Field
+                          name="phone"
+                          render={({input, meta}) => (
+                              <Form.Group className="mb-3 text-start">
+                                <Form.Label htmlFor="password">Пароль</Form.Label>
+                                <div className="form-icon-container">
+                                  <Form.Control
+                                      id="phone"
+                                      type="phone"
+                                      disabled={submitting}
+                                      className="form-icon-input"
+                                      placeholder="Телефон"
+                                      {...input}
+                                  />
+                                  <FontAwesomeIcon
+                                      icon={faPhone}
+                                      className="text-body fs-9 form-icon"
+                                  />
+                                </div>
+                                {meta.touched && meta.error && (
+                                    <span className={'text-danger fs-9'}>{meta.error}</span>
+                                )}
+                              </Form.Group>
+                          )}
+                      />
+                      <Field
+                          name="description"
+                          render={({input, meta}) => (
+                              <Form.Group className="mb-3 text-start">
+                                <Form.Label htmlFor="description">Описание</Form.Label>
+                                <Form.Control
+                                    id="description"
+                                    as="textarea"
+                                    rows={5}
+                                    disabled={submitting}
+                                    placeholder="Описание"
+                                    {...input}
+                                />
+                                {meta.touched && meta.error && (
+                                    <span className={'text-danger fs-9'}>{meta.error}</span>
+                                )}
+                              </Form.Group>
+                          )}
+                      />
+                      <Button loading={submitting} disabled={submitting || pristine} variant="primary" className="w-100 mb-3" type={'submit'}>
+                        Добавить
+                      </Button>
+                    </form>
+                )}
+            />
+          </Card.Body>
+        </Card>
+      </Col>
+
     </div>
   );
 };

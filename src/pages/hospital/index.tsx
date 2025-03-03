@@ -9,8 +9,34 @@ import FeatherIcon from 'feather-icons-react';
 import { ColumnDef } from '@tanstack/react-table';
 import { currencyFormat } from '../../helpers/utils';
 import { hospitalsIndexAPI } from '../../services/HospitalService';
+import { InputDateRangeFilter } from '../../shared/ui/datepicker';
+import { SelectFilterField } from '../../shared/select';
+import { useSearchParams } from 'react-router-dom';
 
-const Hospitals = () => {
+export const HOSPITAL_STATUS_OPTIONS = [
+  {
+    label: 'Назначен',
+    value: 'assigned'
+  },
+  {
+    label: 'В стационаре',
+    value: 'inpatient'
+  },
+  {
+    label: 'Выписан',
+    value: 'completed'
+  },
+  {
+    label: 'Отменен',
+    value: 'cancelled'
+  }
+];
+
+export const entries = (params: URLSearchParams) =>
+  Object.fromEntries(params.entries());
+
+const HospitalListPage = () => {
+  const [params] = useSearchParams();
   const handleSearchInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
   };
@@ -33,14 +59,18 @@ const Hospitals = () => {
   useEffect(() => {
     const fetchHospitals = async () => {
       setIsLoading(true);
-      const result = await hospitalsIndexAPI({ page, search });
+      const result = await hospitalsIndexAPI({
+        page,
+        search,
+        ...entries(params)
+      });
       setItems(result?.data?.items);
       setPagination(result?.data?.pagination);
       setIsLoading(false);
     };
 
     fetchHospitals();
-  }, [page, search]);
+  }, [page, search, params]);
 
   const defaultBreadcrumbItems: PageBreadcrumbItem[] = [
     {
@@ -164,8 +194,30 @@ const Hospitals = () => {
       <div className="mb-9">
         <h2 className="mb-4">Стационар</h2>
         <div className="mb-4">
-          <div className="d-flex flex-wrap gap-3">
-            <SearchBox placeholder="Поиск" onChange={handleSearchInputChange} />
+          <div className="row">
+            <div className="col-md-auto">
+              <SearchBox
+                className={'w-100'}
+                placeholder="Поиск"
+                onChange={handleSearchInputChange}
+              />
+            </div>
+            <div className="col-md-auto">
+              <InputDateRangeFilter
+                nameStart="dischargedAt[after]"
+                nameEnd="dischargedAt[before]"
+                placeholder="Дата выписки"
+                showWeeksRange
+              />
+            </div>
+            <div className="col-md-auto" style={{ minWidth: '300px' }}>
+              <SelectFilterField
+                name="status"
+                placeholder="Статус"
+                options={HOSPITAL_STATUS_OPTIONS}
+                isMulti
+              />
+            </div>
           </div>
         </div>
         <div className="mx-n4 px-4 mx-lg-n6 px-lg-6 bg-body-emphasis border-top border-bottom border-translucent position-relative top-1">
@@ -182,4 +234,4 @@ const Hospitals = () => {
   );
 };
 
-export default Hospitals;
+export default HospitalListPage;

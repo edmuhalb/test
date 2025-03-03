@@ -1,7 +1,7 @@
 import SignInForm from 'components/modules/auth/SignInForm';
 import AuthCardLayout from 'layouts/AuthCardLayout';
 
-const SignIn = () => {
+const LoginPage = () => {
   return (
     <AuthCardLayout className="pb-md-7">
       <SignInForm />
@@ -9,4 +9,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default LoginPage;

@@ -21,11 +21,7 @@ export const callsIndexAPI = async (params?: any) => {
 };
 
 export const callsCreateAPI = async (values: any) => {
-  try {
-    return await axios.post(api, values);
-  } catch (error) {
-    handleError(error);
-  }
+  return await axios.post(api, values);
 };
 
 export const callsGetAPI = async (id: any) => {

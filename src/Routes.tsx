@@ -4,14 +4,12 @@ import { RouteObject, createBrowserRouter } from 'react-router-dom';
 import MainLayoutProvider from 'providers/MainLayoutProvider';
 import Error404 from 'pages/error/Error404';
 import App from 'App';
-import CardSignIn from 'pages/SignIn';
 import { ProtectedRoute } from './ProtectedRoute';
-import Dashboard from 'pages/Dashboard/Dashboard';
-import Profile from 'pages/Profile';
-import Calls from 'pages/calls/Calls';
-import CallDetails from './pages/calls/CallDetails';
-import CallCreate from './pages/calls/CallCreate';
-import Hospitals from './pages/hospital/Hospitals';
+import DashboardPage from './pages/dashboard';
+import CallsListPage from './pages/calls/list';
+import CallsCreatePage from './pages/calls/create';
+import HospitalListPage from './pages/hospital';
+import LoginPage from './pages/login';
 
 const routes: RouteObject[] = [
   {
@@ -29,19 +27,10 @@ const routes: RouteObject[] = [
             index: true,
             element: (
               <ProtectedRoute>
-                <Dashboard />
+                <DashboardPage />
               </ProtectedRoute>
             )
           },
-          {
-            path: 'profile',
-            element: (
-              <ProtectedRoute>
-                <Profile />
-              </ProtectedRoute>
-            )
-          },
-
           {
             path: '/calls',
             children: [
@@ -49,7 +38,7 @@ const routes: RouteObject[] = [
                 index: true,
                 element: (
                   <ProtectedRoute>
-                    <Calls />
+                    <CallsListPage />
                   </ProtectedRoute>
                 )
               },
@@ -57,15 +46,7 @@ const routes: RouteObject[] = [
                 path: `/calls/create`,
                 element: (
                   <ProtectedRoute>
-                    <CallCreate />
-                  </ProtectedRoute>
-                )
-              },
-              {
-                path: `/calls/:callId`,
-                element: (
-                  <ProtectedRoute>
-                    <CallDetails />
+                    <CallsCreatePage />
                   </ProtectedRoute>
                 )
               }
@@ -78,7 +59,7 @@ const routes: RouteObject[] = [
                 index: true,
                 element: (
                   <ProtectedRoute>
-                    <Hospitals />
+                    <HospitalListPage />
                   </ProtectedRoute>
                 )
               }
@@ -91,7 +72,7 @@ const routes: RouteObject[] = [
         children: [
           {
             path: 'login',
-            element: <CardSignIn />
+            element: <LoginPage />
           }
         ]
       },
@@ -104,5 +85,3 @@ const routes: RouteObject[] = [
 ];
 
 export const router = createBrowserRouter(routes);
-
-export default routes;

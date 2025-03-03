@@ -6,6 +6,7 @@ import { useSettingsPanelContext } from 'providers/SettingsPanelProvider';
 import { useEffect } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import { UserProvider } from './context/useAuth';
+import 'react-datepicker/dist/react-datepicker.css';
 
 const App = () => {
   const { isStylesheetLoaded } = useToggleStyle();

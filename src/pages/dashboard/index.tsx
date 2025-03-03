@@ -7,7 +7,7 @@ import CallsMap from './CallsMap/CallsMap';
 import React, { useEffect, useState } from 'react';
 import { callsIndexAPI } from '../../services/CallService';
 
-const Dashboard = () => {
+const DashboardPage = () => {
   const [calls, setCalls] = useState<any[]>([]);
 
   useEffect(() => {
@@ -83,4 +83,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default DashboardPage;

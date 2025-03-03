@@ -7,9 +7,10 @@ import { Form as FinalForm, Field } from 'react-final-form';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPhone } from '@fortawesome/free-solid-svg-icons';
 import { InputMask } from '@react-input/mask';
-import { callsCreateAPI } from '../../services/CallService';
+import { callsCreateAPI } from '../../../services/CallService';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 export const breadcrumbItems: PageBreadcrumbItem[] = [
   {
@@ -26,13 +27,22 @@ export const breadcrumbItems: PageBreadcrumbItem[] = [
   }
 ];
 
-const CallCreate = () => {
+const CallsCreatePage = () => {
   const navigate = useNavigate();
+
+  const [error, setError] = useState(null);
   const onSubmit = async (values: any) => {
-    const result = await callsCreateAPI(values);
-    if (result?.status === 201) {
-      toast.success('Вызов создан');
-      navigate('/calls');
+    try {
+      const result = await callsCreateAPI(values);
+      if (result?.status === 201) {
+        toast.success('Вызов создан');
+        navigate('/calls');
+      }
+    } catch (err: any) {
+      if (err.response?.data?.violations) {
+        const firstViolation = err.response.data.violations[0];
+        setError(firstViolation.title);
+      }
     }
   };
 
@@ -60,6 +70,11 @@ const CallCreate = () => {
                 <h2 className="mb-2">Добавление вызова</h2>
               </div>
             </div>
+            {error && (
+              <div className="alert alert-subtle-danger" role="alert">
+                {error}
+              </div>
+            )}
             <FinalForm
               onSubmit={onSubmit}
               validate={validate}
@@ -133,4 +148,4 @@ const CallCreate = () => {
   );
 };
 
-export default CallCreate;
+export default CallsCreatePage;

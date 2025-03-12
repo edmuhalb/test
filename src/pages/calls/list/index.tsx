@@ -26,7 +26,7 @@ export const CALLING_STATUSES = [
 export const callingStatusFormatter = (status: string) => {
   switch (status) {
     case 'waiting':
-      return 'Назначен';
+      return 'В работе КЦ';
     case 'completed':
       return 'Завершен';
     case 'accepted':
@@ -104,7 +104,7 @@ const CallsListPage = () => {
 
   const statuses = {
     not_ready: {
-      label: 'Не готов',
+      label: 'В работе КЦ',
       icon: 'info',
       type: 'secondary'
     },
@@ -114,7 +114,7 @@ const CallsListPage = () => {
       type: 'secondary'
     },
     waiting: {
-      label: 'Назначен',
+      label: 'В работе КЦ',
       icon: 'info',
       type: 'primary'
     },
@@ -164,7 +164,7 @@ const CallsListPage = () => {
   const columns: Array<ColumnDef<any>> = [
     {
       header: '#',
-      accessorKey: 'number',
+      accessorKey: 'id',
       enableSorting: false
     },
     {

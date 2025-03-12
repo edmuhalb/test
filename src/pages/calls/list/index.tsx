@@ -204,6 +204,11 @@ const CallsListPage = () => {
       }
     },
     {
+      header: 'Комментарий',
+      accessorKey: 'comment',
+      enableSorting: false
+    },
+    {
       header: 'Сумма',
       accessorKey: 'price',
       enableSorting: false,

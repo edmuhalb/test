@@ -76,7 +76,7 @@ const ChatWidgetFooter = () => {
           <Form.Control
             className="outline-none border-0 flex-1 fs--1 px-0"
             type="text"
-            placeholder="Write message"
+            placeholder="Текст сообщения"
             value={messageText}
             onChange={e => setMessageText(e.target.value)}
           />

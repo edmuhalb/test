@@ -61,81 +61,80 @@ export type MessageActionType = {
 
 export const supportChat: Conversation = {
   id: 1,
-  user: { id: 1, avatar: team30, status: 'online', name: 'Sharuka Nijibum' },
+  user: { id: 1, avatar: team30, status: 'online', name: 'Шарука Ниджибум' },
   messages: []
 };
 
 export const suggestions: string[] = [
-  'I need help with something',
-  'I can’t reorder a product I previously ordered',
-  'How do I place an order?',
-  'My payment method not working'
+  'Мне нужна помощь',
+  'Я не могу оформить повторный вызов',
+  'Как разместить вызов?'
 ];
 
 export const conversations: Conversation[] = [
   {
     id: 1,
-    user: { id: 1, avatar: team20, status: 'online', name: 'Sharuka Nijibum' },
+    user: { id: 1, avatar: team20, status: 'online', name: 'Шарука Ниджибум' },
     messages: [
       {
         id: 1,
         type: 'received',
         message:
-          'Peter Piper picked a peck of pickled peppers. A peck of pickled peppers Peter Piper picked.',
-        time: 'Yesterday, 10 AM',
+          'Петр Питер собрал пек маринованного перца. Пек маринованного перца собрал Петр Питер.',
+        time: 'Вчера, 10:00',
         readAt: new Date()
       },
       {
         id: 2,
         type: 'sent',
         message:
-          'If Peter Piper picked a peck of pickled peppers, where’s the peck of pickled peppers Peter Piper picked?',
-        time: 'Yesterday, 10 AM',
+          'Если Петр Питер собрал пек маринованного перца, где пек маринованного перца, который собрал Петр Питер?',
+        time: 'Вчера, 10:00',
         readAt: new Date()
       },
       {
         id: 3,
         type: 'sent',
-        message: 'Yes, in an organization stature',
+        message: 'Да, в организационной структуре',
         attachments: { images: [image1] },
-        time: 'Yesterday, 10 AM',
+        time: 'Вчера, 10:00',
         readAt: new Date()
       },
       {
         id: 4,
         type: 'received',
-        message: 'Eddie edited it.',
-        time: 'Yesterday, 10 AM',
+        message: 'Эдди отредактировал это.',
+        time: 'Вчера, 10:00',
         readAt: new Date()
       },
       {
         id: 5,
         type: 'sent',
-        message: 'Willie’s really weary.',
-        time: 'Yesterday, 10 AM',
+        message: 'Вилли действительно устал.',
+        time: 'Вчера, 10:00',
         readAt: new Date()
       },
       {
         id: 6,
         type: 'received',
         message:
-          'You know New York, you need New York, you know you need a unique New York.',
-        time: 'Yesterday, 10 AM',
+          'Ты знаешь Нью-Йорк, тебе нужен Нью-Йорк, ты знаешь, что тебе нужен уникальный Нью-Йорк.',
+        time: 'Вчера, 10:00',
         readAt: new Date()
       },
       {
         id: 7,
         type: 'sent',
-        message: 'This is a message from you',
-        time: 'Yesterday, 10 AM',
+        message: 'Это сообщение от вас',
+        time: 'Вчера, 10:00',
         readAt: new Date()
       },
       {
         id: 8,
         type: 'received',
         message:
-          'I have got a date at a quarter to eight; I’ll see you at the gate, so don’t be late.',
-        time: 'Yesterday, 10 AM',
+          'У меня встреча без четверти восемь; увидимся у ворот, так что не опаздывай.',
+        time: 'Вчера, 10:00',
         readAt: null
       }
     ],
@@ -147,15 +146,15 @@ export const conversations: Conversation[] = [
       id: 2,
       avatar: team29,
       status: 'offline',
-      name: 'Urito Nisemuno'
+      name: 'Урито Нисемуно'
     },
     messages: [
       {
         id: 1,
         type: 'received',
         message:
-          'Ned Nott was shot and Sam Shott was not. So it is better to be Shott than Nott.',
-        time: 'Yesterday, 10 AM',
+          'Нед Нотт был застрелен, а Сэм Шотт не был. Так что лучше быть Шоттом, чем Ноттом.',
+        time: 'Вчера, 10:00',
         readAt: new Date()
       },
       {
@@ -177,56 +176,57 @@ export const conversations: Conversation[] = [
             image11
           ]
         },
-        time: 'Yesterday, 10 AM',
+        time: 'Вчера, 10:00',
         readAt: new Date()
       },
       {
         id: 3,
         type: 'sent',
-        message: 'Some say Nott was not shot. But Shott says he shot Nott.',
-        time: 'Yesterday, 10 AM',
+        message:
+          'Некоторые говорят, что Нотт не был застрелен. Но Шотт говорит, что он застрелил Нотта.',
+        time: 'Вчера, 10:00',
         readAt: new Date()
       },
       {
         id: 4,
         type: 'received',
         message:
-          'But Shott says he shot Nott. Either the shot Shott shot at Nott was not shot, Or Nott was shot.',
-        time: 'Yesterday, 10 AM',
+          'Но Шотт говорит, что он застрелил Нотта. Либо выстрел, который Шотт сделал в Нотта, не попал, либо Нотт был застрелен.',
+        time: 'Вчера, 10:00',
         readAt: null
       },
       {
         id: 5,
         type: 'sent',
-        message: 'If the shot Shott shot shot Nott, Nott was shot.',
-        time: 'Yesterday, 10 AM',
+        message: 'Если выстрел Шотта попал в Нотта, то Нотт был застрелен.',
+        time: 'Вчера, 10:00',
         readAt: new Date()
       },
       {
         id: 6,
         type: 'received',
         message:
-          'But if the shot Shott shot shot Shott, then Shott was shot, not Nott.',
-        time: 'Yesterday, 10 AM',
+          'Но если выстрел Шотта попал в Шотта, то Шотт был застрелен, а не Нотт.',
+        time: 'Вчера, 10:00',
         readAt: null
       },
       {
         id: 7,
         type: 'sent',
-        message: 'However, the shot Shott shot shot not Shott, but Nott.',
-        time: 'Yesterday, 10 AM',
+        message: 'Однако выстрел Шотта попал не в Шотта, а в Нотта.',
+        time: 'Вчера, 10:00',
         readAt: new Date()
       },
       {
         id: 8,
         type: 'received',
-        time: 'Yesterday, 10 AM',
+        time: 'Вчера, 10:00',
         readAt: null,
         attachments: {
           file: {
-            name: 'Unsupported file format.mad',
+            name: 'Неподдерживаемый формат файла.mad',
             size: '11.13 KB',
-            date: 'Dec 2, 2011',
+            date: '2 дек 2011',
             format: 'mad'
           }
         }
@@ -240,15 +240,15 @@ export const conversations: Conversation[] = [
       id: 3,
       avatar: team30,
       status: 'online',
-      name: 'Xiang Ledepisipang'
+      name: 'Сян Ледипесипанг'
     },
     messages: [
       {
         id: 1,
         type: 'received',
         message:
-          'A tree-toad loved a she-toad who lived up in a tree. He was a two-toed tree-toad, but a three-toed toad was she. The two-toed tree-toad tried to win the three-toed she-toad’s heart, for the two-toed tree-toad loved the ground that the three-toed tree-toad trod. But the two-toed tree-toad tried in vain; he couldn’t please her whim. From her tree-toad bower, with her three-toed power, the she-toad vetoed him.',
-        time: 'Yesterday, 10 AM',
+          'Древесная жаба полюбила самку-жабу, которая жила на дереве. Он был двухпалой древесной жабой, а она была трехпалой жабой. Двухпалая древесная жаба пыталась завоевать сердце трехпалой самки-жабы, ибо двухпалая древесная жаба любила землю, по которой ступала трехпалая древесная жаба. Но двухпалая древесная жаба пыталась напрасно; он не мог угодить её прихоти. Из своего древесного убежища, своей трехпалой силой, самка-жаба наложила на него вето.',
+        time: 'Вчера, 10:00',
         readAt: new Date()
       }
     ]
@@ -259,60 +259,60 @@ export const conversations: Conversation[] = [
       id: 4,
       avatar: team25,
       status: 'online',
-      name: 'Abshini Thipano'
+      name: 'Абшини Типано'
     },
     messages: [
       {
         id: 1,
         type: 'received',
-        message: 'Hello, I’m Doctor Triple A! How can I help?',
-        time: 'Yesterday, 10 AM',
+        message: 'Привет, я Доктор Тройной А! Чем могу помочь?',
+        time: 'Вчера, 10:00',
         readAt: new Date()
       },
       {
         id: 2,
         type: 'received',
         message:
-          'What runs, but never walks. Murmurs, but never talks. Has a bed, but never sleeps. And has a mouth, but never eats?',
-        time: 'Yesterday, 10 AM',
+          'Что бежит, но никогда не ходит. Бормочет, но никогда не говорит. Имеет кровать, но никогда не спит. И имеет рот, но никогда не ест?',
+        time: 'Вчера, 10:00',
         readAt: new Date()
       },
       {
         id: 3,
         type: 'received',
         message:
-          'A river. But I have a head and a tail that will never meet. Having too many of me is always a treat. What am I?',
-        time: 'Yesterday, 10 AM',
+          'Река. Но у меня есть голова и хвост, которые никогда не встретятся. Иметь слишком много меня всегда приятно. Что я?',
+        time: 'Вчера, 10:00',
         readAt: new Date()
       },
       {
         id: 4,
         type: 'sent',
-        message: 'A coin, or what?',
-        time: 'Yesterday, 10 AM',
+        message: 'Монета, или что?',
+        time: 'Вчера, 10:00',
         readAt: new Date()
       },
       {
         id: 5,
         type: 'sent',
         message:
-          'Well tell me what I am if I can never be thrown but I can be caught. Ways to lose me are always being sought.',
-        time: 'Yesterday, 10 AM',
+          'Ну скажи мне, что я, если меня никогда нельзя бросить, но можно поймать. Способы потерять меня всегда ищут.',
+        time: 'Вчера, 10:00',
         readAt: new Date()
       },
       {
         id: 6,
         type: 'received',
         message:
-          'A cold. But what do you throw out when you want to use it but take in when you don’t want to use it?',
-        time: 'Yesterday, 10 AM',
+          'Простуда. Но что ты выбрасываешь, когда хочешь использовать, но забираешь, когда не хочешь использовать?',
+        time: 'Вчера, 10:00',
         readAt: new Date()
       },
       {
         id: 7,
         type: 'sent',
-        message: 'An anchor, right?',
-        time: 'Yesterday, 10 AM',
+        message: 'Якорь, верно?',
+        time: 'Вчера, 10:00',
         readAt: new Date()
       }
     ],
@@ -324,15 +324,15 @@ export const conversations: Conversation[] = [
       id: 5,
       avatar: team15,
       status: 'online',
-      name: 'Nenko Nimitanip'
+      name: 'Ненко Нимитанип'
     },
     messages: [
       {
         id: 1,
         type: 'sent',
         message:
-          'When a doctor doctors a doctor, does the doctor doing the doctoring doctor as the doctor being doctored wants to be doctored or does the doctor doing the doctoring doctor as he wants to doctor?',
-        time: 'Yesterday, 10 AM',
+          'Когда врач лечит врача, лечит ли врач, который лечит, так, как хочет быть вылеченным врач, которого лечат, или врач, который лечит, лечит так, как он хочет лечить?',
+        time: 'Вчера, 10:00',
         readAt: new Date()
       }
     ]
@@ -343,22 +343,22 @@ export const conversations: Conversation[] = [
       id: 6,
       avatar: team59,
       status: 'online',
-      name: 'Shanito Bistroglini'
+      name: 'Шанито Бистроглини'
     },
     messages: [
       {
         id: 1,
         type: 'sent',
         message:
-          'When a doctor doctors a doctor, does the doctor doing the doctoring doctor as the doctor being doctored wants to be doctored or does the doctor doing the doctoring doctor as he wants to doctor?',
-        time: 'Yesterday, 10 AM',
+          'Когда врач лечит врача, лечит ли врач, который лечит, так, как хочет быть вылеченным врач, которого лечат, или врач, который лечит, лечит так, как он хочет лечить?',
+        time: 'Вчера, 10:00',
         readAt: new Date()
       },
       {
         id: 2,
         type: 'received',
-        message: 'Well… check the attached file for answer, man!',
-        time: 'Yesterday, 10 AM',
+        message: 'Ну… проверь прикрепленный файл для ответа, чувак!',
+        time: 'Вчера, 10:00',
         readAt: new Date()
       }
     ]
@@ -368,31 +368,31 @@ export const conversations: Conversation[] = [
     user: {
       id: 7,
       status: 'online',
-      name: 'Misthoni Trepalnano'
+      name: 'Мистони Трепалнано'
     },
     messages: [
       {
         id: 1,
         type: 'received',
         message:
-          'Mr. See owned a saw. And Mr. Soar owned a seesaw. Now, See’s saw sawed Soar’s seesaw before Soar saw See, which made Soar sore.',
-        time: 'Yesterday, 10 AM',
+          'Мистер Си владел пилой. А мистер Соар владел качелями. Теперь пила Си распилила качели Соара до того, как Соар увидел Си, что сделало Соара раздраженным.',
+        time: 'Вчера, 10:00',
         readAt: new Date()
       },
       {
         id: 2,
         type: 'sent',
         message:
-          'Had Soar seen See’s saw before See sawed Soar’s seesaw, See’s saw would not have sawed Soar’s seesaw.',
-        time: 'Yesterday, 10 AM',
+          'Если бы Соар увидел пилу Си до того, как Си распилил качели Соара, пила Си не распилила бы качели Соара.',
+        time: 'Вчера, 10:00',
         readAt: new Date()
       },
       {
         id: 3,
         type: 'received',
         message:
-          'So See’s saw sawed Soar’s seesaw. But it was sad to see Soar so sore just because See’s saw sawed Soar’s seesaw.',
-        time: 'Yesterday, 10 AM',
+          'Так что пила Си распилила качели Соара. Но было грустно видеть Соара таким раздраженным только из-за того, что пила Си распилила качели Соара.',
+        time: 'Вчера, 10:00',
         readAt: new Date()
       }
     ]
@@ -403,46 +403,46 @@ export const conversations: Conversation[] = [
       id: 8,
       avatar: team1,
       status: 'online',
-      name: 'Zogidi Lishang'
+      name: 'Зогиди Лишанг'
     },
     messages: [
       {
         id: 1,
         type: 'sent',
         message:
-          'Perspicacious Polly Perkins purchased Peter’s product and peddled pickles to produce a pretty profit!',
-        time: 'Yesterday, 10 AM',
+          'Проницательная Полли Перкинс купила продукт Питера и продавала соленья, чтобы получить хорошую прибыль!',
+        time: 'Вчера, 10:00',
         readAt: new Date()
       },
       {
         id: 2,
         type: 'received',
         message:
-          'I slit the sheet, the sheet I slit, and on the slitted sheet I sit.',
-        time: 'Yesterday, 10 AM',
+          'Я разрезал простыню, простыню я разрезал, и на разрезанной простыне я сижу.',
+        time: 'Вчера, 10:00',
         readAt: new Date()
       },
       {
         id: 3,
         type: 'sent',
-        message: 'Green glass globes glow greenly.',
-        time: 'Yesterday, 10 AM',
+        message: 'Зеленые стеклянные шары светятся зеленым.',
+        time: 'Вчера, 10:00',
         readAt: new Date()
       },
       {
         id: 4,
         type: 'sent',
         message:
-          'Ingenious iguanas improvising an intricate impromptu on impossibly-impractical instruments.',
-        time: 'Yesterday, 10 AM',
+          'Гениальные игуаны импровизируют сложную импровизацию на невозможных-непрактичных инструментах.',
+        time: 'Вчера, 10:00',
         readAt: new Date()
       },
       {
         id: 5,
         type: 'received',
         message:
-          'Brisk brave brigadiers brandished broad bright blades, blunderbusses, and bludgeons—balancing them badly.',
-        time: 'Yesterday, 10 AM',
+          'Быстрые храбрые бригадиры размахивали широкими яркими клинками, мушкетами и дубинками—плохо балансируя ими.',
+        time: 'Вчера, 10:00',
         readAt: new Date()
       }
     ]
@@ -453,53 +453,53 @@ export const conversations: Conversation[] = [
       id: 9,
       avatar: team6,
       status: 'online',
-      name: 'Nonteporano Lepat'
+      name: 'Нонтепорано Лепат'
     },
     messages: [
       {
         id: 1,
         type: 'received',
         message:
-          'which book do you remember to have the longest possible sentence?',
-        time: 'Yesterday, 10 AM',
+          'какую книгу вы помните, чтобы иметь самое длинное возможное предложение?',
+        time: 'Вчера, 10:00',
         readAt: new Date()
       },
       {
         id: 2,
         type: 'sent',
-        message: ' I dunno! Guess ‘tis not easy to read and count the words!',
-        time: 'Yesterday, 10 AM',
+        message: 'Не знаю! Думаю, нелегко читать и считать слова!',
+        time: 'Вчера, 10:00',
         readAt: new Date()
       },
       {
         id: 3,
         type: 'received',
         message:
-          "Victor Hugo’s 'Les Miserables' contains an 823 word sentence, and hopefully no one else will write longer to break the record.",
-        time: 'Yesterday, 10 AM',
+          '«Отверженные» Виктора Гюго содержат предложение из 823 слов, и, надеюсь, никто другой не напишет длиннее, чтобы побить рекорд.',
+        time: 'Вчера, 10:00',
         readAt: new Date()
       },
       {
         id: 4,
         type: 'sent',
         message:
-          'Well… I know a uniquely long title. Do you know which has it?',
-        time: 'Yesterday, 10 AM',
+          'Ну… я знаю уникально длинное название. Ты знаешь, у кого оно есть?',
+        time: 'Вчера, 10:00',
         readAt: new Date()
       },
       {
         id: 5,
         type: 'received',
-        message: 'Well…no?',
-        time: 'Yesterday, 10 AM',
+        message: 'Ну…нет?',
+        time: 'Вчера, 10:00',
         readAt: new Date()
       },
       {
         id: 6,
         type: 'sent',
         message:
-          'The longest book title is made up of 3,777 words. I don’t wanna write it down for you, go find it!',
-        time: 'Yesterday, 10 AM',
+          'Самое длинное название книги состоит из 3777 слов. Я не хочу записывать это для тебя, иди найди!',
+        time: 'Вчера, 10:00',
         readAt: new Date()
       }
     ]
@@ -510,44 +510,44 @@ export const conversations: Conversation[] = [
       id: 10,
       avatar: team60,
       status: 'online',
-      name: 'Jessica Ball'
+      name: 'Джессика Болл'
     },
     messages: [
       {
         id: 1,
         type: 'received',
-        message: 'Also, what?!',
-        time: 'Yesterday, 10 AM',
+        message: 'Также, что?!',
+        time: 'Вчера, 10:00',
         readAt: new Date()
       },
       {
         id: 2,
         type: 'sent',
         message:
-          'But in fact, humans are more deadly to sharks than they are to humans. Humans kill about 100 million sharks per year!',
-        time: 'Yesterday, 10 AM',
+          'Но на самом деле люди более смертоносны для акул, чем акулы для людей. Люди убивают около 100 миллионов акул в год!',
+        time: 'Вчера, 10:00',
         readAt: new Date()
       },
       {
         id: 3,
         type: 'received',
         message:
-          'Hard to believe, but true. Sharks kill an average of 5 people per year while cows kill an average of 22 people per year.',
-        time: 'Yesterday, 10 AM',
+          'Трудно поверить, но это правда. Акулы убивают в среднем 5 человек в год, в то время как коровы убивают в среднем 22 человека в год.',
+        time: 'Вчера, 10:00',
         readAt: new Date()
       },
       {
         id: 4,
         type: 'sent',
-        message: 'Whaat?!',
-        time: 'Yesterday, 10 AM',
+        message: 'Чтто?!',
+        time: 'Вчера, 10:00',
         readAt: new Date()
       },
       {
         id: 5,
         type: 'received',
-        message: 'Cows kill more people than sharks!',
-        time: 'Yesterday, 10 AM',
+        message: 'Коровы убивают больше людей, чем акулы!',
+        time: 'Вчера, 10:00',
         readAt: new Date()
       }
     ]
@@ -558,53 +558,53 @@ export const conversations: Conversation[] = [
       id: 11,
       avatar: team57,
       status: 'online',
-      name: 'Harley Brown'
+      name: 'Харли Браун'
     },
     messages: [
       {
         id: 1,
         type: 'received',
         message:
-          'Clouds at the centre of the Milky Way smell of rum, taste of raspberries and are packed with booze!',
-        time: 'Yesterday, 10 AM',
+          'Облака в центре Млечного Пути пахнут ромом, имеют вкус малины и полны алкоголя!',
+        time: 'Вчера, 10:00',
         readAt: new Date()
       },
       {
         id: 2,
         type: 'sent',
-        message: 'Really?!',
-        time: 'Yesterday, 10 AM',
+        message: 'Правда?!',
+        time: 'Вчера, 10:00',
         readAt: new Date()
       },
       {
         id: 3,
         type: 'received',
         message:
-          'Oh yeah! It contains enough alcohol to supply every person on the planet with 300,000 pints of beer per day for the next billion years!',
-        time: 'Yesterday, 10 AM',
+          'О да! Там достаточно алкоголя, чтобы снабжать каждого человека на планете 300 000 пинтами пива в день в течение следующего миллиарда лет!',
+        time: 'Вчера, 10:00',
         readAt: new Date()
       },
       {
         id: 4,
         type: 'sent',
         message:
-          'And know what I heard? Neptune has only completed one orbit around the Sun since its discovery!',
-        time: 'Yesterday, 10 AM',
+          'И знаешь, что я слышал? Нептун совершил только один оборот вокруг Солнца с момента его открытия!',
+        time: 'Вчера, 10:00',
         readAt: new Date()
       },
       {
         id: 5,
         type: 'received',
-        message: 'And the Sun loses a billion kilos per second.',
-        time: 'Yesterday, 10 AM',
+        message: 'И Солнце теряет миллиард килограммов в секунду.',
+        time: 'Вчера, 10:00',
         readAt: new Date()
       },
       {
         id: 6,
         type: 'sent',
         message:
-          'OMG! I should leave my dietitian and ask for some advice from the Sun God then!',
-        time: 'Yesterday, 10 AM',
+          'ОМГ! Мне следует оставить своего диетолога и попросить совета у Бога Солнца!',
+        time: 'Вчера, 10:00',
         readAt: new Date()
       }
     ]
@@ -657,25 +657,25 @@ export const files: FileAttachment[] = [
   {
     name: 'Federico_salsaniuella_godarf_design.zip',
     size: '53.34 MB',
-    date: 'Dec 8, 2011',
+    date: '8 дек 2011',
     format: 'zip'
   },
   {
     name: 'Restart_lyf.bat',
     size: '11.13 KB',
-    date: 'Dec 2, 2011',
+    date: '2 дек 2011',
     format: 'bat'
   },
   {
-    name: 'Fake lorem ipsum fr fr.txt',
+    name: 'Поддельный lorem ipsum.txt',
     size: '11.13 KB',
-    date: 'Dec 2, 2011',
+    date: '2 дек 2011',
     format: 'txt'
   },
   {
-    name: 'Unsupported file format.mad',
+    name: 'Неподдерживаемый формат файла.mad',
     size: '11.13 KB',
-    date: 'Dec 2, 2011',
+    date: '2 дек 2011',
     format: 'mad'
   }
 ];
@@ -683,22 +683,22 @@ export const files: FileAttachment[] = [
 export const actions: MessageActionType[] = [
   {
     icon: faTrash,
-    label: 'Delete'
+    label: 'Удалить'
   },
   {
     icon: faReply,
-    label: 'Reply'
+    label: 'Ответить'
   },
   {
     icon: faPenToSquare,
-    label: 'Edit'
+    label: 'Редактировать'
   },
   {
     icon: faShare,
-    label: 'Share'
+    label: 'Поделиться'
   },
   {
     icon: faFaceSmile,
-    label: 'Emoji'
+    label: 'Эмодзи'
   }
 ];

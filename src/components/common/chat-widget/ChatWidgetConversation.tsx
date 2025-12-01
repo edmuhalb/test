@@ -1,4 +1,3 @@
-import Avatar from 'components/base/Avatar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 import classNames from 'classnames';
@@ -18,16 +17,8 @@ const ChatWidgetConversation = () => {
   return (
     <>
       <div className="text-center mt-auto">
-        <Avatar
-          src={conversation.user.avatar}
-          size="3xl"
-          status="online"
-          className="mx-auto"
-        />
-        <h5 className="mt-2 mb-3">Eric</h5>
         <p className="text-center text-body-emphasis mb-0">
-          Ask us anything – we’ll get back to you here or by email within 24
-          hours.
+          Задайте нам любой вопрос — мы ответим вам здесь
         </p>
       </div>
       {!conversation.messages.length && (

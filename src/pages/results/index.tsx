@@ -151,7 +151,7 @@ const ResultsPage = () => {
               <InputDateRangeFilter
                 nameStart="dischargedAt[after]"
                 nameEnd="dischargedAt[before]"
-                placeholder="Дата выписки"
+                placeholder="Дата"
                 showWeeksRange
               />
             </div>

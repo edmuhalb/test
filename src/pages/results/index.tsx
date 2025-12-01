@@ -45,7 +45,7 @@ const ResultsPage = () => {
       url: '/'
     },
     {
-      label: 'Стационар',
+      label: 'Итоги',
       active: true
     }
   ];

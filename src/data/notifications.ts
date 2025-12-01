@@ -1,4 +1,6 @@
 import { PageBreadcrumbItem } from 'components/common/PageBreadcrumb';
+import team30 from 'assets/img/team/40x40/avatar.webp';
+
 export const notificationsBreadcrumbItems: PageBreadcrumbItem[] = [
   {
     label: 'Pages',

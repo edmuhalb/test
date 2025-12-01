@@ -11,6 +11,7 @@ import CallsCreatePage from './pages/calls/create';
 import HospitalListPage from './pages/hospital';
 import LoginPage from './pages/login';
 import ResultsPage from 'pages/results';
+import NotificationsPage from 'pages/notifications';
 
 const routes: RouteObject[] = [
   {
@@ -74,6 +75,19 @@ const routes: RouteObject[] = [
                 element: (
                   <ProtectedRoute>
                     <ResultsPage />
+                  </ProtectedRoute>
+                )
+              }
+            ]
+          },
+          {
+            path: '/notifications',
+            children: [
+              {
+                index: true,
+                element: (
+                  <ProtectedRoute>
+                    <NotificationsPage />
                   </ProtectedRoute>
                 )
               }

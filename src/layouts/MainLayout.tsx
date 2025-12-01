@@ -10,7 +10,9 @@ import { Container } from 'react-bootstrap';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import Button from '../components/base/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
+import { faPlusCircle, faComment } from '@fortawesome/free-solid-svg-icons';
+import ChatWidget from 'components/common/chat-widget/ChatWidget';
+import { useChatWidgetContext } from 'providers/ChatWidgetProvider';
 
 const MainLayout = () => {
   const {
@@ -21,6 +23,8 @@ const MainLayout = () => {
 
   const navigate = useNavigate();
   const { pathname } = useLocation();
+  const { isOpenChat, setIsOpenChat } = useChatWidgetContext();
+
   return (
     <Container fluid className="px-0">
       {(navbarPosition === 'vertical' || navbarPosition === 'combo') && (
@@ -35,21 +39,45 @@ const MainLayout = () => {
       <div className={classNames(contentClass, 'content')}>
         <Outlet />
         <Footer className={classNames(footerClass, 'position-absolute')} />
-        {pathname !== '/calls/create' && (
+        <div
+          className="d-flex gap-2"
+          style={{
+            position: 'fixed',
+            bottom: '1.5rem',
+            right: '1.5rem',
+            zIndex: 1045
+          }}
+        >
+          {pathname !== '/calls/create' && (
+            <Button
+              style={{ width: '14rem' }}
+              className={classNames('border border-primary')}
+              onClick={() => navigate('/calls/create')}
+            >
+              <span className="fs-8 btn-text text-primary text-nowrap">
+                Добавить вызов
+              </span>
+              <FontAwesomeIcon
+                icon={faPlusCircle}
+                className="text-success fs-9 ms-2"
+              />
+            </Button>
+          )}
           <Button
             style={{ width: '14rem' }}
-            className={classNames('p-0 border border-primary btn-support-chat')}
-            onClick={() => navigate('/calls/create')}
+            className={classNames('border border-primary')}
+            onClick={() => setIsOpenChat(!isOpenChat)}
           >
             <span className="fs-8 btn-text text-primary text-nowrap">
-              Добавить вызов
+              {isOpenChat ? 'Закрыть чат' : 'Чат'}
             </span>
             <FontAwesomeIcon
-              icon={faPlusCircle}
-              className="text-success fs-9 ms-2"
+              icon={faComment}
+              className="text-primary fs-9 ms-2"
             />
           </Button>
-        )}
+        </div>
+        <ChatWidget hideButton={true} />
       </div>
     </Container>
   );

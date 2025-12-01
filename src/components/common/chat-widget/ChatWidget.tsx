@@ -11,7 +11,11 @@ import ChatWidgetConversation from './ChatWidgetConversation';
 import { useChatWidgetContext } from 'providers/ChatWidgetProvider';
 import ChatWidgetFooter from './ChatWidgetFooter';
 
-const ChatWidget = () => {
+interface ChatWidgetProps {
+  hideButton?: boolean;
+}
+
+const ChatWidget = ({ hideButton = false }: ChatWidgetProps) => {
   const {
     config: { isChatWidgetVisible }
   } = useAppContext();
@@ -30,7 +34,7 @@ const ChatWidget = () => {
         <Card className="bg-body-emphasis chat">
           <Card.Header className="d-flex flex-between-center px-4 py-2 border-bottom">
             <h5 className="mb-0 d-flex align-items-center gap-2">
-              Demo widget
+              Чат поддержки
               <FontAwesomeIcon icon={faCircle} className="text-success fs-11" />
             </h5>
             <RevealDropdownTrigger>
@@ -53,21 +57,23 @@ const ChatWidget = () => {
           </Card.Footer>
         </Card>
       </div>
-      <Button
-        className={classNames(
-          'p-0 border border-translucent btn-support-chat',
-          {
-            'btn-chat-close': isOpenChat
-          }
-        )}
-        onClick={() => setIsOpenChat(!isOpenChat)}
-      >
-        <span className="fs-8 btn-text text-primary text-nowrap">
-          Chat demo
-        </span>
-        <FontAwesomeIcon icon={faCircle} className="text-success fs-9 ms-2" />
-        <FontAwesomeIcon icon={faChevronDown} className="text-primary fs-7" />
-      </Button>
+      {!hideButton && (
+        <Button
+          className={classNames(
+            'p-0 border border-translucent btn-support-chat',
+            {
+              'btn-chat-close': isOpenChat
+            }
+          )}
+          onClick={() => setIsOpenChat(!isOpenChat)}
+        >
+          <span className="fs-8 btn-text text-primary text-nowrap">
+            Chat demo
+          </span>
+          <FontAwesomeIcon icon={faCircle} className="text-success fs-9 ms-2" />
+          <FontAwesomeIcon icon={faChevronDown} className="text-primary fs-7" />
+        </Button>
+      )}
     </div>
   );
 };

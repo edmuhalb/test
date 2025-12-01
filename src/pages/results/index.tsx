@@ -144,7 +144,7 @@ const ResultsPage = () => {
     <div>
       <PageBreadcrumb items={defaultBreadcrumbItems} />
       <div className="mb-9">
-        <h2 className="mb-4">Стационар</h2>
+        <h2 className="mb-4">Итоги</h2>
         <div className="mb-4">
           <div className="row">
             <div className="col-md-auto">

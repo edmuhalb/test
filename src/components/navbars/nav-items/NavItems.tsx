@@ -10,6 +10,7 @@ import { useState } from 'react';
 import DropdownSearchBox from 'components/common/DropdownSearchBox';
 import SearchResult from 'components/common/SearchResult';
 import classNames from 'classnames';
+import NotificationDropdownMenu from './NotificationDropdownMenu';
 
 const NavItems = () => {
   const {
@@ -32,6 +33,21 @@ const NavItems = () => {
           <FeatherIcon icon="search" size={19} style={{ marginBottom: 2 }} />
         </Nav.Link>
       </Nav.Item>
+
+      <Nav.Item>
+        <Dropdown autoClose="outside" className="h-100">
+          <Dropdown.Toggle
+            as={Link}
+            to="#!"
+            className="dropdown-caret-none nav-link pe-0 py-0 lh-1 h-100 d-flex align-items-center"
+            variant=""
+          >
+            <FeatherIcon icon="bell" size={19} style={{ marginBottom: 2 }} />
+          </Dropdown.Toggle>
+          <NotificationDropdownMenu />
+        </Dropdown>
+      </Nav.Item>
+
       <Nav.Item>
         <Dropdown autoClose="outside" className="h-100">
           <Dropdown.Toggle

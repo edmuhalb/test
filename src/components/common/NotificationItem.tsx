@@ -72,7 +72,7 @@ const NotificationItem = ({
           dropdownMenuClassName="mt-2"
         >
           <Dropdown.Item>
-            Mark as {notification.read ? 'unread' : 'read'}
+            Отметить как {notification.read ? 'не прочитанное' : 'прочитанное'}
           </Dropdown.Item>
         </RevealDropdown>
       </div>

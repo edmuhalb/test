@@ -168,8 +168,16 @@ const CallsListPage = () => {
       enableSorting: false
     },
     {
-      header: 'Адрес',
-      accessorKey: 'address',
+      header: 'ФИО',
+      accessorKey: 'fio',
+      enableSorting: false,
+      meta: {
+        cellProps: { className: 'fw-semibold text-body-highlight' }
+      }
+    },
+    {
+      header: 'Телефон',
+      accessorKey: 'phone',
       enableSorting: false,
       meta: {
         cellProps: { className: 'fw-semibold text-body-highlight' }
@@ -204,12 +212,7 @@ const CallsListPage = () => {
       }
     },
     {
-      header: 'Комментарий',
-      accessorKey: 'comment',
-      enableSorting: false
-    },
-    {
-      header: 'Сумма',
+      header: 'Сумма вызова',
       accessorKey: 'price',
       enableSorting: false,
       cell: ({ getValue }) => currencyFormat(getValue<any>()),
@@ -217,6 +220,30 @@ const CallsListPage = () => {
         headerProps: { style: { width: '6%' }, className: 'text-end' },
         cellProps: { className: 'text-end fw-semibold text-body-highlight' }
       }
+    },
+    {
+      header: 'Начислено',
+      accessorKey: 'reward',
+      enableSorting: false,
+      cell: ({ getValue }) => currencyFormat(getValue<any>()),
+      meta: {
+        headerProps: { style: { width: '6%' }, className: 'text-end' },
+        cellProps: { className: 'text-end fw-semibold text-body-highlight' }
+      }
+    },
+    {
+      header: 'Расстояние',
+      accessorKey: 'mkadDistance',
+      enableSorting: false,
+      meta: {
+        headerProps: { style: { width: '6%' }, className: 'text-end' },
+        cellProps: { className: 'text-end fw-semibold text-body-highlight' }
+      }
+    },
+    {
+      header: 'Комментарий',
+      accessorKey: 'comment',
+      enableSorting: false
     },
     {
       header: 'Дата',

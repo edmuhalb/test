@@ -132,6 +132,14 @@ const HospitalListPage = () => {
       }
     },
     {
+      header: 'Телефон',
+      accessorKey: 'phone',
+      enableSorting: false,
+      meta: {
+        cellProps: { className: 'fw-semibold text-body-highlight' }
+      }
+    },
+    {
       header: 'Статус',
       accessorKey: 'status',
       enableSorting: false,

@@ -64,6 +64,16 @@ export const routes: RouteItems[] = [
         pathName: 'default-dashboard',
         topNavIcon: 'shopping-cart',
         active: true
+      },
+      {
+        icon: 'pie-chart',
+        flat: true,
+        hasNew: false,
+        name: 'Итоги',
+        path: '/results',
+        pathName: 'default-dashboard',
+        topNavIcon: 'shopping-cart',
+        active: true
       }
     ]
   }

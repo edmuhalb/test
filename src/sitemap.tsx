@@ -39,22 +39,22 @@ export const routes: RouteItems[] = [
         icon: 'pie-chart',
         flat: true,
         hasNew: false,
-        name: 'Рабочий стол',
+        name: 'Вызовы',
         path: '/',
         pathName: 'default-dashboard',
         topNavIcon: 'shopping-cart',
         active: true
       },
-      {
-        icon: 'pie-chart',
-        flat: true,
-        hasNew: false,
-        name: 'Вызовы',
-        path: '/calls',
-        pathName: 'default-dashboard',
-        topNavIcon: 'shopping-cart',
-        active: true
-      },
+      //{
+      //  icon: 'pie-chart',
+      //  flat: true,
+      //  hasNew: false,
+      //  name: 'Вызовы',
+      //  path: '/calls',
+      //  pathName: 'default-dashboard',
+      //  topNavIcon: 'shopping-cart',
+      //  active: true
+      //},
       {
         icon: 'pie-chart',
         flat: true,
@@ -64,17 +64,17 @@ export const routes: RouteItems[] = [
         pathName: 'default-dashboard',
         topNavIcon: 'shopping-cart',
         active: true
-      },
-      {
-        icon: 'pie-chart',
-        flat: true,
-        hasNew: false,
-        name: 'Итоги',
-        path: '/results',
-        pathName: 'default-dashboard',
-        topNavIcon: 'shopping-cart',
-        active: true
       }
+      //{
+      //  icon: 'pie-chart',
+      //  flat: true,
+      //  hasNew: false,
+      //  name: 'Итоги',
+      //  path: '/results',
+      //  pathName: 'default-dashboard',
+      //  topNavIcon: 'shopping-cart',
+      //  active: true
+      //}
     ]
   }
 ];

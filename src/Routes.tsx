@@ -5,12 +5,9 @@ import MainLayoutProvider from 'providers/MainLayoutProvider';
 import Error404 from 'pages/error/Error404';
 import App from 'App';
 import { ProtectedRoute } from './ProtectedRoute';
-import DashboardPage from './pages/dashboard';
 import CallsListPage from './pages/calls/list';
-import CallsCreatePage from './pages/calls/create';
 import HospitalListPage from './pages/hospital';
 import LoginPage from './pages/login';
-import ResultsPage from 'pages/results';
 import NotificationsPage from 'pages/notifications';
 
 const routes: RouteObject[] = [
@@ -29,31 +26,39 @@ const routes: RouteObject[] = [
             index: true,
             element: (
               <ProtectedRoute>
-                <DashboardPage />
+                <CallsListPage />
               </ProtectedRoute>
             )
           },
-          {
-            path: '/calls',
-            children: [
-              {
-                index: true,
-                element: (
-                  <ProtectedRoute>
-                    <CallsListPage />
-                  </ProtectedRoute>
-                )
-              },
-              {
-                path: `/calls/create`,
-                element: (
-                  <ProtectedRoute>
-                    <CallsCreatePage />
-                  </ProtectedRoute>
-                )
-              }
-            ]
-          },
+          //{
+          //  index: true,
+          //  element: (
+          //    <ProtectedRoute>
+          //      <DashboardPage />
+          //    </ProtectedRoute>
+          //  )
+          //},
+          // {
+          //   path: '/calls',
+          //   children: [
+          //     {
+          //       index: true,
+          //       element: (
+          //         <ProtectedRoute>
+          //           <CallsListPage />
+          //         </ProtectedRoute>
+          //       )
+          //     },
+          //     {
+          //       path: `/calls/create`,
+          //       element: (
+          //         <ProtectedRoute>
+          //           <CallsCreatePage />
+          //         </ProtectedRoute>
+          //       )
+          //     }
+          //   ]
+          // },
           {
             path: '/hospitals',
             children: [
@@ -67,19 +72,19 @@ const routes: RouteObject[] = [
               }
             ]
           },
-          {
-            path: '/results',
-            children: [
-              {
-                index: true,
-                element: (
-                  <ProtectedRoute>
-                    <ResultsPage />
-                  </ProtectedRoute>
-                )
-              }
-            ]
-          },
+          // {
+          //   path: '/results',
+          //   children: [
+          //     {
+          //       index: true,
+          //       element: (
+          //         <ProtectedRoute>
+          //           <ResultsPage />
+          //         </ProtectedRoute>
+          //       )
+          //     }
+          //   ]
+          // },
           {
             path: '/notifications',
             children: [

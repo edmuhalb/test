@@ -63,19 +63,21 @@ const MainLayout = () => {
               />
             </Button>
           )}
-          <Button
-            style={{ width: '14rem' }}
-            className={classNames('border border-primary')}
-            onClick={() => setIsOpenChat(!isOpenChat)}
-          >
-            <span className="fs-8 btn-text text-primary text-nowrap">
-              {isOpenChat ? 'Закрыть чат' : 'Чат'}
-            </span>
-            <FontAwesomeIcon
-              icon={faComment}
-              className="text-primary fs-9 ms-2"
-            />
-          </Button>
+          {false && (
+            <Button
+              style={{ width: '14rem' }}
+              className={classNames('border border-primary')}
+              onClick={() => setIsOpenChat(!isOpenChat)}
+            >
+              <span className="fs-8 btn-text text-primary text-nowrap">
+                {isOpenChat ? 'Закрыть чат' : 'Чат'}
+              </span>
+              <FontAwesomeIcon
+                icon={faComment}
+                className="text-primary fs-9 ms-2"
+              />
+            </Button>
+          )}
         </div>
         <ChatWidget hideButton={true} />
       </div>

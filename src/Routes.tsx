@@ -9,6 +9,7 @@ import CallsListPage from './pages/calls/list';
 import HospitalListPage from './pages/hospital';
 import LoginPage from './pages/login';
 import NotificationsPage from 'pages/notifications';
+import CallsCreatePage from 'pages/calls/create';
 
 const routes: RouteObject[] = [
   {
@@ -38,27 +39,27 @@ const routes: RouteObject[] = [
           //    </ProtectedRoute>
           //  )
           //},
-          // {
-          //   path: '/calls',
-          //   children: [
-          //     {
-          //       index: true,
-          //       element: (
-          //         <ProtectedRoute>
-          //           <CallsListPage />
-          //         </ProtectedRoute>
-          //       )
-          //     },
-          //     {
-          //       path: `/calls/create`,
-          //       element: (
-          //         <ProtectedRoute>
-          //           <CallsCreatePage />
-          //         </ProtectedRoute>
-          //       )
-          //     }
-          //   ]
-          // },
+          {
+            path: '/calls',
+            children: [
+              {
+                index: true,
+                element: (
+                  <ProtectedRoute>
+                    <CallsListPage />
+                  </ProtectedRoute>
+                )
+              },
+              {
+                path: `/calls/create`,
+                element: (
+                  <ProtectedRoute>
+                    <CallsCreatePage />
+                  </ProtectedRoute>
+                )
+              }
+            ]
+          },
           {
             path: '/hospitals',
             children: [

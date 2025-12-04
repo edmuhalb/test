@@ -51,7 +51,7 @@ const MainLayout = () => {
           {pathname !== '/calls/create' && (
             <Button
               style={{ width: '14rem' }}
-              className={classNames('border border-primary')}
+              className={classNames('border border-primary bg-white')}
               onClick={() => navigate('/calls/create')}
             >
               <span className="fs-8 btn-text text-primary text-nowrap">

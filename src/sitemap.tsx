@@ -36,13 +36,13 @@ export const routes: RouteItems[] = [
     labelDisabled: true,
     pages: [
       {
-        icon: 'pie-chart',
+        icon: 'phone-call',
         flat: true,
         hasNew: false,
         name: 'Вызовы',
         path: '/',
         pathName: 'default-dashboard',
-        topNavIcon: 'shopping-cart',
+        topNavIcon: 'phone-call',
         active: true
       },
       //{
@@ -56,13 +56,13 @@ export const routes: RouteItems[] = [
       //  active: true
       //},
       {
-        icon: 'pie-chart',
+        icon: 'home',
         flat: true,
         hasNew: false,
         name: 'Стационар',
         path: '/hospitals',
         pathName: 'default-dashboard',
-        topNavIcon: 'shopping-cart',
+        topNavIcon: 'home',
         active: true
       },
       {

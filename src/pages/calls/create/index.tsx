@@ -113,6 +113,26 @@ const CallsCreatePage = () => {
                     )}
                   />
                   <Field
+                    name="client"
+                    render={({ input, meta }) => (
+                      <Form.Group className="mb-3 text-start">
+                        <Form.Label htmlFor="client">ФИО пациента</Form.Label>
+                        <Form.Control
+                          id="client"
+                          type="text"
+                          disabled={submitting}
+                          placeholder="ФИО пациента"
+                          {...input}
+                        />
+                        {meta.touched && meta.error && (
+                          <span className={'text-danger fs-9'}>
+                            {meta.error}
+                          </span>
+                        )}
+                      </Form.Group>
+                    )}
+                  />
+                  <Field
                     name="type"
                     render={({ input, meta }) => (
                       <Form.Group className="mb-3 text-start">

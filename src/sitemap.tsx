@@ -64,6 +64,16 @@ export const routes: RouteItems[] = [
         pathName: 'default-dashboard',
         topNavIcon: 'shopping-cart',
         active: true
+      },
+      {
+        icon: 'file-text',
+        flat: true,
+        hasNew: false,
+        name: 'Соглашение',
+        path: '/agreement',
+        pathName: 'agreement',
+        topNavIcon: 'file-text',
+        active: true
       }
       //{
       //  icon: 'pie-chart',

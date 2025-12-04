@@ -67,7 +67,11 @@ const AgreementPage = () => {
       enableSorting: false,
       cell: ({ getValue }) => {
         const service = getValue<AgreementRow['service']>();
-        return <span className="fw-semibold text-body-highlight">{service?.name || '-'}</span>;
+        return (
+          <span className="fw-semibold text-body-highlight">
+            {service?.name || '-'}
+          </span>
+        );
       },
       meta: {
         cellProps: { className: 'fw-semibold text-body-highlight' }
@@ -79,7 +83,13 @@ const AgreementPage = () => {
       enableSorting: false,
       cell: ({ getValue }) => {
         const distance = getValue<number>();
-        return <span>{distance !== null && distance !== undefined ? `${distance} км` : '-'}</span>;
+        return (
+          <span>
+            {distance !== null && distance !== undefined
+              ? `${distance} км`
+              : '-'}
+          </span>
+        );
       },
       meta: {
         headerProps: { style: { width: '12%' }, className: 'text-center' },
@@ -92,7 +102,11 @@ const AgreementPage = () => {
       enableSorting: false,
       cell: ({ getValue }) => {
         const percent = getValue<number>();
-        return <span>{percent !== null && percent !== undefined ? `${percent}%` : '-'}</span>;
+        return (
+          <span>
+            {percent !== null && percent !== undefined ? `${percent}%` : '-'}
+          </span>
+        );
       },
       meta: {
         headerProps: { style: { width: '12%' }, className: 'text-center' },
@@ -105,7 +119,13 @@ const AgreementPage = () => {
       enableSorting: false,
       cell: ({ getValue }) => {
         const repeatNumber = getValue<number>();
-        return <span>{repeatNumber !== null && repeatNumber !== undefined ? repeatNumber : '-'}</span>;
+        return (
+          <span>
+            {repeatNumber !== null && repeatNumber !== undefined
+              ? repeatNumber
+              : '-'}
+          </span>
+        );
       },
       meta: {
         headerProps: { style: { width: '12%' }, className: 'text-center' },
@@ -155,4 +175,3 @@ const AgreementPage = () => {
 };
 
 export default AgreementPage;
-

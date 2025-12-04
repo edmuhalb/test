@@ -79,7 +79,7 @@ export const Table = ({
 
   return (
     <div>
-      <div className="scrollbar ms-n1 ps-1">
+      <div className="scrollbar ms-n1 ps-1 position-relative">
         {loading && <Loader />}
         <table className="phoenix-table fs-9 table">
           <thead>

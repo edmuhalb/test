@@ -11,4 +11,3 @@ export const agreementGetAPI = async () => {
     handleError(error);
   }
 };
-

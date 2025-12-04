@@ -57,6 +57,9 @@ const CallsCreatePage = () => {
     if (!values.description) {
       errors.description = 'Введите описание';
     }
+    if (!values.type) {
+      errors.type = 'Выберите тип вызова';
+    }
     return errors;
   };
   return (
@@ -78,6 +81,7 @@ const CallsCreatePage = () => {
             <FinalForm
               onSubmit={onSubmit}
               validate={validate}
+              initialValues={{ type: 'vnd' }}
               render={({ handleSubmit, submitting, pristine }) => (
                 <form onSubmit={handleSubmit}>
                   <Field
@@ -100,6 +104,29 @@ const CallsCreatePage = () => {
                             className="text-body fs-9 form-icon"
                           />
                         </div>
+                        {meta.touched && meta.error && (
+                          <span className={'text-danger fs-9'}>
+                            {meta.error}
+                          </span>
+                        )}
+                      </Form.Group>
+                    )}
+                  />
+                  <Field
+                    name="type"
+                    render={({ input, meta }) => (
+                      <Form.Group className="mb-3 text-start">
+                        <Form.Label htmlFor="type">Тип вызова</Form.Label>
+                        <Form.Select
+                          id="type"
+                          disabled={submitting}
+                          {...input}
+                          isInvalid={meta.touched && meta.error}
+                        >
+                          <option value="vnd">ВНД</option>
+                          <option value="stat">Стац</option>
+                          <option value="amb">Амб</option>
+                        </Form.Select>
                         {meta.touched && meta.error && (
                           <span className={'text-danger fs-9'}>
                             {meta.error}

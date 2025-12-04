@@ -10,6 +10,7 @@ import HospitalListPage from './pages/hospital';
 import LoginPage from './pages/login';
 import NotificationsPage from 'pages/notifications';
 import CallsCreatePage from 'pages/calls/create';
+import AgreementPage from 'pages/agreement';
 
 const routes: RouteObject[] = [
   {
@@ -94,6 +95,19 @@ const routes: RouteObject[] = [
                 element: (
                   <ProtectedRoute>
                     <NotificationsPage />
+                  </ProtectedRoute>
+                )
+              }
+            ]
+          },
+          {
+            path: '/agreement',
+            children: [
+              {
+                index: true,
+                element: (
+                  <ProtectedRoute>
+                    <AgreementPage />
                   </ProtectedRoute>
                 )
               }

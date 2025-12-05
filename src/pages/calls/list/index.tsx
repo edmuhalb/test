@@ -14,6 +14,7 @@ import { SelectFilterField } from '../../../shared/select';
 import { useSearchParams } from 'react-router-dom';
 
 export const CALLING_STATUSES = [
+  'created',
   'waiting',
   'assigned',
   'accepted',
@@ -25,6 +26,8 @@ export const CALLING_STATUSES = [
 
 export const callingStatusFormatter = (status: string) => {
   switch (status) {
+    case 'created':
+      return 'Создан';
     case 'waiting':
       return 'В работе КЦ';
     case 'completed':
@@ -103,6 +106,11 @@ const CallsListPage = () => {
   ];
 
   const statuses = {
+    created: {
+      label: 'Создан',
+      icon: 'info',
+      type: 'secondary'
+    },
     not_ready: {
       label: 'В работе КЦ',
       icon: 'info',

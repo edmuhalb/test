@@ -85,7 +85,8 @@ const CallsListPage = () => {
   useEffect(() => {
     const fetchCalls = async () => {
       setIsLoading(true);
-      const result = await callsIndexAPI({ page, search, ...entries(params) });
+      console.log({ ...entries(params), page, search });
+      const result = await callsIndexAPI({ ...entries(params), page, search });
       setItems(result?.data?.items);
       setPagination(result?.data?.pagination);
       setIsLoading(false);
@@ -269,6 +270,7 @@ const CallsListPage = () => {
     page: number;
     itemsPerPage: number;
   }) => {
+    console.log(state);
     setPage(state.page);
   };
 

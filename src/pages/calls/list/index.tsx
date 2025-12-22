@@ -260,6 +260,11 @@ const CallsListPage = () => {
       enableSorting: false
     },
     {
+      header: 'Дата создания',
+      accessorKey: 'createdAt',
+      enableSorting: false
+    },
+    {
       header: 'Время завершения',
       accessorKey: 'completedAt',
       enableSorting: false

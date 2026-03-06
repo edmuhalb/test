@@ -133,6 +133,7 @@ const OneCDialogChat = ({
         openTimeoutId = setTimeout(() => {
           try {
             if (!openedRef.current) {
+              console.log('chath.open', chat.open());
               chat.open();
               openedRef.current = true;
             }

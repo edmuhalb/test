@@ -11,21 +11,63 @@ const POLL_TIMEOUT_MS = 20000;
 /** Задержка перед open(), чтобы iframe виджета успел загрузиться и принять setContactInfo */
 const OPEN_DELAY_MS = 200;
 
-/** Удаляет из DOM скрипт и все элементы виджета (iframe'ы), чтобы при смене чата не копились фреймы */
+/** Удаляет из DOM скрипт и все элементы виджета (iframe'ы), чтобы при смене чата не копились фреймы.
+ *  Сначала обнуляем src у iframe'ов (about:blank), чтобы не получать "Script error" при удалении кросс-доменных фреймов. */
 function removeWidgetDom(): void {
-  try {
-    window.CollaborationSystemWebChat1CE?.close();
-  } catch {
-    // ignore
-  }
+  const iframes: HTMLIFrameElement[] = [];
   WIDGET_IFRAME_DOMAINS.forEach(domain => {
     document
       .querySelectorAll<HTMLIFrameElement>(`iframe[src*="${domain}"]`)
-      .forEach(el => el.remove());
+      .forEach(el => iframes.push(el));
   });
-  const scriptEl = document.getElementById(SCRIPT_ID);
-  if (scriptEl?.parentNode) {
-    scriptEl.parentNode.removeChild(scriptEl);
+
+  const prevOnError = window.onerror;
+  window.onerror = function (
+    messageOrEvent: string | Event,
+    url?: string,
+    line?: number,
+    col?: number,
+    err?: Error
+  ): boolean {
+    const msg = typeof messageOrEvent === 'string' ? messageOrEvent : '';
+    if (msg === 'Script error.' || err?.message === 'Script error.') {
+      return true;
+    }
+    return typeof prevOnError === 'function'
+      ? prevOnError.call(
+          this,
+          messageOrEvent,
+          url ?? '',
+          line ?? 0,
+          col ?? 0,
+          err
+        )
+      : false;
+  };
+
+  try {
+    // Не вызываем close() — виджет внутри него ставит setTimeout и потом вызывает postMessage
+    // на уже удалённых iframe'ах, из‑за чего возникает TypeError.
+    iframes.forEach(el => {
+      try {
+        el.src = 'about:blank';
+      } catch {
+        // ignore
+      }
+    });
+    iframes.forEach(el => {
+      try {
+        el.remove();
+      } catch {
+        // ignore
+      }
+    });
+    const scriptEl = document.getElementById(SCRIPT_ID);
+    if (scriptEl?.parentNode) {
+      scriptEl.parentNode.removeChild(scriptEl);
+    }
+  } finally {
+    window.onerror = prevOnError;
   }
 }
 

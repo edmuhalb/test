@@ -12,6 +12,8 @@ import Button from '../components/base/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlusCircle, faComment } from '@fortawesome/free-solid-svg-icons';
 import ChatWidget from 'components/common/chat-widget/ChatWidget';
+import { OneCDialogChat } from 'components/common/one-c-dialog-chat';
+import { useAuth } from 'context/useAuth';
 import { useChatWidgetContext } from 'providers/ChatWidgetProvider';
 
 const MainLayout = () => {
@@ -20,6 +22,7 @@ const MainLayout = () => {
   } = useAppContext();
 
   const { contentClass, footerClass } = useMainLayoutContext();
+  const { user } = useAuth();
 
   const navigate = useNavigate();
   const { pathname } = useLocation();
@@ -80,6 +83,11 @@ const MainLayout = () => {
           )}
         </div>
         <ChatWidget hideButton={true} />
+        <OneCDialogChat
+          integrationToken="917338:T27KBnmZ6nOZ01txWLCM99PpxMlV2W77"
+          partnerId={user?.id}
+          partnerName={user?.name}
+        />
       </div>
     </Container>
   );

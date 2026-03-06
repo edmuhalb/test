@@ -4,10 +4,30 @@ import { useEffect, useRef } from 'react';
 const SCRIPT_BASE_URL =
   'https://integrations.1cdialog.com/integration/webchat/';
 const SCRIPT_ID = 'one-c-dialog-chat-script';
+/** Домены iframe'ов виджета: скрипт на 1cdialog.com, фреймы на webchat.dialog.online */
+const WIDGET_IFRAME_DOMAINS = ['1cdialog.com', 'dialog.online'];
 const POLL_INTERVAL_MS = 150;
 const POLL_TIMEOUT_MS = 20000;
 /** Задержка перед open(), чтобы iframe виджета успел загрузиться и принять setContactInfo */
 const OPEN_DELAY_MS = 200;
+
+/** Удаляет из DOM скрипт и все элементы виджета (iframe'ы), чтобы при смене чата не копились фреймы */
+function removeWidgetDom(): void {
+  try {
+    window.CollaborationSystemWebChat1CE?.close();
+  } catch {
+    // ignore
+  }
+  WIDGET_IFRAME_DOMAINS.forEach(domain => {
+    document
+      .querySelectorAll<HTMLIFrameElement>(`iframe[src*="${domain}"]`)
+      .forEach(el => el.remove());
+  });
+  const scriptEl = document.getElementById(SCRIPT_ID);
+  if (scriptEl?.parentNode) {
+    scriptEl.parentNode.removeChild(scriptEl);
+  }
+}
 
 export type ContactInfo = {
   /** id партнёра */
@@ -102,10 +122,7 @@ const OneCDialogChat = ({
       clearInterval(pollId);
       if (openTimeoutId !== null) clearTimeout(openTimeoutId);
       openedRef.current = false;
-      const el = document.getElementById(SCRIPT_ID);
-      if (el?.parentNode) {
-        el.parentNode.removeChild(el);
-      }
+      removeWidgetDom();
     };
   }, [integrationToken, isAuthorized, name, fullName]);
 

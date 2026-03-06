@@ -9,4 +9,6 @@ export type UserProfile = {
   id: string;
   name: string;
   phone: string;
+  partner_id?: string;
+  partner_name?: string;
 };

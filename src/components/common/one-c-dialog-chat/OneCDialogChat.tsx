@@ -9,7 +9,7 @@ const WIDGET_IFRAME_DOMAINS = ['1cdialog.com', 'dialog.online'];
 const POLL_INTERVAL_MS = 150;
 const POLL_TIMEOUT_MS = 20000;
 /** Задержка перед open(), чтобы iframe виджета успел загрузиться и принять setContactInfo */
-const OPEN_DELAY_MS = 200;
+const OPEN_DELAY_MS = 400;
 
 /** Удаляет из DOM скрипт и все элементы виджета (iframe'ы), чтобы при смене чата не копились фреймы.
  *  Сначала обнуляем src у iframe'ов (about:blank), чтобы не получать "Script error" при удалении кросс-доменных фреймов. */
@@ -112,28 +112,34 @@ const OneCDialogChat = ({
       return;
     }
 
-    if (document.getElementById(SCRIPT_ID)) {
-      return;
+    const desiredSrc = `${SCRIPT_BASE_URL}${integrationToken.trim()}`;
+    const existingScript = document.getElementById(
+      SCRIPT_ID
+    ) as HTMLScriptElement | null;
+    if (existingScript && existingScript.src !== desiredSrc) {
+      // На всякий случай чистим старый виджет, если токен поменялся,
+      // чтобы не копились фреймы и не оставался старый скрипт.
+      removeWidgetDom();
     }
 
     const script = document.createElement('script');
     script.id = SCRIPT_ID;
     // Токен в пути как есть (без encodeURIComponent), иначе сервер может не распознать 917338:T27...
-    script.src = `${SCRIPT_BASE_URL}${integrationToken.trim()}`;
+    script.src = desiredSrc;
     script.async = true;
 
     let openTimeoutId: ReturnType<typeof setTimeout> | null = null;
 
     const tryInitChat = () => {
       const chat = window.CollaborationSystemWebChat1CE;
-      if (!chat || openedRef.current) return true;
+      if (!chat) return false;
+      if (openedRef.current || openTimeoutId !== null) return true;
       try {
         chat.setContactInfo({ name, fullName });
         // Задержка перед open(): iframe виджета должен успеть загрузиться и принять setContactInfo
         openTimeoutId = setTimeout(() => {
           try {
             if (!openedRef.current) {
-              console.log('chath.open', chat.open());
               chat.open();
               openedRef.current = true;
             }
@@ -159,7 +165,13 @@ const OneCDialogChat = ({
       tryInitChat();
     };
 
-    document.body.appendChild(script);
+    // Если скрипт уже есть и правильный — не добавляем второй раз.
+    if (!document.getElementById(SCRIPT_ID)) {
+      document.body.appendChild(script);
+    } else {
+      // скрипт уже загружен/грузится — просто ждём появления объекта чата
+      tryInitChat();
+    }
 
     return () => {
       clearInterval(pollId);

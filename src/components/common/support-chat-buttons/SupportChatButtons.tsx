@@ -1,6 +1,7 @@
 import { useAuth } from 'context/useAuth';
 import { useState } from 'react';
-import { Card } from 'react-bootstrap';
+import classNames from 'classnames';
+import Button from 'components/base/Button';
 import { OneCDialogChat } from '../one-c-dialog-chat';
 
 const TOKENS = {
@@ -19,52 +20,48 @@ const SupportChatButtons = () => {
   }
 
   const handleToggle = (chat: keyof typeof TOKENS) => {
-    setActiveChat((prev) => (prev === chat ? null : chat));
+    setActiveChat(prev => (prev === chat ? null : chat));
   };
 
   return (
     <>
-      <div className="support-chat-buttons d-flex flex-column gap-2">
-        <Card
-          className="support-chat-btn border shadow-sm cursor-pointer"
+      <div className="support-chat-buttons d-flex flex-row gap-2">
+        <Button
+          style={{ width: '14rem' }}
+          className={classNames('border border-primary bg-white')}
           onClick={() => handleToggle('kc')}
-          role="button"
-          style={{ minWidth: '8rem' }}
         >
-          <Card.Body className="py-2 px-3 d-flex align-items-center justify-content-center">
-            <span
-              className={`small fw-semibold ${
-                activeChat === 'kc' ? 'text-primary' : 'text-body'
-              }`}
-            >
-              Колцентр
-            </span>
-          </Card.Body>
-        </Card>
-        <Card
-          className="support-chat-btn border shadow-sm cursor-pointer"
+          <span
+            className={classNames(
+              'fs-8 btn-text text-nowrap fw-semibold',
+              activeChat === 'kc' ? 'text-primary' : 'text-body'
+            )}
+          >
+            Колцентр
+          </span>
+        </Button>
+        <Button
+          style={{ width: '14rem' }}
+          className={classNames('border border-primary bg-white')}
           onClick={() => handleToggle('buh')}
-          role="button"
-          style={{ minWidth: '8rem' }}
         >
-          <Card.Body className="py-2 px-3 d-flex align-items-center justify-content-center">
-            <span
-              className={`small fw-semibold ${
-                activeChat === 'buh' ? 'text-primary' : 'text-body'
-              }`}
-            >
-              Бухгалтерия
-            </span>
-          </Card.Body>
-        </Card>
+          <span
+            className={classNames(
+              'fs-8 btn-text text-nowrap fw-semibold',
+              activeChat === 'buh' ? 'text-primary' : 'text-body'
+            )}
+          >
+            Бухгалтерия
+          </span>
+        </Button>
       </div>
 
       {activeChat && (
         <OneCDialogChat
           key={activeChat}
           integrationToken={TOKENS[activeChat]}
-          partnerId={user?.id}
-          partnerName={user?.name}
+          partnerId={user?.partner_id}
+          partnerName={user?.partner_name}
         />
       )}
     </>

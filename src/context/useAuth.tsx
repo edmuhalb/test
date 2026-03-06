@@ -44,11 +44,14 @@ export const UserProvider = ({ children }: Props) => {
           localStorage.setItem('token', res?.data.token);
 
           const user = decode(res?.data.token);
+
           const userObj = {
             id: user.id,
             name: user.name,
             phone: user.phone,
-            roles: user.roles
+            roles: user.roles,
+            partner_id: user.partner_id,
+            partner_name: user.partner_name
           };
 
           localStorage.setItem('user', JSON.stringify(userObj));

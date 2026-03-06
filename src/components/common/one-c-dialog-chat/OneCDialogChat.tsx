@@ -4,8 +4,10 @@ import { useEffect, useRef } from 'react';
 const SCRIPT_BASE_URL =
   'https://integrations.1cdialog.com/integration/webchat/';
 const SCRIPT_ID = 'one-c-dialog-chat-script';
-const POLL_INTERVAL_MS = 100;
-const POLL_TIMEOUT_MS = 15000;
+const POLL_INTERVAL_MS = 150;
+const POLL_TIMEOUT_MS = 20000;
+/** Задержка перед open(), чтобы iframe виджета успел загрузиться и принять setContactInfo */
+const OPEN_DELAY_MS = 200;
 
 export type ContactInfo = {
   /** id партнёра */
@@ -53,18 +55,29 @@ const OneCDialogChat = ({
 
     const script = document.createElement('script');
     script.id = SCRIPT_ID;
-    script.src = `${SCRIPT_BASE_URL}${encodeURIComponent(
-      integrationToken.trim()
-    )}`;
+    // Токен в пути как есть (без encodeURIComponent), иначе сервер может не распознать 917338:T27...
+    script.src = `${SCRIPT_BASE_URL}${integrationToken.trim()}`;
     script.async = true;
+
+    let openTimeoutId: ReturnType<typeof setTimeout> | null = null;
 
     const tryInitChat = () => {
       const chat = window.CollaborationSystemWebChat1CE;
       if (!chat || openedRef.current) return true;
       try {
         chat.setContactInfo({ name, fullName });
-        chat.open();
-        openedRef.current = true;
+        // Задержка перед open(): iframe виджета должен успеть загрузиться и принять setContactInfo
+        openTimeoutId = setTimeout(() => {
+          try {
+            if (!openedRef.current) {
+              chat.open();
+              openedRef.current = true;
+            }
+          } catch {
+            // ignore
+          }
+          openTimeoutId = null;
+        }, OPEN_DELAY_MS);
         return true;
       } catch {
         return false;
@@ -86,6 +99,7 @@ const OneCDialogChat = ({
 
     return () => {
       clearInterval(pollId);
+      if (openTimeoutId !== null) clearTimeout(openTimeoutId);
       openedRef.current = false;
       const el = document.getElementById(SCRIPT_ID);
       if (el?.parentNode) {

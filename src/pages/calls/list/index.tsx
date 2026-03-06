@@ -85,7 +85,6 @@ const CallsListPage = () => {
   useEffect(() => {
     const fetchCalls = async () => {
       setIsLoading(true);
-      console.log({ ...entries(params), page, search });
       const result = await callsIndexAPI({ ...entries(params), page, search });
       setItems(result?.data?.items);
       setPagination(result?.data?.pagination);

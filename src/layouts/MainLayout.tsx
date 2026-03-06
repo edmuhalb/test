@@ -10,11 +10,9 @@ import { Container } from 'react-bootstrap';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import Button from '../components/base/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlusCircle, faComment } from '@fortawesome/free-solid-svg-icons';
+import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import ChatWidget from 'components/common/chat-widget/ChatWidget';
-import { OneCDialogChat } from 'components/common/one-c-dialog-chat';
-import { useAuth } from 'context/useAuth';
-import { useChatWidgetContext } from 'providers/ChatWidgetProvider';
+import { SupportChatButtons } from 'components/common/support-chat-buttons';
 
 const MainLayout = () => {
   const {
@@ -22,11 +20,9 @@ const MainLayout = () => {
   } = useAppContext();
 
   const { contentClass, footerClass } = useMainLayoutContext();
-  const { user } = useAuth();
 
   const navigate = useNavigate();
   const { pathname } = useLocation();
-  const { isOpenChat, setIsOpenChat } = useChatWidgetContext();
 
   return (
     <Container fluid className="px-0">
@@ -43,7 +39,7 @@ const MainLayout = () => {
         <Outlet />
         <Footer className={classNames(footerClass, 'position-absolute')} />
         <div
-          className="d-flex gap-2"
+          className="d-flex align-items-end gap-2"
           style={{
             position: 'fixed',
             bottom: '1.5rem',
@@ -66,28 +62,9 @@ const MainLayout = () => {
               />
             </Button>
           )}
-          {false && (
-            <Button
-              style={{ width: '14rem' }}
-              className={classNames('border border-primary')}
-              onClick={() => setIsOpenChat(!isOpenChat)}
-            >
-              <span className="fs-8 btn-text text-primary text-nowrap">
-                {isOpenChat ? 'Закрыть чат' : 'Чат'}
-              </span>
-              <FontAwesomeIcon
-                icon={faComment}
-                className="text-primary fs-9 ms-2"
-              />
-            </Button>
-          )}
+          <SupportChatButtons />
         </div>
         <ChatWidget hideButton={true} />
-        <OneCDialogChat
-          integrationToken="917338:T27KBnmZ6nOZ01txWLCM99PpxMlV2W77"
-          partnerId={user?.id}
-          partnerName={user?.name}
-        />
       </div>
     </Container>
   );

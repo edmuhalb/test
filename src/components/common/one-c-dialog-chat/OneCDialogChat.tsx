@@ -45,6 +45,7 @@ const OneCDialogChat = ({
   const fullName = partnerName ?? user?.name ?? '';
 
   useEffect(() => {
+    console.log('useEffect', { integrationToken, isAuthorized });
     if (!integrationToken?.trim() || !isAuthorized) {
       return;
     }

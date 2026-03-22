@@ -212,3 +212,27 @@
     transform: translateY(0);
   }
 }
+
+// ── 1С:Диалог widget iframes — mobile full-screen fix ──
+// The widget creates cross-domain iframes; we can only control the <iframe> element itself.
+@include media-breakpoint-down(lg) {
+  iframe[src*="1cdialog.com"],
+  iframe[src*="dialog.online"] {
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    min-width: 100% !important;
+    min-height: 100% !important;
+    border: none !important;
+    border-radius: 0 !important;
+    z-index: 1050 !important;
+  }
+
+  // Hide our close FAB on mobile — the widget has its own X button
+  .support-fab--close {
+    display: none;
+  }
+}

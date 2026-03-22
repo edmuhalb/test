@@ -367,70 +367,70 @@ const CallsListPage = () => {
       <div className="mb-9">
         <h2 className="mb-4">Вызовы</h2>
         {isMobile ? (
-          <div style={{ marginBottom: '0.75rem' }}>
-            <div
-              style={{
-                display: 'flex',
-                gap: '0.5rem',
-                alignItems: 'center',
-                marginBottom: '0.5rem'
-              }}
-            >
-              <div style={{ flex: 1 }}>
-                <InputDateRangeFilter
-                  nameStart="completedAt[after]"
-                  nameEnd="completedAt[before]"
-                  placeholder="Дата выполнения"
-                  showWeeksRange
-                />
-              </div>
-              <div style={{ display: 'flex', gap: '0.25rem', flexShrink: 0 }}>
-                <button
-                  onClick={() => setViewMode('cards')}
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    width: '2.25rem',
-                    height: '2.25rem',
-                    borderRadius: '0.5rem',
-                    border: '1px solid #e3e6ed',
-                    background: viewMode === 'cards' ? '#3874ff' : '#fff',
-                    color: viewMode === 'cards' ? '#fff' : '#9fa6bc',
-                    cursor: 'pointer',
-                    transition: 'all 0.2s ease'
-                  }}
-                  title="Карточки"
-                >
-                  <FeatherIcon icon="grid" size={16} />
-                </button>
-                <button
-                  onClick={() => setViewMode('table')}
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    width: '2.25rem',
-                    height: '2.25rem',
-                    borderRadius: '0.5rem',
-                    border: '1px solid #e3e6ed',
-                    background: viewMode === 'table' ? '#3874ff' : '#fff',
-                    color: viewMode === 'table' ? '#fff' : '#9fa6bc',
-                    cursor: 'pointer',
-                    transition: 'all 0.2s ease'
-                  }}
-                  title="Таблица"
-                >
-                  <FeatherIcon icon="list" size={16} />
-                </button>
-              </div>
+          <div
+            style={{
+              display: 'flex',
+              gap: '0.5rem',
+              alignItems: 'center',
+              marginBottom: '0.75rem'
+            }}
+          >
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <InputDateRangeFilter
+                nameStart="completedAt[after]"
+                nameEnd="completedAt[before]"
+                placeholder="Дата"
+                showWeeksRange
+              />
             </div>
-            <SelectFilterField
-              name="status"
-              placeholder="Статус"
-              options={CALLING_STATUS_OPTIONS}
-              isMulti
-            />
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <SelectFilterField
+                name="status"
+                placeholder="Статус"
+                options={CALLING_STATUS_OPTIONS}
+                isMulti
+              />
+            </div>
+            <div style={{ display: 'flex', gap: '0.25rem', flexShrink: 0 }}>
+              <button
+                onClick={() => setViewMode('cards')}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  width: '2.25rem',
+                  height: '2.25rem',
+                  borderRadius: '0.5rem',
+                  border: '1px solid #e3e6ed',
+                  background: viewMode === 'cards' ? '#3874ff' : '#fff',
+                  color: viewMode === 'cards' ? '#fff' : '#9fa6bc',
+                  cursor: 'pointer',
+                  transition: 'all 0.2s ease'
+                }}
+                title="Карточки"
+              >
+                <FeatherIcon icon="grid" size={16} />
+              </button>
+              <button
+                onClick={() => setViewMode('table')}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  width: '2.25rem',
+                  height: '2.25rem',
+                  borderRadius: '0.5rem',
+                  border: '1px solid #e3e6ed',
+                  background: viewMode === 'table' ? '#3874ff' : '#fff',
+                  color: viewMode === 'table' ? '#fff' : '#9fa6bc',
+                  cursor: 'pointer',
+                  transition: 'all 0.2s ease'
+                }}
+                title="Таблица"
+              >
+                <FeatherIcon icon="list" size={16} />
+              </button>
+            </div>
           </div>
         ) : (
           <div className="mb-4">

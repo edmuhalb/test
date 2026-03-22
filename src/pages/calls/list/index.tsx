@@ -14,6 +14,7 @@ import { SelectFilterField } from '../../../shared/select';
 import { useSearchParams } from 'react-router-dom';
 import CallCard from './CallCard';
 import CallDetailModal from './CallDetailModal';
+import { useBreakpoints } from '../../../providers/BreakpointsProvider';
 
 export const CALLING_STATUSES = [
   'created',
@@ -65,8 +66,62 @@ export const entries = (params: URLSearchParams) =>
 
 const FINISHED_STATUSES = ['rejected', 'completed'];
 
+const tabsContainerStyle: React.CSSProperties = {
+  display: 'flex',
+  gap: 0,
+  marginBottom: '1rem',
+  background: '#fff',
+  borderRadius: '0.75rem',
+  padding: '0.25rem',
+  border: '1px solid #e3e6ed',
+  boxShadow: '0 1px 3px rgba(0,0,0,0.04)'
+};
+
+const tabBaseStyle: React.CSSProperties = {
+  flex: 1,
+  padding: '0.625rem 1rem',
+  textAlign: 'center',
+  fontSize: '0.875rem',
+  fontWeight: 600,
+  background: 'none',
+  border: 'none',
+  borderRadius: '0.5rem',
+  cursor: 'pointer',
+  transition: 'all 0.2s ease',
+  color: '#9fa6bc'
+};
+
+const tabActiveStyle: React.CSSProperties = {
+  ...tabBaseStyle,
+  color: '#fff',
+  background: '#3874ff',
+  boxShadow: '0 2px 8px rgba(56,116,255,0.3)'
+};
+
+const countBaseStyle: React.CSSProperties = {
+  display: 'inline-flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  fontSize: '0.6875rem',
+  minWidth: '1.25rem',
+  height: '1.125rem',
+  borderRadius: '10px',
+  padding: '0 0.35rem',
+  marginLeft: '0.35rem',
+  fontWeight: 700,
+  background: 'rgba(0,0,0,0.1)'
+};
+
+const countActiveStyle: React.CSSProperties = {
+  ...countBaseStyle,
+  background: 'rgba(255,255,255,0.25)',
+  color: '#fff'
+};
+
 const CallsListPage = () => {
   const [params] = useSearchParams();
+  const { breakpoints } = useBreakpoints();
+  const isMobile = breakpoints.down('lg');
   const handleSearchInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
   };
@@ -339,51 +394,57 @@ const CallsListPage = () => {
           </div>
         </div>
 
-        {/* Mobile: tabs + cards */}
-        <div className="calls-mobile-list">
-          <div className="calls-tabs">
-            <button
-              className={`calls-tabs__tab ${
-                activeTab === 'active' ? 'calls-tabs__tab--active' : ''
-              }`}
-              onClick={() => setActiveTab('active')}
-            >
-              Активные
-              <span className="calls-tabs__count">{activeItems.length}</span>
-            </button>
-            <button
-              className={`calls-tabs__tab ${
-                activeTab === 'finished' ? 'calls-tabs__tab--active' : ''
-              }`}
-              onClick={() => setActiveTab('finished')}
-            >
-              Завершенные
-              <span className="calls-tabs__count">{finishedItems.length}</span>
-            </button>
-          </div>
-
-          {isLoading ? (
-            <div className="text-center py-4">
-              <div className="spinner-border spinner-border-sm text-primary" />
+        {isMobile ? (
+          <>
+            <div style={tabsContainerStyle}>
+              <button
+                style={activeTab === 'active' ? tabActiveStyle : tabBaseStyle}
+                onClick={() => setActiveTab('active')}
+              >
+                Активные
+                <span
+                  style={
+                    activeTab === 'active' ? countActiveStyle : countBaseStyle
+                  }
+                >
+                  {activeItems.length}
+                </span>
+              </button>
+              <button
+                style={activeTab === 'finished' ? tabActiveStyle : tabBaseStyle}
+                onClick={() => setActiveTab('finished')}
+              >
+                Завершенные
+                <span
+                  style={
+                    activeTab === 'finished' ? countActiveStyle : countBaseStyle
+                  }
+                >
+                  {finishedItems.length}
+                </span>
+              </button>
             </div>
-          ) : currentItems.length > 0 ? (
-            currentItems.map((call: any) => (
-              <CallCard
-                key={call.id}
-                call={call}
-                getStatus={getStatus}
-                onClick={handleCardClick}
-              />
-            ))
-          ) : (
-            <div className="text-center py-4 text-body-tertiary">
-              Нет вызовов
-            </div>
-          )}
-        </div>
 
-        {/* Desktop: table */}
-        <div className="calls-desktop-table">
+            {isLoading ? (
+              <div className="text-center py-4">
+                <div className="spinner-border spinner-border-sm text-primary" />
+              </div>
+            ) : currentItems.length > 0 ? (
+              currentItems.map((call: any) => (
+                <CallCard
+                  key={call.id}
+                  call={call}
+                  getStatus={getStatus}
+                  onClick={handleCardClick}
+                />
+              ))
+            ) : (
+              <div className="text-center py-4 text-body-tertiary">
+                Нет вызовов
+              </div>
+            )}
+          </>
+        ) : (
           <div className="mx-n4 px-4 mx-lg-n6 px-lg-6 bg-body-emphasis border-top border-bottom border-translucent position-relative top-1">
             <Table
               nodes={items}
@@ -393,7 +454,7 @@ const CallsListPage = () => {
               onPaginationChange={onPaginationChange}
             />
           </div>
-        </div>
+        )}
       </div>
 
       <CallDetailModal

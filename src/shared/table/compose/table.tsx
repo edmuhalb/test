@@ -45,7 +45,7 @@ export const Table = ({
   selector = '',
   loading
 }: TableProps) => {
-  const tableData = useMemo(() => nodes, [nodes]);
+  const tableData = useMemo(() => nodes ?? [], [nodes]);
   const tableColumns = useMemo(() => columns, [columns]);
   const [columnVisibility, setColumnVisibility] = useState({});
 

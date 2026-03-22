@@ -2,7 +2,7 @@ import { getCoreRowModel, useReactTable } from '@tanstack/react-table';
 
 const useBulkSelectHooks = <T,>(data: T[]) => {
   const table = useReactTable<T>({
-    data,
+    data: data ?? [],
     columns: [],
     getCoreRowModel: getCoreRowModel()
   });

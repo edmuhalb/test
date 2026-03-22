@@ -59,14 +59,15 @@ const useAdvanceTable = <T,>({
   pageSize,
   initialState
 }: PropsWithChildren<UseAdvanceTableProps<T>>) => {
+  const rows = data ?? [];
   const state = {
     pagination: pagination
-      ? { pageSize: pagination ? pageSize : data.length }
+      ? { pageSize: pagination ? pageSize : rows.length }
       : undefined,
     ...initialState
   };
   const table = useReactTable<T>({
-    data,
+    data: rows,
     columns: selection ? [selectionColumn, ...columns] : columns,
     enableSorting: sortable,
     getCoreRowModel: getCoreRowModel(),

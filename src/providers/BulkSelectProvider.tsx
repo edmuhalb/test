@@ -23,7 +23,7 @@ const BulkSelectProvider = <T,>({
   children
 }: PropsWithChildren<{ data: T[] }>) => {
   const table = useReactTable<T>({
-    data,
+    data: data ?? [],
     columns: [],
     getCoreRowModel: getCoreRowModel()
   });

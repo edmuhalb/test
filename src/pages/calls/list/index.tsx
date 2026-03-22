@@ -432,10 +432,16 @@ const CallsListPage = () => {
                 font-weight: 600 !important;
                 color: #b0b7c3 !important;
               }
+              .mobile-filters-compact .form-control {
+                padding-left: 0.5rem !important;
+              }
               .mobile-filters-compact .form-control::placeholder {
                 font-size: 0.8rem !important;
                 font-weight: 600 !important;
                 color: #b0b7c3 !important;
+              }
+              .mobile-filters-compact [class*="-ValueContainer"] {
+                padding-left: 0.5rem !important;
               }
               .mobile-filters-compact [class*="-indicatorContainer"] {
                 padding: 4px !important;
@@ -444,7 +450,7 @@ const CallsListPage = () => {
             <InputDateRangeFilter
               nameStart="completedAt[after]"
               nameEnd="completedAt[before]"
-              placeholder="Дата"
+              placeholder="Выберите период"
               showWeeksRange
               gutterBottom={false}
             />
@@ -458,7 +464,7 @@ const CallsListPage = () => {
               <div style={{ flex: 1, minWidth: 0 }}>
                 <SelectFilterField
                   name="status"
-                  placeholder="Статус"
+                  placeholder="Выберите статус"
                   options={CALLING_STATUS_OPTIONS}
                   isMulti
                   gutterBottom={false}

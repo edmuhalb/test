@@ -186,9 +186,7 @@ const CallCard = ({ call, getStatus, onClick }: CallCardProps) => {
         </div>
         <div>
           <span style={priceLabelStyle}>Начислено</span>
-          <span style={rewardStyle}>
-            {currencyFormat(call.reward || 0)}
-          </span>
+          <span style={rewardStyle}>{currencyFormat(call.reward || 0)}</span>
         </div>
       </div>
     </div>

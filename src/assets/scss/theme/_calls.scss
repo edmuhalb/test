@@ -1,14 +1,14 @@
 // Calls mobile cards & detail modal
 
 .call-card {
-  background: var(--phoenix-card-bg);
-  border: 1px solid var(--phoenix-border-color);
+  background: var(--#{$prefix}emphasis-bg, #fff);
+  border: 1px solid var(--#{$prefix}border-color, #e3e6ed);
   border-radius: 0.75rem;
   padding: 1rem 1.125rem;
   margin-bottom: 0.75rem;
   cursor: pointer;
   transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
   position: relative;
   overflow: hidden;
 
@@ -20,39 +20,33 @@
     bottom: 0;
     width: 4px;
     border-radius: 4px 0 0 4px;
-    background: var(--phoenix-secondary-color);
-    opacity: 0.3;
-    transition: opacity 0.2s;
+    background: #a0aec0;
+    transition: background 0.2s;
   }
 
   &--primary::before {
-    background: var(--phoenix-primary);
-    opacity: 1;
+    background: var(--#{$prefix}primary, #3874ff);
   }
 
   &--success::before {
-    background: var(--phoenix-success);
-    opacity: 1;
+    background: var(--#{$prefix}success, #25b003);
   }
 
   &--danger::before {
-    background: var(--phoenix-danger);
-    opacity: 1;
+    background: var(--#{$prefix}danger, #e63757);
+  }
+
+  &--warning::before {
+    background: var(--#{$prefix}warning, #e5780b);
   }
 
   &--secondary::before {
-    background: var(--phoenix-secondary-color);
-    opacity: 0.4;
+    background: #a0aec0;
   }
 
   &:active {
     transform: scale(0.985);
-    box-shadow: 0 0 0 0.15rem rgba(var(--phoenix-primary-rgb), 0.2);
-  }
-
-  &:hover {
-    border-color: rgba(var(--phoenix-primary-rgb), 0.3);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 0 0 3px rgba(56, 116, 255, 0.15);
   }
 
   &__header {
@@ -64,7 +58,7 @@
 
   &__id {
     font-size: 0.75rem;
-    color: var(--phoenix-secondary-color);
+    color: var(--#{$prefix}secondary-color, #9fa6bc);
     font-weight: 700;
     letter-spacing: 0.02em;
   }
@@ -76,21 +70,16 @@
   &__name {
     font-weight: 700;
     font-size: 0.9375rem;
-    color: var(--phoenix-body-highlight-color);
+    color: var(--#{$prefix}body-highlight-color, #222834);
     margin-bottom: 0.25rem;
     line-height: 1.3;
   }
 
   &__phone {
     font-size: 0.8125rem;
-    color: var(--phoenix-primary);
+    color: var(--#{$prefix}primary, #3874ff);
     margin-bottom: 0.375rem;
     font-weight: 500;
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
   }
 
   &__info-row {
@@ -102,7 +91,7 @@
 
   &__date {
     font-size: 0.75rem;
-    color: var(--phoenix-secondary-color);
+    color: var(--#{$prefix}secondary-color, #9fa6bc);
     display: flex;
     align-items: center;
     gap: 0.25rem;
@@ -110,7 +99,7 @@
 
   &__distance {
     font-size: 0.75rem;
-    color: var(--phoenix-secondary-color);
+    color: var(--#{$prefix}secondary-color, #9fa6bc);
     display: flex;
     align-items: center;
     gap: 0.25rem;
@@ -118,7 +107,7 @@
 
   &__comment {
     font-size: 0.75rem;
-    color: var(--phoenix-secondary-color);
+    color: var(--#{$prefix}secondary-color, #9fa6bc);
     margin-top: 0.375rem;
     line-height: 1.4;
     display: -webkit-box;
@@ -134,19 +123,19 @@
     gap: 0.75rem;
     padding-top: 0.625rem;
     margin-top: 0.375rem;
-    border-top: 1px solid var(--phoenix-border-color);
+    border-top: 1px solid var(--#{$prefix}border-color, #e3e6ed);
   }
 
   &__price {
     font-size: 0.875rem;
     font-weight: 700;
-    color: var(--phoenix-body-highlight-color);
+    color: var(--#{$prefix}body-highlight-color, #222834);
   }
 
   &__price-label,
   &__reward-label {
     font-size: 0.6875rem;
-    color: var(--phoenix-secondary-color);
+    color: var(--#{$prefix}secondary-color, #9fa6bc);
     display: block;
     margin-bottom: 0.0625rem;
   }
@@ -154,7 +143,7 @@
   &__reward {
     font-size: 0.875rem;
     font-weight: 700;
-    color: var(--phoenix-success);
+    color: var(--#{$prefix}success, #25b003);
   }
 }
 
@@ -162,7 +151,7 @@
 .call-detail {
   &__section {
     padding: 1rem;
-    border-bottom: 1px solid var(--phoenix-border-color);
+    border-bottom: 1px solid var(--#{$prefix}border-color, #e3e6ed);
 
     &:last-child {
       border-bottom: none;
@@ -173,7 +162,7 @@
     font-size: 0.75rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    color: var(--phoenix-secondary-color);
+    color: var(--#{$prefix}secondary-color, #9fa6bc);
     margin-bottom: 0.75rem;
     font-weight: 600;
   }
@@ -185,18 +174,18 @@
     padding: 0.375rem 0;
 
     & + & {
-      border-top: 1px solid var(--phoenix-border-color-translucent, rgba(0,0,0,0.05));
+      border-top: 1px solid rgba(0, 0, 0, 0.05);
     }
   }
 
   &__label {
     font-size: 0.8125rem;
-    color: var(--phoenix-secondary-color);
+    color: var(--#{$prefix}secondary-color, #9fa6bc);
   }
 
   &__value {
     font-size: 0.8125rem;
-    color: var(--phoenix-body-highlight-color);
+    color: var(--#{$prefix}body-highlight-color, #222834);
     text-align: right;
   }
 }
@@ -206,10 +195,11 @@
   display: flex;
   gap: 0;
   margin-bottom: 1rem;
-  background: var(--phoenix-card-bg);
+  background: var(--#{$prefix}emphasis-bg, #fff);
   border-radius: 0.75rem;
   padding: 0.25rem;
-  border: 1px solid var(--phoenix-border-color);
+  border: 1px solid var(--#{$prefix}border-color, #e3e6ed);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
 
   &__tab {
     flex: 1;
@@ -217,7 +207,7 @@
     text-align: center;
     font-size: 0.875rem;
     font-weight: 600;
-    color: var(--phoenix-secondary-color);
+    color: var(--#{$prefix}secondary-color, #9fa6bc);
     background: none;
     border: none;
     border-radius: 0.5rem;
@@ -226,13 +216,13 @@
 
     &--active {
       color: #fff;
-      background: var(--phoenix-primary);
-      box-shadow: 0 2px 8px rgba(var(--phoenix-primary-rgb), 0.3);
+      background: var(--#{$prefix}primary, #3874ff);
+      box-shadow: 0 2px 8px rgba(56, 116, 255, 0.3);
     }
 
     &:not(.calls-tabs__tab--active):hover {
-      color: var(--phoenix-body-highlight-color);
-      background: rgba(var(--phoenix-primary-rgb), 0.06);
+      color: var(--#{$prefix}body-highlight-color, #222834);
+      background: rgba(56, 116, 255, 0.06);
     }
   }
 
@@ -256,18 +246,18 @@
   }
 }
 
-// Mobile cards list
+// Mobile cards list — show on screens < 992px (tablets + phones)
 .calls-mobile-list {
   display: none;
 
-  @media (max-width: 767.98px) {
+  @media (max-width: 991.98px) {
     display: block;
   }
 }
 
-// Desktop table
+// Desktop table — hide on screens < 992px
 .calls-desktop-table {
-  @media (max-width: 767.98px) {
+  @media (max-width: 991.98px) {
     display: none;
   }
 }

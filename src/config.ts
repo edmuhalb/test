@@ -29,4 +29,4 @@ export const initialConfig: Config = {
   isChatWidgetVisible: true
 };
 
-export const BASE_URL = 'https://partner.reset-med.ru/api/partner/';
+export const BASE_URL = '/api/partner/';

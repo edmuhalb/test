@@ -1,5 +1,9 @@
 {
   "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "https://partner.reset-med.ru/api/:path*"
+    },
     { "source": "/(.*)", "destination": "/" }
   ]
 }

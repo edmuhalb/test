@@ -413,26 +413,31 @@ const CallsListPage = () => {
           >
             <style>{`
               .mobile-filters-compact .form-control,
-              .mobile-filters-compact .react-select__control,
-              .mobile-filters-compact [class$="-control"] {
-                font-size: 0.8125rem !important;
+              .mobile-filters-compact [class*="-control"] {
+                font-size: 0.8rem !important;
+                font-weight: 600 !important;
                 min-height: 36px !important;
                 height: 36px;
                 padding-top: 0.25rem;
                 padding-bottom: 0.25rem;
+                border-radius: 0.375rem;
+                border-color: #e3e6ed;
               }
-              .mobile-filters-compact .react-select__value-container,
-              .mobile-filters-compact [class$="-ValueContainer"] {
+              .mobile-filters-compact [class*="-ValueContainer"] {
                 padding-top: 0 !important;
                 padding-bottom: 0 !important;
-                font-size: 0.8125rem !important;
               }
-              .mobile-filters-compact .react-select__placeholder,
-              .mobile-filters-compact [class$="-placeholder"] {
-                font-size: 0.8125rem !important;
+              .mobile-filters-compact [class*="-placeholder"] {
+                font-size: 0.8rem !important;
+                font-weight: 600 !important;
+                color: #b0b7c3 !important;
               }
-              .mobile-filters-compact .react-select__indicator,
-              .mobile-filters-compact [class$="-indicatorContainer"] {
+              .mobile-filters-compact .form-control::placeholder {
+                font-size: 0.8rem !important;
+                font-weight: 600 !important;
+                color: #b0b7c3 !important;
+              }
+              .mobile-filters-compact [class*="-indicatorContainer"] {
                 padding: 4px !important;
               }
             `}</style>

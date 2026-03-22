@@ -1,7 +1,4 @@
 import Button from 'components/base/Button';
-import PageBreadcrumb, {
-  PageBreadcrumbItem
-} from 'components/common/PageBreadcrumb';
 import { Card, Col, Form } from 'react-bootstrap';
 import { Form as FinalForm, Field } from 'react-final-form';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -11,21 +8,7 @@ import { callsCreateAPI } from '../../../services/CallService';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-
-export const breadcrumbItems: PageBreadcrumbItem[] = [
-  {
-    label: 'Главная',
-    url: '/'
-  },
-  {
-    label: 'Вызовы',
-    url: '/calls'
-  },
-  {
-    label: 'Добавление вызова',
-    active: true
-  }
-];
+import FeatherIcon from 'feather-icons-react';
 
 const CallsCreatePage = () => {
   const navigate = useNavigate();
@@ -64,7 +47,23 @@ const CallsCreatePage = () => {
   };
   return (
     <div>
-      <PageBreadcrumb items={breadcrumbItems} />
+      <div className="mb-3">
+        <span
+          onClick={() => navigate('/calls')}
+          style={{
+            cursor: 'pointer',
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '0.375rem',
+            fontSize: '0.875rem',
+            fontWeight: 600,
+            color: '#3874ff'
+          }}
+        >
+          <FeatherIcon icon="arrow-left" size={16} />
+          Назад
+        </span>
+      </div>
       <Col xs={12} xl={8}>
         <Card>
           <Card.Body>
@@ -176,15 +175,26 @@ const CallsCreatePage = () => {
                       </Form.Group>
                     )}
                   />
-                  <Button
-                    loading={submitting}
-                    disabled={submitting || pristine}
-                    variant="primary"
-                    className="w-100 mb-3"
-                    type={'submit'}
-                  >
-                    Добавить
-                  </Button>
+                  <div className="d-flex gap-2">
+                    <Button
+                      variant="phoenix-secondary"
+                      className="w-50 mb-3"
+                      type="button"
+                      onClick={() => navigate('/calls')}
+                      disabled={submitting}
+                    >
+                      Отменить
+                    </Button>
+                    <Button
+                      loading={submitting}
+                      disabled={submitting || pristine}
+                      variant="primary"
+                      className="w-50 mb-3"
+                      type={'submit'}
+                    >
+                      Добавить
+                    </Button>
+                  </div>
                 </form>
               )}
             />

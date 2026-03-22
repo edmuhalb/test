@@ -192,7 +192,7 @@ const CallsCreatePage = () => {
                       className="w-50 mb-3"
                       type={'submit'}
                     >
-                      Добавить
+                      Создать вызов
                     </Button>
                   </div>
                 </form>

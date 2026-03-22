@@ -96,8 +96,7 @@ const PWAInstallPrompt = () => {
                 </svg>{' '}
                 Поделиться
               </strong>{' '}
-              и выберите{' '}
-              <strong>«На экран "Домой"»</strong>
+              и выберите <strong>«На экран "Домой"»</strong>
             </p>
           </div>
         ) : (

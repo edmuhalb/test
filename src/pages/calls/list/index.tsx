@@ -11,7 +11,7 @@ import { ColumnDef } from '@tanstack/react-table';
 import { currencyFormat } from '../../../helpers/utils';
 import { InputDateRangeFilter } from '../../../shared/ui/datepicker';
 import { SelectFilterField } from '../../../shared/select';
-import { useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import CallCard from './CallCard';
 import CallDetailModal from './CallDetailModal';
 import { useBreakpoints } from '../../../providers/BreakpointsProvider';
@@ -120,6 +120,7 @@ const countActiveStyle: React.CSSProperties = {
 
 const CallsListPage = () => {
   const [params] = useSearchParams();
+  const navigate = useNavigate();
   const { breakpoints } = useBreakpoints();
   const isMobile = breakpoints.down('lg');
   const handleSearchInputChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -365,12 +366,41 @@ const CallsListPage = () => {
     <div>
       {!isMobile && <PageBreadcrumb items={defaultBreadcrumbItems} />}
       <div className="mb-9">
-        <h2
-          className={isMobile ? 'mb-2' : 'mb-4'}
-          style={isMobile ? { fontSize: '1.25rem' } : undefined}
-        >
-          Вызовы
-        </h2>
+        {isMobile ? (
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              marginBottom: '0.5rem'
+            }}
+          >
+            <h2 style={{ fontSize: '1.25rem', margin: 0 }}>Вызовы</h2>
+            <button
+              onClick={() => navigate('/calls/create')}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.375rem',
+                height: '38px',
+                padding: '0 0.75rem',
+                borderRadius: '0.5rem',
+                border: '1px solid #3874ff',
+                background: '#3874ff',
+                color: '#fff',
+                cursor: 'pointer',
+                fontSize: '0.8125rem',
+                fontWeight: 500,
+                whiteSpace: 'nowrap'
+              }}
+            >
+              <FeatherIcon icon="plus" size={16} />
+              Добавить вызов
+            </button>
+          </div>
+        ) : (
+          <h2 className="mb-4">Вызовы</h2>
+        )}
         {isMobile ? (
           <div
             style={{

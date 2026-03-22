@@ -13,6 +13,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import ChatWidget from 'components/common/chat-widget/ChatWidget';
 import { SupportChatButtons } from 'components/common/support-chat-buttons';
+import { useBreakpoints } from 'providers/BreakpointsProvider';
 
 const MainLayout = () => {
   const {
@@ -20,6 +21,8 @@ const MainLayout = () => {
   } = useAppContext();
 
   const { contentClass, footerClass } = useMainLayoutContext();
+  const { breakpoints } = useBreakpoints();
+  const isMobile = breakpoints.down('lg');
 
   const navigate = useNavigate();
   const { pathname } = useLocation();
@@ -47,7 +50,7 @@ const MainLayout = () => {
             zIndex: 1045
           }}
         >
-          {pathname !== '/calls/create' && (
+          {pathname !== '/calls/create' && !isMobile && (
             <Button
               style={{ width: '14rem' }}
               className={classNames('border border-primary bg-white')}

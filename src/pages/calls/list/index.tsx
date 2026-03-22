@@ -2,7 +2,7 @@ import PageBreadcrumb, {
   PageBreadcrumbItem
 } from 'components/common/PageBreadcrumb';
 import SearchBox from 'components/common/SearchBox';
-import { ChangeEvent, useEffect, useState } from 'react';
+import { ChangeEvent, useEffect, useMemo, useState } from 'react';
 import { callsIndexAPI } from '../../../services/CallService';
 import { Table } from '../../../shared/table';
 import Badge, { BadgeBg } from '../../../components/base/Badge';
@@ -12,6 +12,8 @@ import { currencyFormat } from '../../../helpers/utils';
 import { InputDateRangeFilter } from '../../../shared/ui/datepicker';
 import { SelectFilterField } from '../../../shared/select';
 import { useSearchParams } from 'react-router-dom';
+import CallCard from './CallCard';
+import CallDetailModal from './CallDetailModal';
 
 export const CALLING_STATUSES = [
   'created',
@@ -61,6 +63,8 @@ const CALLING_STATUS_OPTIONS = CALLING_STATUSES.map(status => ({
 export const entries = (params: URLSearchParams) =>
   Object.fromEntries(params.entries());
 
+const FINISHED_STATUSES = ['rejected', 'completed'];
+
 const CallsListPage = () => {
   const [params] = useSearchParams();
   const handleSearchInputChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -70,6 +74,9 @@ const CallsListPage = () => {
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [activeTab, setActiveTab] = useState<'active' | 'finished'>('active');
+  const [selectedCall, setSelectedCall] = useState<any | null>(null);
+  const [showModal, setShowModal] = useState(false);
 
   const [items, setItems] = useState([]);
   const [pagination, setPagination] = useState({
@@ -93,6 +100,24 @@ const CallsListPage = () => {
 
     fetchCalls();
   }, [page, search, params]);
+
+  const activeItems = useMemo(
+    () =>
+      items?.filter(
+        (item: any) => !FINISHED_STATUSES.includes(item.status)
+      ) || [],
+    [items]
+  );
+
+  const finishedItems = useMemo(
+    () =>
+      items?.filter((item: any) =>
+        FINISHED_STATUSES.includes(item.status)
+      ) || [],
+    [items]
+  );
+
+  const currentItems = activeTab === 'active' ? activeItems : finishedItems;
 
   const defaultBreadcrumbItems: PageBreadcrumbItem[] = [
     {
@@ -167,6 +192,11 @@ const CallsListPage = () => {
       icon: 'info',
       type: 'warning'
     };
+  };
+
+  const handleCardClick = (call: any) => {
+    setSelectedCall(call);
+    setShowModal(true);
   };
 
   const columns: Array<ColumnDef<any>> = [
@@ -274,7 +304,6 @@ const CallsListPage = () => {
     page: number;
     itemsPerPage: number;
   }) => {
-    console.log(state);
     setPage(state.page);
   };
 
@@ -311,16 +340,66 @@ const CallsListPage = () => {
             <div className="col"></div>
           </div>
         </div>
-        <div className="mx-n4 px-4 mx-lg-n6 px-lg-6 bg-body-emphasis border-top border-bottom border-translucent position-relative top-1">
-          <Table
-            nodes={items}
-            columns={columns}
-            loading={isLoading}
-            pagination={pagination}
-            onPaginationChange={onPaginationChange}
-          />
+
+        {/* Mobile: tabs + cards */}
+        <div className="calls-mobile-list">
+          <div className="calls-tabs">
+            <button
+              className={`calls-tabs__tab ${activeTab === 'active' ? 'calls-tabs__tab--active' : ''}`}
+              onClick={() => setActiveTab('active')}
+            >
+              Активные
+              <span className="calls-tabs__count">{activeItems.length}</span>
+            </button>
+            <button
+              className={`calls-tabs__tab ${activeTab === 'finished' ? 'calls-tabs__tab--active' : ''}`}
+              onClick={() => setActiveTab('finished')}
+            >
+              Завершенные
+              <span className="calls-tabs__count">{finishedItems.length}</span>
+            </button>
+          </div>
+
+          {isLoading ? (
+            <div className="text-center py-4">
+              <div className="spinner-border spinner-border-sm text-primary" />
+            </div>
+          ) : currentItems.length > 0 ? (
+            currentItems.map((call: any) => (
+              <CallCard
+                key={call.id}
+                call={call}
+                getStatus={getStatus}
+                onClick={handleCardClick}
+              />
+            ))
+          ) : (
+            <div className="text-center py-4 text-body-tertiary">
+              Нет вызовов
+            </div>
+          )}
+        </div>
+
+        {/* Desktop: table */}
+        <div className="calls-desktop-table">
+          <div className="mx-n4 px-4 mx-lg-n6 px-lg-6 bg-body-emphasis border-top border-bottom border-translucent position-relative top-1">
+            <Table
+              nodes={items}
+              columns={columns}
+              loading={isLoading}
+              pagination={pagination}
+              onPaginationChange={onPaginationChange}
+            />
+          </div>
         </div>
       </div>
+
+      <CallDetailModal
+        call={selectedCall}
+        show={showModal}
+        onHide={() => setShowModal(false)}
+        getStatus={getStatus}
+      />
     </div>
   );
 };

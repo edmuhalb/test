@@ -365,16 +365,30 @@ const CallsListPage = () => {
     <div>
       {!isMobile && <PageBreadcrumb items={defaultBreadcrumbItems} />}
       <div className="mb-9">
-        <h2 className={isMobile ? 'mb-2' : 'mb-4'} style={isMobile ? { fontSize: '1.25rem' } : undefined}>Вызовы</h2>
+        <h2
+          className={isMobile ? 'mb-2' : 'mb-4'}
+          style={isMobile ? { fontSize: '1.25rem' } : undefined}
+        >
+          Вызовы
+        </h2>
         {isMobile ? (
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', marginBottom: '0.75rem' }}>
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '0.5rem',
+              marginBottom: '0.75rem'
+            }}
+          >
             <InputDateRangeFilter
               nameStart="completedAt[after]"
               nameEnd="completedAt[before]"
               placeholder="Дата"
               showWeeksRange
             />
-            <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'stretch' }}>
+            <div
+              style={{ display: 'flex', gap: '0.5rem', alignItems: 'stretch' }}
+            >
               <div style={{ flex: 1, minWidth: 0 }}>
                 <SelectFilterField
                   name="status"
@@ -403,7 +417,10 @@ const CallsListPage = () => {
                     }}
                     title={mode === 'cards' ? 'Карточки' : 'Таблица'}
                   >
-                    <FeatherIcon icon={mode === 'cards' ? 'grid' : 'list'} size={16} />
+                    <FeatherIcon
+                      icon={mode === 'cards' ? 'grid' : 'list'}
+                      size={16}
+                    />
                   </button>
                 ))}
               </div>

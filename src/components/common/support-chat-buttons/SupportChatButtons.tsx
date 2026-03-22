@@ -1,7 +1,6 @@
 import { useAuth } from 'context/useAuth';
 import { useState, useRef, useEffect } from 'react';
 import classNames from 'classnames';
-import Button from 'components/base/Button';
 import FeatherIcon from 'feather-icons-react';
 import { OneCDialogChat } from '../one-c-dialog-chat';
 
@@ -49,59 +48,54 @@ const SupportChatButtons = () => {
     setActiveChat(prev => (prev === chat ? null : chat));
   };
 
-  return (
-    <>
-      <div ref={menuRef} style={{ position: 'relative' }}>
-        {menuOpen && (
-          <div className="support-chat-menu">
-            {(Object.keys(TOKENS) as Array<keyof typeof TOKENS>).map(key => (
-              <button
-                key={key}
-                type="button"
-                className={classNames('support-chat-menu__item', {
-                  'support-chat-menu__item--active': activeChat === key
-                })}
-                onClick={() => handleSelect(key)}
-              >
-                <FeatherIcon icon={CHAT_ICONS[key]} size={16} />
-                <span>{CHAT_LABELS[key]}</span>
-              </button>
-            ))}
-          </div>
-        )}
-        <Button
-          className={classNames('border border-primary bg-white')}
-          style={{ width: '14rem' }}
-          onClick={() => setMenuOpen(prev => !prev)}
+  // When chat is open — show only a small close button so it doesn't overlap the chat
+  if (activeChat) {
+    return (
+      <>
+        <button
+          type="button"
+          className="support-fab support-fab--close"
+          onClick={() => setActiveChat(null)}
+          aria-label="Закрыть чат"
         >
-          <FeatherIcon
-            icon="message-circle"
-            size={16}
-            className={classNames(
-              'me-2',
-              activeChat ? 'text-primary' : 'text-body'
-            )}
-          />
-          <span
-            className={classNames(
-              'fs-8 btn-text text-nowrap fw-semibold',
-              activeChat ? 'text-primary' : 'text-body'
-            )}
-          >
-            {activeChat ? CHAT_LABELS[activeChat] : 'Связаться'}
-          </span>
-        </Button>
-      </div>
-
-      {activeChat && (
+          <FeatherIcon icon="x" size={20} />
+        </button>
         <OneCDialogChat
           key={activeChat}
           integrationToken={TOKENS[activeChat]}
           partnerId={user?.partner_id}
           partnerName={user?.partner_name}
         />
+      </>
+    );
+  }
+
+  return (
+    <div ref={menuRef} style={{ position: 'relative' }}>
+      {menuOpen && (
+        <div className="support-chat-menu">
+          {(Object.keys(TOKENS) as Array<keyof typeof TOKENS>).map(key => (
+            <button
+              key={key}
+              type="button"
+              className="support-chat-menu__item"
+              onClick={() => handleSelect(key)}
+            >
+              <FeatherIcon icon={CHAT_ICONS[key]} size={18} />
+              <span>{CHAT_LABELS[key]}</span>
+            </button>
+          ))}
+        </div>
       )}
-    </>
+      <button
+        type="button"
+        className="support-fab"
+        onClick={() => setMenuOpen(prev => !prev)}
+        aria-label="Связаться"
+      >
+        <FeatherIcon icon="message-circle" size={22} />
+      </button>
+    </div>
   );
 };
 

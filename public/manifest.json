@@ -1,15 +1,29 @@
 {
-  "short_name": "Phoenix React",
-  "name": "Phoenix React | ReactJS Dashboard & WebApp Template",
+  "short_name": "Ресет",
+  "name": "Ресет — Партнёрский кабинет",
   "icons": [
     {
       "src": "favicon.ico",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
+    },
+    {
+      "src": "logo192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "logo512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
     }
   ],
-  "start_url": ".",
+  "start_url": "/",
+  "scope": "/",
   "display": "standalone",
+  "orientation": "portrait",
   "theme_color": "#3874ff",
-  "background_color": "#f5f7fa"
+  "background_color": "#0b1727"
 }

@@ -1,0 +1,93 @@
+// PWA install prompt — full-screen overlay
+.pwa-install-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(6px);
+  padding: 1.5rem;
+}
+
+.pwa-install-card {
+  width: 100%;
+  max-width: 22rem;
+  background: var(--#{$prefix}emphasis-bg, #fff);
+  border-radius: 1.25rem;
+  padding: 2.5rem 1.75rem;
+  text-align: center;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.25);
+  animation: pwaSlideUp 0.3s ease-out;
+
+  [data-bs-theme="dark"] & {
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5);
+  }
+}
+
+.pwa-install-icon {
+  margin-bottom: 1.25rem;
+
+  img {
+    border-radius: 1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.pwa-install-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--#{$prefix}body-highlight-color, #222834);
+  margin-bottom: 0.5rem;
+}
+
+.pwa-install-desc {
+  font-size: 0.875rem;
+  color: var(--#{$prefix}secondary-color, #9fa6bc);
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+}
+
+.pwa-install-btn {
+  display: block;
+  width: 100%;
+  padding: 0.875rem;
+  border: none;
+  border-radius: 0.75rem;
+  background: var(--#{$prefix}primary, #3874ff);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.15s ease;
+
+  &:hover {
+    opacity: 0.9;
+  }
+
+  &:active {
+    transform: scale(0.97);
+  }
+}
+
+.pwa-install-ios {
+  font-size: 0.875rem;
+  color: var(--#{$prefix}body-color, #525b75);
+  line-height: 1.6;
+
+  strong {
+    color: var(--#{$prefix}body-highlight-color, #222834);
+  }
+}
+
+@keyframes pwaSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

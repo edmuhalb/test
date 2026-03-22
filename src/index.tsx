@@ -8,6 +8,16 @@ import { RouterProvider } from 'react-router-dom';
 import { router } from 'Routes';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { PWAInstallPrompt } from 'components/common/pwa-install-prompt';
+
+// Register service worker for PWA
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js').catch(() => {
+      // SW registration failed — app still works without it
+    });
+  });
+}
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -18,6 +28,7 @@ root.render(
       <SettingsPanelProvider>
         <BreakpointsProvider>
           <ChatWidgetProvider>
+            <PWAInstallPrompt />
             <RouterProvider router={router} />
           </ChatWidgetProvider>
         </BreakpointsProvider>

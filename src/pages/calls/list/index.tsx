@@ -488,8 +488,14 @@ const CallsListPage = () => {
                       width: '36px',
                       borderRadius: '0.375rem',
                       border: '1px solid var(--phoenix-border-color, #e3e6ed)',
-                      background: viewMode === mode ? 'var(--phoenix-primary, #3874ff)' : 'var(--phoenix-emphasis-bg, #fff)',
-                      color: viewMode === mode ? '#fff' : 'var(--phoenix-secondary-color, #9fa6bc)',
+                      background:
+                        viewMode === mode
+                          ? 'var(--phoenix-primary, #3874ff)'
+                          : 'var(--phoenix-emphasis-bg, #fff)',
+                      color:
+                        viewMode === mode
+                          ? '#fff'
+                          : 'var(--phoenix-secondary-color, #9fa6bc)',
                       cursor: 'pointer',
                       transition: 'all 0.2s ease',
                       padding: 0

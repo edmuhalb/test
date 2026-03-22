@@ -71,21 +71,21 @@ const tabsContainerStyle: React.CSSProperties = {
   gap: 0,
   marginBottom: '1rem',
   background: '#fff',
-  borderRadius: '0.75rem',
-  padding: '0.25rem',
+  borderRadius: '0.5rem',
+  padding: '3px',
   border: '1px solid #e3e6ed',
   boxShadow: '0 1px 3px rgba(0,0,0,0.04)'
 };
 
 const tabBaseStyle: React.CSSProperties = {
   flex: 1,
-  padding: '0.625rem 1rem',
+  padding: '0.4375rem 0.75rem',
   textAlign: 'center',
-  fontSize: '0.875rem',
+  fontSize: '0.8125rem',
   fontWeight: 600,
   background: 'none',
   border: 'none',
-  borderRadius: '0.5rem',
+  borderRadius: '0.375rem',
   cursor: 'pointer',
   transition: 'all 0.2s ease',
   color: '#9fa6bc'
@@ -103,10 +103,10 @@ const countBaseStyle: React.CSSProperties = {
   alignItems: 'center',
   justifyContent: 'center',
   fontSize: '0.6875rem',
-  minWidth: '1.25rem',
-  height: '1.125rem',
+  minWidth: '1.125rem',
+  height: '1rem',
   borderRadius: '10px',
-  padding: '0 0.35rem',
+  padding: '0 0.3rem',
   marginLeft: '0.35rem',
   fontWeight: 700,
   background: 'rgba(0,0,0,0.1)'
@@ -382,15 +382,15 @@ const CallsListPage = () => {
                 display: 'flex',
                 alignItems: 'center',
                 gap: '0.375rem',
-                height: '38px',
+                height: '36px',
                 padding: '0 0.75rem',
-                borderRadius: '0.5rem',
+                borderRadius: '0.375rem',
                 border: '1px solid #3874ff',
                 background: '#3874ff',
                 color: '#fff',
                 cursor: 'pointer',
                 fontSize: '0.8125rem',
-                fontWeight: 500,
+                fontWeight: 600,
                 whiteSpace: 'nowrap'
               }}
             >
@@ -403,6 +403,7 @@ const CallsListPage = () => {
         )}
         {isMobile ? (
           <div
+            className="mobile-filters-compact"
             style={{
               display: 'flex',
               flexDirection: 'column',
@@ -410,14 +411,44 @@ const CallsListPage = () => {
               marginBottom: '0.75rem'
             }}
           >
+            <style>{`
+              .mobile-filters-compact .form-control,
+              .mobile-filters-compact .react-select__control,
+              .mobile-filters-compact [class$="-control"] {
+                font-size: 0.8125rem !important;
+                min-height: 36px !important;
+                height: 36px;
+                padding-top: 0.25rem;
+                padding-bottom: 0.25rem;
+              }
+              .mobile-filters-compact .react-select__value-container,
+              .mobile-filters-compact [class$="-ValueContainer"] {
+                padding-top: 0 !important;
+                padding-bottom: 0 !important;
+                font-size: 0.8125rem !important;
+              }
+              .mobile-filters-compact .react-select__placeholder,
+              .mobile-filters-compact [class$="-placeholder"] {
+                font-size: 0.8125rem !important;
+              }
+              .mobile-filters-compact .react-select__indicator,
+              .mobile-filters-compact [class$="-indicatorContainer"] {
+                padding: 4px !important;
+              }
+            `}</style>
             <InputDateRangeFilter
               nameStart="completedAt[after]"
               nameEnd="completedAt[before]"
               placeholder="Дата"
               showWeeksRange
+              gutterBottom={false}
             />
             <div
-              style={{ display: 'flex', gap: '0.5rem', alignItems: 'stretch' }}
+              style={{
+                display: 'flex',
+                gap: '0.5rem',
+                alignItems: 'stretch'
+              }}
             >
               <div style={{ flex: 1, minWidth: 0 }}>
                 <SelectFilterField
@@ -425,6 +456,7 @@ const CallsListPage = () => {
                   placeholder="Статус"
                   options={CALLING_STATUS_OPTIONS}
                   isMulti
+                  gutterBottom={false}
                 />
               </div>
               <div style={{ display: 'flex', gap: '4px', flexShrink: 0 }}>
@@ -436,8 +468,8 @@ const CallsListPage = () => {
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      width: '38px',
-                      borderRadius: '0.5rem',
+                      width: '36px',
+                      borderRadius: '0.375rem',
                       border: '1px solid #e3e6ed',
                       background: viewMode === mode ? '#3874ff' : '#fff',
                       color: viewMode === mode ? '#fff' : '#9fa6bc',

@@ -7,7 +7,7 @@ interface CallDetailModalProps {
   call: any | null;
   show: boolean;
   onHide: () => void;
-  getStatus: (val: string) => { label: string; icon: string; type: string };
+  getStatus: (val: any) => { label: string; icon: string; type: string };
 }
 
 const DetailRow = ({

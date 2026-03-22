@@ -4,7 +4,7 @@ import { currencyFormat } from '../../../helpers/utils';
 
 interface CallCardProps {
   call: any;
-  getStatus: (val: string) => { label: string; icon: string; type: string };
+  getStatus: (val: any) => { label: string; icon: string; type: string };
   onClick: (call: any) => void;
 }
 
@@ -20,9 +20,7 @@ const CallCard = ({ call, getStatus, onClick }: CallCardProps) => {
           variant="phoenix"
           iconPosition="end"
           className="fs-10"
-          icon={
-            <FeatherIcon icon={status.icon} size={12.8} className="ms-1" />
-          }
+          icon={<FeatherIcon icon={status.icon} size={12.8} className="ms-1" />}
         >
           {status.label}
         </Badge>

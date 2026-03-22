@@ -101,21 +101,19 @@ const CallsListPage = () => {
     fetchCalls();
   }, [page, search, params]);
 
-  const activeItems = useMemo(
-    () =>
-      items?.filter(
-        (item: any) => !FINISHED_STATUSES.includes(item.status)
-      ) || [],
-    [items]
-  );
+  const activeItems = useMemo(() => {
+    return (
+      items?.filter((item: any) => !FINISHED_STATUSES.includes(item.status)) ||
+      []
+    );
+  }, [items]);
 
-  const finishedItems = useMemo(
-    () =>
-      items?.filter((item: any) =>
-        FINISHED_STATUSES.includes(item.status)
-      ) || [],
-    [items]
-  );
+  const finishedItems = useMemo(() => {
+    return (
+      items?.filter((item: any) => FINISHED_STATUSES.includes(item.status)) ||
+      []
+    );
+  }, [items]);
 
   const currentItems = activeTab === 'active' ? activeItems : finishedItems;
 
@@ -345,14 +343,18 @@ const CallsListPage = () => {
         <div className="calls-mobile-list">
           <div className="calls-tabs">
             <button
-              className={`calls-tabs__tab ${activeTab === 'active' ? 'calls-tabs__tab--active' : ''}`}
+              className={`calls-tabs__tab ${
+                activeTab === 'active' ? 'calls-tabs__tab--active' : ''
+              }`}
               onClick={() => setActiveTab('active')}
             >
               Активные
               <span className="calls-tabs__count">{activeItems.length}</span>
             </button>
             <button
-              className={`calls-tabs__tab ${activeTab === 'finished' ? 'calls-tabs__tab--active' : ''}`}
+              className={`calls-tabs__tab ${
+                activeTab === 'finished' ? 'calls-tabs__tab--active' : ''
+              }`}
               onClick={() => setActiveTab('finished')}
             >
               Завершенные

@@ -127,6 +127,7 @@ const rewardStyle: CSSProperties = {
 const CallCard = ({ call, getStatus, onClick }: CallCardProps) => {
   const status = getStatus(call.status);
   const stripColor = statusColors[status.type] || statusColors.secondary;
+  const hasDistance = call.mkadDistance && Number(call.mkadDistance) > 0;
 
   return (
     <div style={cardStyle} onClick={() => onClick(call)}>
@@ -153,31 +154,43 @@ const CallCard = ({ call, getStatus, onClick }: CallCardProps) => {
               {call.dateTime}
             </div>
           )}
-          {call.mkadDistance && (
+          {hasDistance && (
             <div style={dateStyle}>
               <FeatherIcon icon="map-pin" size={13} />
               {call.mkadDistance} км
             </div>
           )}
         </div>
+        {call.createdAt && (
+          <div style={{ ...infoRowStyle, marginTop: '0.125rem' }}>
+            <div style={dateStyle}>
+              <FeatherIcon icon="clock" size={13} />
+              Создан: {call.createdAt}
+            </div>
+          </div>
+        )}
+        {call.completedAt && (
+          <div style={{ ...infoRowStyle, marginTop: '0.125rem' }}>
+            <div style={dateStyle}>
+              <FeatherIcon icon="check-circle" size={13} />
+              Завершён: {call.completedAt}
+            </div>
+          </div>
+        )}
         {call.comment && <div style={commentStyle}>{call.comment}</div>}
       </div>
-      {(call.price > 0 || call.reward > 0) && (
-        <div style={footerStyle}>
-          {call.price > 0 && (
-            <div>
-              <span style={priceLabelStyle}>Сумма</span>
-              <span style={priceStyle}>{currencyFormat(call.price)}</span>
-            </div>
-          )}
-          {call.reward > 0 && (
-            <div>
-              <span style={priceLabelStyle}>Начислено</span>
-              <span style={rewardStyle}>+{currencyFormat(call.reward)}</span>
-            </div>
-          )}
+      <div style={footerStyle}>
+        <div>
+          <span style={priceLabelStyle}>Сумма</span>
+          <span style={priceStyle}>{currencyFormat(call.price || 0)}</span>
         </div>
-      )}
+        <div>
+          <span style={priceLabelStyle}>Начислено</span>
+          <span style={rewardStyle}>
+            {currencyFormat(call.reward || 0)}
+          </span>
+        </div>
+      </div>
     </div>
   );
 };

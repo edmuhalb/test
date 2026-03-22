@@ -1,6 +1,5 @@
 import { useAuth } from 'context/useAuth';
 import { useState, useRef, useEffect } from 'react';
-import classNames from 'classnames';
 import FeatherIcon from 'feather-icons-react';
 import { OneCDialogChat } from '../one-c-dialog-chat';
 

@@ -417,15 +417,21 @@ const CallsListPage = () => {
                 font-size: 0.8rem !important;
                 font-weight: 600 !important;
                 min-height: 36px !important;
-                height: 36px;
                 padding-top: 0.25rem;
                 padding-bottom: 0.25rem;
                 border-radius: 0.375rem;
                 border-color: #e3e6ed;
               }
+              .mobile-filters-compact .form-control {
+                height: 36px;
+              }
+              .mobile-filters-compact [class*="-control"] {
+                height: auto !important;
+              }
               .mobile-filters-compact [class*="-ValueContainer"] {
-                padding-top: 0 !important;
-                padding-bottom: 0 !important;
+                padding-top: 2px !important;
+                padding-bottom: 2px !important;
+                flex-wrap: wrap !important;
               }
               .mobile-filters-compact [class*="-placeholder"] {
                 font-size: 0.8rem !important;

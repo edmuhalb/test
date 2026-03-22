@@ -10,16 +10,16 @@ interface CallCardProps {
 }
 
 const statusColors: Record<string, string> = {
-  primary: '#3874ff',
-  success: '#25b003',
-  danger: '#e63757',
-  warning: '#e5780b',
-  secondary: '#a0aec0'
+  primary: 'var(--phoenix-primary, #3874ff)',
+  success: 'var(--phoenix-success, #25b003)',
+  danger: 'var(--phoenix-danger, #e63757)',
+  warning: 'var(--phoenix-warning, #e5780b)',
+  secondary: 'var(--phoenix-secondary-color, #a0aec0)'
 };
 
 const cardStyle: CSSProperties = {
-  background: '#fff',
-  border: '1px solid #e3e6ed',
+  background: 'var(--phoenix-emphasis-bg, #fff)',
+  border: '1px solid var(--phoenix-border-color, #e3e6ed)',
   borderRadius: '0.75rem',
   padding: '1rem 1.125rem',
   marginBottom: '0.75rem',
@@ -49,7 +49,7 @@ const headerStyle: CSSProperties = {
 
 const idStyle: CSSProperties = {
   fontSize: '0.75rem',
-  color: '#9fa6bc',
+  color: 'var(--phoenix-secondary-color, #9fa6bc)',
   fontWeight: 700,
   letterSpacing: '0.02em'
 };
@@ -57,14 +57,14 @@ const idStyle: CSSProperties = {
 const nameStyle: CSSProperties = {
   fontWeight: 700,
   fontSize: '0.9375rem',
-  color: '#222834',
+  color: 'var(--phoenix-body-highlight-color, #222834)',
   marginBottom: '0.25rem',
   lineHeight: 1.3
 };
 
 const phoneStyle: CSSProperties = {
   fontSize: '0.8125rem',
-  color: '#3874ff',
+  color: 'var(--phoenix-primary, #3874ff)',
   marginBottom: '0.375rem',
   fontWeight: 500
 };
@@ -78,7 +78,7 @@ const infoRowStyle: CSSProperties = {
 
 const dateStyle: CSSProperties = {
   fontSize: '0.75rem',
-  color: '#9fa6bc',
+  color: 'var(--phoenix-secondary-color, #9fa6bc)',
   display: 'flex',
   alignItems: 'center',
   gap: '0.25rem'
@@ -86,7 +86,7 @@ const dateStyle: CSSProperties = {
 
 const commentStyle: CSSProperties = {
   fontSize: '0.75rem',
-  color: '#9fa6bc',
+  color: 'var(--phoenix-secondary-color, #9fa6bc)',
   marginTop: '0.375rem',
   lineHeight: 1.4,
   overflow: 'hidden',
@@ -102,12 +102,12 @@ const footerStyle: CSSProperties = {
   gap: '0.75rem',
   paddingTop: '0.625rem',
   marginTop: '0.375rem',
-  borderTop: '1px solid #e3e6ed'
+  borderTop: '1px solid var(--phoenix-border-color, #e3e6ed)'
 };
 
 const priceLabelStyle: CSSProperties = {
   fontSize: '0.6875rem',
-  color: '#9fa6bc',
+  color: 'var(--phoenix-secondary-color, #9fa6bc)',
   display: 'block',
   marginBottom: '0.0625rem'
 };
@@ -115,13 +115,13 @@ const priceLabelStyle: CSSProperties = {
 const priceStyle: CSSProperties = {
   fontSize: '0.875rem',
   fontWeight: 700,
-  color: '#222834'
+  color: 'var(--phoenix-body-highlight-color, #222834)'
 };
 
 const rewardStyle: CSSProperties = {
   fontSize: '0.875rem',
   fontWeight: 700,
-  color: '#25b003'
+  color: 'var(--phoenix-success, #25b003)'
 };
 
 const CallCard = ({ call, getStatus, onClick }: CallCardProps) => {

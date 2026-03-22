@@ -70,10 +70,10 @@ const tabsContainerStyle: React.CSSProperties = {
   display: 'flex',
   gap: 0,
   marginBottom: '1rem',
-  background: '#fff',
+  background: 'var(--phoenix-emphasis-bg, #fff)',
   borderRadius: '0.5rem',
   padding: '3px',
-  border: '1px solid #e3e6ed',
+  border: '1px solid var(--phoenix-border-color, #e3e6ed)',
   boxShadow: '0 1px 3px rgba(0,0,0,0.04)'
 };
 
@@ -88,13 +88,13 @@ const tabBaseStyle: React.CSSProperties = {
   borderRadius: '0.375rem',
   cursor: 'pointer',
   transition: 'all 0.2s ease',
-  color: '#9fa6bc'
+  color: 'var(--phoenix-secondary-color, #9fa6bc)'
 };
 
 const tabActiveStyle: React.CSSProperties = {
   ...tabBaseStyle,
   color: '#fff',
-  background: '#3874ff',
+  background: 'var(--phoenix-primary, #3874ff)',
   boxShadow: '0 2px 8px rgba(56,116,255,0.3)'
 };
 
@@ -385,8 +385,8 @@ const CallsListPage = () => {
                 height: '36px',
                 padding: '0 0.75rem',
                 borderRadius: '0.375rem',
-                border: '1px solid #3874ff',
-                background: '#3874ff',
+                border: '1px solid var(--phoenix-primary, #3874ff)',
+                background: 'var(--phoenix-primary, #3874ff)',
                 color: '#fff',
                 cursor: 'pointer',
                 fontSize: '0.8125rem',
@@ -420,7 +420,7 @@ const CallsListPage = () => {
                 padding-top: 0.25rem;
                 padding-bottom: 0.25rem;
                 border-radius: 0.375rem;
-                border-color: #e3e6ed;
+                border-color: var(--phoenix-border-color, #e3e6ed);
               }
               .mobile-filters-compact .form-control {
                 height: 36px;
@@ -436,7 +436,7 @@ const CallsListPage = () => {
               .mobile-filters-compact [class*="-placeholder"] {
                 font-size: 0.8rem !important;
                 font-weight: 600 !important;
-                color: #b0b7c3 !important;
+                color: var(--phoenix-secondary-color, #b0b7c3) !important;
               }
               .mobile-filters-compact .form-control {
                 padding-left: 0.5rem !important;
@@ -444,7 +444,7 @@ const CallsListPage = () => {
               .mobile-filters-compact .form-control::placeholder {
                 font-size: 0.8rem !important;
                 font-weight: 600 !important;
-                color: #b0b7c3 !important;
+                color: var(--phoenix-secondary-color, #b0b7c3) !important;
               }
               .mobile-filters-compact [class*="-ValueContainer"] {
                 padding-left: 0.5rem !important;
@@ -487,9 +487,9 @@ const CallsListPage = () => {
                       justifyContent: 'center',
                       width: '36px',
                       borderRadius: '0.375rem',
-                      border: '1px solid #e3e6ed',
-                      background: viewMode === mode ? '#3874ff' : '#fff',
-                      color: viewMode === mode ? '#fff' : '#9fa6bc',
+                      border: '1px solid var(--phoenix-border-color, #e3e6ed)',
+                      background: viewMode === mode ? 'var(--phoenix-primary, #3874ff)' : 'var(--phoenix-emphasis-bg, #fff)',
+                      color: viewMode === mode ? '#fff' : 'var(--phoenix-secondary-color, #9fa6bc)',
                       cursor: 'pointer',
                       transition: 'all 0.2s ease',
                       padding: 0

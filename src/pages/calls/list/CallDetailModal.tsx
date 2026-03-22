@@ -33,7 +33,7 @@ const CallDetailModal = ({
               gap: '0.375rem',
               fontSize: '0.875rem',
               fontWeight: 600,
-              color: '#3874ff'
+              color: 'var(--phoenix-primary, #3874ff)'
             }}
           >
             <FeatherIcon icon="arrow-left" size={16} />

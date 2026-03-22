@@ -127,7 +127,7 @@ const rewardStyle: CSSProperties = {
 const CallCard = ({ call, getStatus, onClick }: CallCardProps) => {
   const status = getStatus(call.status);
   const stripColor = statusColors[status.type] || statusColors.secondary;
-  const hasDistance = call.mkadDistance && Number(call.mkadDistance) > 0;
+  const distance = call.mkadDistance != null ? Number(call.mkadDistance) : null;
 
   return (
     <div style={cardStyle} onClick={() => onClick(call)}>
@@ -154,10 +154,10 @@ const CallCard = ({ call, getStatus, onClick }: CallCardProps) => {
               {call.dateTime}
             </div>
           )}
-          {hasDistance && (
+          {distance !== null && (
             <div style={dateStyle}>
               <FeatherIcon icon="map-pin" size={13} />
-              {call.mkadDistance} км
+              {distance} км
             </div>
           )}
         </div>

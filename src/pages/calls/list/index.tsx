@@ -130,6 +130,7 @@ const CallsListPage = () => {
   const [search, setSearch] = useState('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [activeTab, setActiveTab] = useState<'active' | 'finished'>('active');
+  const [viewMode, setViewMode] = useState<'cards' | 'table'>('cards');
   const [selectedCall, setSelectedCall] = useState<any | null>(null);
   const [showModal, setShowModal] = useState(false);
 
@@ -394,7 +395,57 @@ const CallsListPage = () => {
           </div>
         </div>
 
-        {isMobile ? (
+        {isMobile && (
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'flex-end',
+              marginBottom: '0.75rem',
+              gap: '0.25rem'
+            }}
+          >
+            <button
+              onClick={() => setViewMode('cards')}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                width: '2.25rem',
+                height: '2.25rem',
+                borderRadius: '0.5rem',
+                border: '1px solid #e3e6ed',
+                background: viewMode === 'cards' ? '#3874ff' : '#fff',
+                color: viewMode === 'cards' ? '#fff' : '#9fa6bc',
+                cursor: 'pointer',
+                transition: 'all 0.2s ease'
+              }}
+              title="Карточки"
+            >
+              <FeatherIcon icon="grid" size={16} />
+            </button>
+            <button
+              onClick={() => setViewMode('table')}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                width: '2.25rem',
+                height: '2.25rem',
+                borderRadius: '0.5rem',
+                border: '1px solid #e3e6ed',
+                background: viewMode === 'table' ? '#3874ff' : '#fff',
+                color: viewMode === 'table' ? '#fff' : '#9fa6bc',
+                cursor: 'pointer',
+                transition: 'all 0.2s ease'
+              }}
+              title="Таблица"
+            >
+              <FeatherIcon icon="list" size={16} />
+            </button>
+          </div>
+        )}
+
+        {isMobile && viewMode === 'cards' ? (
           <>
             <div style={tabsContainerStyle}>
               <button

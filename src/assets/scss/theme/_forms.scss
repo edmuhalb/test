@@ -132,6 +132,7 @@
     position: absolute;
     top: 12px;
     left: $input-padding-x;
+    pointer-events: none;
   }
   .form-floating {
     .form-icon-input {

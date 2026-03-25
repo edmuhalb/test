@@ -36,7 +36,7 @@ const SignInForm = () => {
       <FinalForm
         onSubmit={onSubmit}
         validate={validate}
-        render={({ handleSubmit, submitting, pristine }) => (
+        render={({ handleSubmit, submitting }) => (
           <form onSubmit={handleSubmit}>
             <Field
               name="username"
@@ -107,7 +107,7 @@ const SignInForm = () => {
             </Row>
             <Button
               loading={submitting}
-              disabled={submitting || pristine}
+              disabled={submitting}
               variant="primary"
               className="w-100 mb-3"
               type={'submit'}

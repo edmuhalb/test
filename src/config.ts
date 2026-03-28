@@ -29,5 +29,4 @@ export const initialConfig: Config = {
   isChatWidgetVisible: true
 };
 
-export const BASE_URL =
-  process.env.REACT_APP_API_URL || '/api/partner/';
+export const BASE_URL = process.env.REACT_APP_API_URL || '/api/partner/';

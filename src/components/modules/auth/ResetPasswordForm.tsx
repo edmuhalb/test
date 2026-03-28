@@ -53,9 +53,7 @@ const ResetPasswordForm = () => {
     <>
       <div className="text-center mb-7">
         <h3 className="text-body-highlight">Новый пароль</h3>
-        <p className="text-body-tertiary">
-          Введите код из SMS и новый пароль
-        </p>
+        <p className="text-body-tertiary">Введите код из SMS и новый пароль</p>
       </div>
 
       <FinalForm

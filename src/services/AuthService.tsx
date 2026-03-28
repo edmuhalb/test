@@ -15,3 +15,23 @@ export const loginAPI = async (phone: string, password: string) => {
     handleError(error);
   }
 };
+
+export const forgotPasswordAPI = async (phone: string) => {
+  try {
+    return await axios.post(`${api}forgot-password`, { phone });
+  } catch (error) {
+    handleError(error);
+  }
+};
+
+export const resetPasswordAPI = async (
+  phone: string,
+  code: string,
+  password: string
+) => {
+  try {
+    return await axios.post(`${api}reset-password`, { phone, code, password });
+  } catch (error) {
+    handleError(error);
+  }
+};

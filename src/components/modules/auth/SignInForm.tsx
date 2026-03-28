@@ -3,6 +3,7 @@ import { Form as FinalForm, Field } from 'react-final-form';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Button from 'components/base/Button';
 import { Col, Form, Row } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import { useAuth } from '../../../context/useAuth';
 import { InputMask } from '@react-input/mask';
 
@@ -103,7 +104,11 @@ const SignInForm = () => {
                   </Form.Check.Label>
                 </Form.Check>
               </Col>
-              <Col xs="auto"></Col>
+              <Col xs="auto">
+                <Link to="/forgot-password" className="fs-9 fw-semibold">
+                  Забыли пароль?
+                </Link>
+              </Col>
             </Row>
             <Button
               loading={submitting}

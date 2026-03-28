@@ -8,6 +8,8 @@ import { ProtectedRoute } from './ProtectedRoute';
 import CallsListPage from './pages/calls/list';
 import HospitalListPage from './pages/hospital';
 import LoginPage from './pages/login';
+import ForgotPasswordPage from './pages/forgot-password';
+import ResetPasswordPage from './pages/reset-password';
 import NotificationsPage from 'pages/notifications';
 import CallsCreatePage from 'pages/calls/create';
 import AgreementPage from 'pages/agreement';
@@ -121,6 +123,14 @@ const routes: RouteObject[] = [
           {
             path: 'login',
             element: <LoginPage />
+          },
+          {
+            path: 'forgot-password',
+            element: <ForgotPasswordPage />
+          },
+          {
+            path: 'reset-password',
+            element: <ResetPasswordPage />
           }
         ]
       },

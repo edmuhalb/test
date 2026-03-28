@@ -1,22 +1,58 @@
 import { isAxiosError } from 'axios';
-import { toast } from 'react-toastify';
+
+let modalRoot: HTMLDivElement | null = null;
+
+const showErrorModal = (message: string) => {
+  // Убираем предыдущее модальное окно если есть
+  if (modalRoot) {
+    modalRoot.remove();
+  }
+
+  modalRoot = document.createElement('div');
+  modalRoot.innerHTML = `
+    <div class="error-modal-overlay">
+      <div class="error-modal-card">
+        <div class="error-modal-icon">!</div>
+        <div class="error-modal-message">${message}</div>
+        <button class="error-modal-btn" type="button">Понятно</button>
+      </div>
+    </div>
+  `;
+
+  document.body.appendChild(modalRoot);
+
+  const btn = modalRoot.querySelector('.error-modal-btn');
+  const overlay = modalRoot.querySelector('.error-modal-overlay');
+
+  const close = () => {
+    if (modalRoot) {
+      modalRoot.remove();
+      modalRoot = null;
+    }
+  };
+
+  btn?.addEventListener('click', close);
+  overlay?.addEventListener('click', (e) => {
+    if (e.target === overlay) close();
+  });
+};
 
 export const handleError = (error: any) => {
   if (isAxiosError(error)) {
     const err = error.response;
 
     if (!err) {
-      toast.error('Нет соединения с сервером');
+      showErrorModal('Нет соединения с сервером');
       return;
     }
 
     if (err.status === 404) {
-      toast.error('Сервис временно недоступен');
+      showErrorModal('Сервис временно недоступен');
       return;
     }
 
     if (err.status === 429) {
-      toast.error(
+      showErrorModal(
         err.data?.error || 'Слишком много запросов, подождите немного'
       );
       return;
@@ -24,35 +60,34 @@ export const handleError = (error: any) => {
 
     if (err.status === 401) {
       if (err.data?.message === 'Invalid credentials.') {
-        toast.error('Неверный логин или пароль');
+        showErrorModal('Неверный логин или пароль');
       } else {
-        toast.error('Сессия истекла, войдите заново');
+        showErrorModal('Сессия истекла, войдите заново');
         window.history.pushState({}, 'LoginPage', '/login');
       }
       return;
     }
 
-    // Ошибки валидации и бизнес-логики (400, 422, etc.)
     if (err.data?.error) {
-      toast.error(err.data.error);
+      showErrorModal(err.data.error);
       return;
     }
 
     if (err.data?.message) {
-      toast.error(err.data.message);
+      showErrorModal(err.data.message);
       return;
     }
 
     if (Array.isArray(err.data?.errors)) {
-      for (const val of err.data.errors) {
-        toast.error(val.description || val.message || String(val));
-      }
+      const messages = err.data.errors
+        .map((val: any) => val.description || val.message || String(val))
+        .join('\n');
+      showErrorModal(messages);
       return;
     }
 
-    // Fallback
-    toast.error('Произошла ошибка, попробуйте позже');
+    showErrorModal('Произошла ошибка, попробуйте позже');
   } else {
-    toast.error('Произошла ошибка, попробуйте позже');
+    showErrorModal('Произошла ошибка, попробуйте позже');
   }
 };

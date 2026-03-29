@@ -23,7 +23,7 @@ const ResetPasswordForm = () => {
   const validate = (values: any) => {
     const errors: any = {};
     if (!values.code || values.code.length < 4) {
-      errors.code = 'Введите 4-значный код из SMS';
+      errors.code = 'Введите 4 последние цифры номера';
     }
     if (!values.password) {
       errors.password = 'Введите новый пароль';
@@ -53,7 +53,9 @@ const ResetPasswordForm = () => {
     <>
       <div className="text-center mb-7">
         <h3 className="text-body-highlight">Новый пароль</h3>
-        <p className="text-body-tertiary">Введите код из SMS и новый пароль</p>
+        <p className="text-body-tertiary">
+          Введите последние 4 цифры номера, с которого вам позвонили
+        </p>
       </div>
 
       <FinalForm
@@ -65,7 +67,9 @@ const ResetPasswordForm = () => {
               name="code"
               render={({ input, meta }) => (
                 <Form.Group className="mb-3 text-start">
-                  <Form.Label htmlFor="code">Код из SMS</Form.Label>
+                  <Form.Label htmlFor="code">
+                    Последние 4 цифры номера
+                  </Form.Label>
                   <Form.Control
                     id="code"
                     type="text"

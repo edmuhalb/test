@@ -15,7 +15,7 @@ const ForgotPasswordForm = () => {
     const phone = values.phone.replace(/\D/g, '');
     const res = await forgotPasswordAPI(phone);
     if (res?.data?.success) {
-      toast.success('Код отправлен на ваш телефон');
+      toast.success('Сейчас вам поступит звонок');
       navigate(`/reset-password?phone=${encodeURIComponent(phone)}`);
     }
   };
@@ -34,7 +34,7 @@ const ForgotPasswordForm = () => {
       <div className="text-center mb-7">
         <h3 className="text-body-highlight">Восстановление пароля</h3>
         <p className="text-body-tertiary">
-          Введите номер телефона и мы отправим вам SMS с кодом
+          Введите номер телефона — вам поступит звонок
         </p>
       </div>
 

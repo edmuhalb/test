@@ -24,13 +24,17 @@ export const forgotPasswordAPI = async (phone: string) => {
   }
 };
 
-export const resetPasswordAPI = async (
-  phone: string,
-  code: string,
-  password: string
-) => {
+export const checkCallStatusAPI = async (check_id: string) => {
   try {
-    return await axios.post(`${api}reset-password`, { phone, code, password });
+    return await axios.post(`${api}check-call-status`, { check_id });
+  } catch (error) {
+    handleError(error);
+  }
+};
+
+export const resetPasswordAPI = async (check_id: string, password: string) => {
+  try {
+    return await axios.post(`${api}reset-password`, { check_id, password });
   } catch (error) {
     handleError(error);
   }

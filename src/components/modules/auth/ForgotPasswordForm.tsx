@@ -6,7 +6,6 @@ import { Form } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import { forgotPasswordAPI } from '../../../services/AuthService';
 import { InputMask } from '@react-input/mask';
-import { toast } from 'react-toastify';
 
 const ForgotPasswordForm = () => {
   const navigate = useNavigate();
@@ -15,8 +14,11 @@ const ForgotPasswordForm = () => {
     const phone = values.phone.replace(/\D/g, '');
     const res = await forgotPasswordAPI(phone);
     if (res?.data?.success) {
-      toast.success('Сейчас вам поступит звонок');
-      navigate(`/reset-password?phone=${encodeURIComponent(phone)}`);
+      const cid = encodeURIComponent(res.data.check_id);
+      const cp = encodeURIComponent(
+        res.data.call_phone_pretty || res.data.call_phone
+      );
+      navigate(`/reset-password?check_id=${cid}&call_phone=${cp}`);
     }
   };
 
@@ -34,7 +36,7 @@ const ForgotPasswordForm = () => {
       <div className="text-center mb-7">
         <h3 className="text-body-highlight">Восстановление пароля</h3>
         <p className="text-body-tertiary">
-          Введите номер телефона — вам поступит звонок
+          Введите номер телефона для подтверждения
         </p>
       </div>
 
@@ -76,7 +78,7 @@ const ForgotPasswordForm = () => {
               className="w-100 mb-3"
               type="submit"
             >
-              Отправить код
+              Продолжить
             </Button>
             <div className="text-center">
               <Link to="/login" className="fs-9 fw-semibold">

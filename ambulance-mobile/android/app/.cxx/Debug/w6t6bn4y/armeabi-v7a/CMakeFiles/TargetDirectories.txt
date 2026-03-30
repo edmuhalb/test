@@ -1,0 +1,2 @@
+/Users/igorkurilenko/co/biz/ambulance-mobile/android/app/.cxx/Debug/w6t6bn4y/armeabi-v7a/CMakeFiles/edit_cache.dir
+/Users/igorkurilenko/co/biz/ambulance-mobile/android/app/.cxx/Debug/w6t6bn4y/armeabi-v7a/CMakeFiles/rebuild_cache.dir

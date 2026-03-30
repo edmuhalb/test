@@ -76,7 +76,7 @@ const SignInForm = () => {
                       type="password"
                       disabled={submitting}
                       className="form-icon-input"
-                      placeholder="Парлоль"
+                      placeholder="Пароль"
                       {...input}
                     />
                     <FontAwesomeIcon

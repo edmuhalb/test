@@ -34,14 +34,6 @@ const routes: RouteObject[] = [
               </ProtectedRoute>
             )
           },
-          //{
-          //  index: true,
-          //  element: (
-          //    <ProtectedRoute>
-          //      <DashboardPage />
-          //    </ProtectedRoute>
-          //  )
-          //},
           {
             path: '/calls',
             children: [
@@ -76,19 +68,6 @@ const routes: RouteObject[] = [
               }
             ]
           },
-          // {
-          //   path: '/results',
-          //   children: [
-          //     {
-          //       index: true,
-          //       element: (
-          //         <ProtectedRoute>
-          //           <ResultsPage />
-          //         </ProtectedRoute>
-          //       )
-          //     }
-          //   ]
-          // },
           {
             path: '/notifications',
             children: [

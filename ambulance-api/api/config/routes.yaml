@@ -1,0 +1,12 @@
+controllers:
+    resource: ../src/Controller/
+    type: attribute
+
+api_login_check:
+    path: /api/login_check
+
+partner_api_login_check:
+    path: /partner/login_check
+
+exchange_api_login_check:
+    path: /exchange/login_check

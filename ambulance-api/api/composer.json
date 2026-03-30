@@ -1,0 +1,137 @@
+{
+    "type": "project",
+    "license": "proprietary",
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "require": {
+        "php": ">=8.3",
+        "ext-ctype": "*",
+        "ext-iconv": "*",
+        "amocrm/amocrm-api-library": "^0.13.0",
+        "api-platform/core": "^3.3",
+        "boshurik/telegram-bot-bundle": "^6.0",
+        "doctrine/annotations": "^1.0",
+        "doctrine/doctrine-bundle": "^2.8",
+        "doctrine/doctrine-migrations-bundle": "^3.2",
+        "doctrine/orm": "^2.14",
+        "easycorp/easyadmin-bundle": "^4.6",
+        "knplabs/knp-paginator-bundle": "^6.2",
+        "kreait/firebase-bundle": "^5.5",
+        "lexik/jwt-authentication-bundle": "^2.18",
+        "nelmio/cors-bundle": "^2.3",
+        "phpdocumentor/reflection-docblock": "^5.3",
+        "phpoffice/phpspreadsheet": "^1.29",
+        "phpstan/phpdoc-parser": "^1.16",
+        "riverside/php-osrm": "^1.2",
+        "sensio/framework-extra-bundle": "^6.1",
+        "sentry/sentry-symfony": "^4.8",
+        "stof/doctrine-extensions-bundle": "^1.7",
+        "symfony/asset": "6.4.*",
+        "symfony/console": "6.4.*",
+        "symfony/doctrine-messenger": "6.4.*",
+        "symfony/dotenv": "6.4.*",
+        "symfony/expression-language": "6.4.*",
+        "symfony/flex": "^2",
+        "symfony/form": "6.4.*",
+        "symfony/framework-bundle": "6.4.*",
+        "symfony/http-client": "6.4.*",
+        "symfony/intl": "6.4.*",
+        "symfony/mailer": "6.4.*",
+        "symfony/mime": "6.4.*",
+        "symfony/monolog-bundle": "^3.0",
+        "symfony/notifier": "6.4.*",
+        "symfony/process": "6.4.*",
+        "symfony/property-access": "6.4.*",
+        "symfony/property-info": "6.4.*",
+        "symfony/runtime": "6.4.*",
+        "symfony/security-bundle": "6.4.*",
+        "symfony/serializer": "6.4.*",
+        "symfony/string": "6.4.*",
+        "symfony/translation": "6.4.*",
+        "symfony/twig-bundle": "6.4.*",
+        "symfony/validator": "6.4.*",
+        "symfony/web-link": "6.4.*",
+        "symfony/yaml": "6.4.*",
+        "textalk/websocket": "^1.6",
+        "twig/extra-bundle": "^2.12|^3.0",
+        "twig/twig": "^2.12|^3.0",
+        "vich/uploader-bundle": "^2.3",
+        "yandex/geo": "^1.2"
+    },
+    "require-dev": {
+        "dama/doctrine-test-bundle": "^8.2",
+        "doctrine/doctrine-fixtures-bundle": "^3.6",
+        "friendsofphp/php-cs-fixer": "^3.14",
+        "lctrs/psalm-psr-container-plugin": "^1.9",
+        "overtrue/phplint": "^9.0",
+        "phpunit/phpunit": "^9.5",
+        "psalm/plugin-phpunit": "^0.18.4",
+        "symfony/browser-kit": "6.4.*",
+        "symfony/css-selector": "6.4.*",
+        "symfony/debug-bundle": "6.4.*",
+        "symfony/maker-bundle": "^1.0",
+        "symfony/phpunit-bridge": "^6.2",
+        "symfony/stopwatch": "6.4.*",
+        "symfony/web-profiler-bundle": "6.4.*",
+        "vimeo/psalm": "^5.6",
+        "zenstruck/foundry": "^2.3"
+    },
+    "config": {
+        "allow-plugins": {
+            "composer/package-versions-deprecated": true,
+            "symfony/flex": true,
+            "symfony/runtime": true,
+            "php-http/discovery": true
+        },
+        "optimize-autoloader": true,
+        "preferred-install": {
+            "*": "dist"
+        },
+        "sort-packages": true
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "App\\Tests\\": "tests/"
+        }
+    },
+    "replace": {
+        "symfony/polyfill-ctype": "*",
+        "symfony/polyfill-iconv": "*",
+        "symfony/polyfill-php72": "*",
+        "symfony/polyfill-php73": "*",
+        "symfony/polyfill-php74": "*",
+        "symfony/polyfill-php80": "*",
+        "symfony/polyfill-php81": "*"
+    },
+    "scripts": {
+        "app": "php bin/console --ansi",
+        "lint": "phplint",
+        "php-cs-fixer": "php-cs-fixer --allow-risky=yes",
+        "psalm": "psalm --config=psalm.xml",
+        "test": "phpunit",
+        "test-coverage": "XDEBUG_MODE=coverage phpunit --coverage-html var/test/coverage",
+        "auto-scripts": {
+            "assets:install %PUBLIC_DIR%": "symfony-cmd"
+        },
+        "post-install-cmd": [
+            "@auto-scripts"
+        ],
+        "post-update-cmd": [
+            "@auto-scripts"
+        ]
+    },
+    "conflict": {
+        "symfony/symfony": "*"
+    },
+    "extra": {
+        "symfony": {
+            "allow-contrib": true,
+            "require": "6.4.*"
+        }
+    }
+}

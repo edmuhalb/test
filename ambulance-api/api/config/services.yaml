@@ -1,0 +1,97 @@
+# This file is the entry point to configure your own services.
+# Files in the packages/ subdirectory configure your dependencies.
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
+parameters:
+    app.min_version: '%env(MIN_VERSION)%'
+    app.target_version: '%env(TARGET_VERSION)%'
+    telegram_route_secret: '%env(TELEGRAM_BOT_TOKEN)%'
+
+services:
+    # default configuration for services in *this* file
+    _defaults:
+        autowire: true      # Automatically injects dependencies in your services.
+        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+
+    # makes classes in src/ available to be used as services
+    # this creates a service per class whose id is the fully-qualified class name
+    App\:
+        resource: '../src/'
+        exclude:
+            - '../src/DependencyInjection/'
+            - '../src/Entity/'
+            - '../src/Kernel.php'
+
+    # add more service definitions when explicit configuration is needed
+    # please note that last definitions always *replace* previous ones
+    acme_api.event.jwt_created_listener:
+        class: App\EventListener\JWTCreatedListener
+        arguments: [ '@request_stack' ]
+        tags:
+            - { name: kernel.event_listener, event: lexik_jwt_authentication.on_jwt_created, method: onJWTCreated }
+
+    App\Services\YaGeolocation\Api:
+        arguments:
+            $token : "%env(YA_GEOLOCATION_TOKEN)%"
+
+    App\Services\WSClient:
+        arguments:
+            $url : "%env(WEBSOCKET_URL)%"
+
+    App\Services\CallingSender:
+
+    App\EventSubscriber\PaymentSettingUpdateSubscriber:
+        tags:
+            - { name: doctrine.event_subscriber }
+
+    App\State\AdministratorReport\PostProcessor:
+        bind:
+            $processor: '@api_platform.doctrine.orm.state.persist_processor'
+
+    App\State\Call\PostProcessor:
+        bind:
+            $processor: '@api_platform.doctrine.orm.state.persist_processor'
+
+
+    App\State\MedTeam\PostProcessor:
+        bind:
+            $processor: '@api_platform.doctrine.orm.state.persist_processor'
+
+    App\State\MedTeam\PatchProcessor:
+        bind:
+            $processor: '@api_platform.doctrine.orm.state.persist_processor'
+
+    App\Serializer\Call\CrmToAppDenormalizerInterface:
+        class: App\Serializer\Call\AmoCrmToAppDenormalizer
+
+    App\Services\Call\CrmContactFetcher\CrmContactFetcherInterface:
+        class: App\Services\Call\CrmContactFetcher\AmoCrmContactFetcher
+
+    'App\Doctrine\CurrentUserExtension':
+        tags:
+            - { name: api_platform.doctrine.orm.query_extension.collection }
+
+    BoShurik\TelegramBotBundle\Telegram\Command\Registry\CommandRegistry:
+
+    App\Services\YaDiskApi\YaDiskApiInterface:
+        class: App\Services\YaDiskApi\YaDiskApi
+
+    App\Services\ATS\BlacklistService\McnBlacklistService:
+        arguments:
+            $token : "%env(MCN_API_TOKEN)%"
+
+    App\Services\BuhClient:
+        arguments:
+            $buhUsername: '%env(BUH_USERNAME)%'
+            $buhPassword: '%env(BUH_PASSWORD)%'
+
+    App\Services\AmbulanceApiClient:
+        arguments:
+            $baseUrl: '%env(AMBULANCE_API_BASE_URL)%'
+            $username: '%env(AMBULANCE_API_USERNAME)%'
+            $password: '%env(AMBULANCE_API_PASSWORD)%'
+
+    App\EventSubscriber\AmbulanceCallSubscriber:
+        tags:
+            - { name: doctrine.event_subscriber }

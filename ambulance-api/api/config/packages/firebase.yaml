@@ -1,0 +1,4 @@
+kreait_firebase:
+  projects:
+    ambulance:
+      credentials: '%kernel.project_dir%/config/firebase/ambulance.json'

@@ -1,0 +1,20 @@
+api_platform:
+  title: Ambulance API
+  version: 1.0.0
+  description: 'API выездной службы'
+  show_webby: false
+  enable_entrypoint: '%env(bool:ENABLE_API_DOCS)%'
+  enable_swagger: '%env(bool:ENABLE_API_DOCS)%'
+  enable_swagger_ui: '%env(bool:ENABLE_API_DOCS)%'
+  formats:
+    multipart: [ 'multipart/form-data' ]
+    jsonld: [ 'application/ld+json' ]
+    json: [ 'application/json' ]
+  swagger:
+    api_keys:
+      JWT:
+        name: Authorization
+        type: header
+  defaults:
+    normalization_context:
+      skip_null_values: false

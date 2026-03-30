@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Form as FinalForm, Field } from 'react-final-form';
 import Button from 'components/base/Button';
 import { Form } from 'react-bootstrap';
-import { Link, useNavigate, useSearchParams } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import {
   checkCallStatusAPI,
   resetPasswordAPI
@@ -11,13 +11,13 @@ import {
 import { useEffect, useState, useRef } from 'react';
 
 const ResetPasswordForm = () => {
-  const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const checkId = searchParams.get('check_id') || '';
   const callPhone = searchParams.get('call_phone') || '';
 
   const [confirmed, setConfirmed] = useState(false);
   const [polling, setPolling] = useState(true);
+  const [success, setSuccess] = useState(false);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   useEffect(() => {
@@ -45,7 +45,7 @@ const ResetPasswordForm = () => {
   const onSubmit = async (values: any) => {
     const res = await resetPasswordAPI(checkId, values.password);
     if (res?.data?.success) {
-      navigate('/login');
+      setSuccess(true);
     }
   };
 
@@ -61,6 +61,20 @@ const ResetPasswordForm = () => {
     }
     return errors;
   };
+
+  if (success) {
+    return (
+      <div className="text-center">
+        <h3 className="text-body-highlight mb-3">Пароль изменён</h3>
+        <p className="text-body-tertiary mb-4">
+          Ваш пароль успешно обновлён. Теперь вы можете войти с новым паролем.
+        </p>
+        <Link to="/login" className="btn btn-primary">
+          Войти
+        </Link>
+      </div>
+    );
+  }
 
   if (!checkId) {
     return (

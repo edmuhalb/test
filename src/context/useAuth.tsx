@@ -56,8 +56,9 @@ export const UserProvider = ({ children }: Props) => {
 
           localStorage.setItem('user', JSON.stringify(userObj));
           setUser(userObj);
-          setToken(res?.data.token);
-          axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+          const newToken = res?.data.token;
+          setToken(newToken);
+          axios.defaults.headers.common.Authorization = `Bearer ${newToken}`;
           navigate('/');
           navigate(0);
         }

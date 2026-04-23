@@ -27,6 +27,11 @@ To run the production build locally, run the following commands:
  serve -s build
 ```
 
+## Vercel + Render troubleshooting
+
+- **401 on `/manifest.json` (preview URL `*.vercel.app`)** — often [Vercel Deployment Protection](https://vercel.com/docs/security/deployment-protection) on preview deployments. Adjust **Project → Settings → Deployment Protection**, use a production deployment/custom domain, or a documented bypass for automation. This is not fixed by changing `manifest.json` or API CORS.
+- **500 on `/partner/calls`** — server error on the Render service. Open **Render → your web service → Logs** while reproducing the request; fix the exception or missing env (DB, JWT secrets, etc.) on the backend. The main API for this app is set via `REACT_APP_API_URL` (see `.env.production`).
+
 ### Design File
 
 Get the figma design file here:
